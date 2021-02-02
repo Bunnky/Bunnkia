@@ -5246,7 +5246,6 @@ void Get_Message( short Player)
 
 					for (i = 0; i < 25; i++)
 					{
-
 						if (!Objects_Use[i])
 						{
 							Objects_Use[i] = true;
