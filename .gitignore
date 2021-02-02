@@ -11,6 +11,16 @@
 
 /Server/GM personal logs
 /Server/logs
+/Server/debug.txt
+/Server/abusers.txt
+/Server/temppijee.txt
+/Server/ipbans.txt
+
+/Client/levelit.txt
+/Client/stderr.txt
+/Client/stdout.txt
+
+/Image Converter/Graphics
 
 *.lnk
 *.exe
@@ -27,7 +37,5 @@
 *.ico
 *.png
 *.suo
-
 *.lastcodeanalysissucceeded
-Server/debug.txt
-Server/abusers.txt
+

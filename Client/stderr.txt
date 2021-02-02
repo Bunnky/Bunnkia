@@ -1,3 +1,0 @@
-InitSDL(); ... InitSDL success.
-Loading map...done.
-Initializing networking...
