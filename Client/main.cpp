@@ -354,7 +354,7 @@ int main(int argv, char *argc[])
                         InTitle = false;					
 					}
 					if (event.type == SDL_QUIT) exit(1);
-        }
+				}
 
 				if (SDL_GetTicks() - TextTime > 800)
 				{
@@ -393,17 +393,17 @@ int main(int argv, char *argc[])
 					my = event.motion.y;
 					if (event.type == SDL_MOUSEBUTTONUP)
 					{
-            if (mx >= 368 && mx <= 435 && my >= 291 && my <= 304)
+						if (mx >= 368 && mx <= 435 && my >= 291 && my <= 304)
 						{
 							GameState = 2;
 							InMain = false;
 						}
-            if (mx >= 311 && mx <= 495 && my >= 320 && my <= 333)
+						if (mx >= 311 && mx <= 495 && my >= 320 && my <= 333)
 						{
 							GameState = 6;
 							InMain = false;
 						}
-            if (mx >= 375 && mx <= 421 && my >= 354 && my <= 367)
+						if (mx >= 375 && mx <= 421 && my >= 354 && my <= 367)
 						{
 							exit(1);
 						}
@@ -509,20 +509,33 @@ int main(int argv, char *argc[])
 						int x,y;
 						x = event.motion.x;
 						y = event.motion.y;
-						
-						if (x >= 394 && x <= 542 && y >= 207 && y <= 226)
+						//------------------------------------------------------------------------------
+						//	Account Box
+						//------------------------------------------------------------------------------
+						if (x >= 394 && x <= 542 && y >= 257 && y <= 276)
 						{
 							Writing.Mode = 10;
 						}
-
-						if (x >= 394 && x <= 542 && y >= 239 && y <= 258)
+						//------------------------------------------------------------------------------
+						//	Password Box
+						//------------------------------------------------------------------------------
+						if (x >= 394 && x <= 542 && y >= 289 && y <= 308)
 						{
 							Writing.Mode = 11;						
 						}
-
-						if (x >= 290 && x <= 360 && y >= 353 && y <= 370 && !RealError)
+						//------------------------------------------------------------------------------
+						//	Back Button
+						//------------------------------------------------------------------------------
+						if (x >= 453 && x <= 500 && y >= 403 && y <= 420)
 						{
-							// Login button
+							GameState = 1;
+							InLogin = false;
+						}
+						//------------------------------------------------------------------------------
+						//	Login Button
+						//------------------------------------------------------------------------------
+						if (x >= 290 && x <= 360 && y >= 403 && y <= 420 && !RealError)
+						{
 
 							Connect_To_Server();
 
@@ -540,12 +553,7 @@ int main(int argv, char *argc[])
 							send(Socket, buffer, 1 + sizeof(pLogin), 0);
 							
 							RealError = true;
-						}
-
-						if (x >= 453 && x <= 500 && y >= 353 && y <= 370)
-						{
-							// Exit button
-							exit(1);
+							GameState = 21;
 						}
 					
 					}
@@ -563,9 +571,6 @@ int main(int argv, char *argc[])
 				SDL_Delay(5);
 			}
 
-
-            
-			GameState = 21;
 			break;
 		case 21: // Waiting reply for Login packet
 
@@ -937,10 +942,10 @@ int main(int argv, char *argc[])
 							send(Socket, buffer, 1 + sizeof(pACreate), 0);
 						}
 
-						if (x >= 453 && x <= 500 && y >= 353 && y <= 370)
+						if (x >= 453 && x <= 500 && y >= 403 && y <= 420)
 						{
-							// Exit button
-							exit(1);
+							GameState = 1;
+							InAccCreation = false;
 						}
 					
 					}
@@ -959,7 +964,7 @@ int main(int argv, char *argc[])
 				SDL_BlitSurface(Login.bGround, NULL, Screen.screen, NULL);
 
 				sdl.dst.x = 250;
-				sdl.dst.y = 100;
+				sdl.dst.y = 150;
 				sdl.dst.h = 300;
 				sdl.dst.w = 300;
 
