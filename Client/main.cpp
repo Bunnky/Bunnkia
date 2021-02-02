@@ -515,6 +515,7 @@ int main(int argv, char *argc[])
 								send(Socket, buffer, 1 + sizeof(pLogin), 0);
 
 								RealError = true;
+								GameState = 21;
 							}
 						}
 					}
