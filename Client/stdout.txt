@@ -1,0 +1,13 @@
+Loading Safezones...done.
+Loading Tiles...done.
+Loading Fog of War...done.
+Decrypting NPCTypes...Loading NPCs...done.
+Decrypting Monster types...Loading MonsterTypes...done.
+
+Program: Load objects-
+--Load objects into templist---Divide objects from templist to hashtables lists-Loading Objecttypes...done.
+Decrypting Weapontypes...Loading Weapontypes...done.
+Decrypting Armortypes...Loading armortypes...done.
+Decrypting Collectabletypes...Loading collectables...done.
+Decrypting Useableitem types...Loading Useables...done.
+Waiting reply for loginpacket...

@@ -1,0 +1,31 @@
+/.vs
+/Client/.vs
+/Server/.vs
+/Tools/.vs
+/Image Converter/.vs
+
+/Client/project-files
+/Image Converter/project-files
+/Server/project-files
+/Tools/project-files
+
+/Server/GM personal logs
+/Server/logs
+
+*.lnk
+*.exe
+*.sln
+*.csproj.user
+*.vcxproj.filters
+*.vcxproj.user
+*.ilk
+*.pdb
+*.aps
+*.rc
+*.vdt
+*.vs2
+*.ico
+*.png
+*.suo
+
+*.lastcodeanalysissucceeded
