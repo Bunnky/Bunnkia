@@ -29,3 +29,5 @@
 *.suo
 
 *.lastcodeanalysissucceeded
+Server/debug.txt
+Server/abusers.txt
