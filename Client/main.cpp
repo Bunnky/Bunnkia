@@ -915,7 +915,7 @@ int main(int argv, char *argc[])
 
 						Login.textedits->mouseclick(x, y);
 						
-						if (x >= 290 && x <= 360 && y >= 353 && y <= 370 && GameState != 3)
+						if (x >= 290 && x <= 360 && y >= 403 && y <= 420 && GameState != 3)
 						{
 							// Create button
 
@@ -5121,8 +5121,8 @@ void LoginClass::PrepareAccCreation()
 {
 	textedits = new texteditdatabase();
 
-	textedits->NewTextedit((char*)"", 395, 208, 150, 16, false, false, 20, false, false, 1000001, 1000002);
-	textedits->NewTextedit((char*)"", 395, 240, 150, 16, false, false, 20, false, false, 1000002, 1000001);
+	textedits->NewTextedit((char*)"", 395, 260, 150, 16, false, false, 20, false, false, 1000001, 1000002);
+	textedits->NewTextedit((char*)"", 395, 292, 150, 16, false, false, 20, false, false, 1000002, 1000001);
 	//textedits->NewTextedit("Your e-mail", 400, 240, 150, 16, false, false, 65, false, false, 1000003, 1000001);
 
 	textedit *tmp;
