@@ -293,7 +293,7 @@ void Setup()
 		}
 
 		memcpy(&NPCTypes, data, sizeof(NPCTypes));
-		delete data;
+		delete[] data;
 		
 		filet.close();
 		printf("done.\n");
@@ -323,7 +323,7 @@ void Setup()
 		}
 
 		memcpy(&MonsterTypes, data, sizeof(MonsterTypes));
-		delete data;
+		delete[] data;
 		
 		filet.close();
 		printf("done.\n");
@@ -359,7 +359,7 @@ void Setup()
 
 		memcpy(&Tiles, data, sizeof(Tiles));
 
-		delete data;
+		delete[] data;
 
 		filet.close();
 		printf("...done.\n");
@@ -382,7 +382,7 @@ void Setup()
 
 		memcpy(&ObjectTypes, data, sizeof(ObjectTypes));
 
-		delete data;
+		delete[] data;
 
 		filet.close();
 	}
@@ -420,7 +420,7 @@ void Setup()
 		}
 
 		memcpy(&Weapons, data, sizeof(Weapons));
-		delete data;
+		delete[] data;
 		
 		printf("done.\n");
 	}
@@ -448,7 +448,7 @@ void Setup()
 		}
 
 		memcpy(&Armors, data, sizeof(Armors));
-		delete data;
+		delete[] data;
 
 
 		filet.close();
@@ -478,7 +478,7 @@ void Setup()
 		}
 
 		memcpy(&Collectables, data, sizeof(Collectables));
-		delete data;
+		delete[] data;
 		
 		filet.close();
 		printf("done.\n");
@@ -507,7 +507,7 @@ void Setup()
 		}
 
 		memcpy(&Useables, data, sizeof(Useables));
-		delete data;
+		delete[] data;
 		
 		filet.close();
 		printf("done.\n");
@@ -897,7 +897,6 @@ void Load_Objects_obj_Lists()
 		List = tmptmp;
 	}*/
 	if (file.is_open()) file.close();
-	printf("ok\n");
 	printf("All ok\n");
 }
 
