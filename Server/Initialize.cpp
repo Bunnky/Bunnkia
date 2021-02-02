@@ -66,16 +66,6 @@ void Setup()
 		}
 		filet.close();
 	}
-	else
-	{
-		cout << "Couldn't open ground.vsf" << endl;
-		cout << "Account file doesn't exist! Created new file." << endl;
-
-		char const* saveFile = "-File Created-";
-		ofstream zFile("ground.vsf", ios::binary);
-		zFile.write((char*)saveFile, sizeof(saveFile));
-		zFile.close();
-	}
 
 	filet.open("bodies.vsf", ios::in | ios::binary);
 	
@@ -86,16 +76,6 @@ void Setup()
 			filet.read((char *)&Body[i], sizeof(Body[i]));
 		}
 		filet.close();
-	}
-	else
-	{
-		cout << "Couldn't open bodies.vsf" << endl;
-		cout << "Account file doesn't exist! Created new file." << endl;
-
-		char const* saveFile = "-File Created-";
-		ofstream zFile("bodies.vsf", ios::binary);
-		zFile.write((char*)saveFile, sizeof(saveFile));
-		zFile.close();
 	}
 
 
@@ -111,16 +91,7 @@ void Setup()
 		}
 		filet.close();
 	}
-	else
-	{
-		cout << "Couldn't open items.vsf" << endl;
-		cout << "Account file doesn't exist! Created new file." << endl;
 
-		char const* saveFile = "-File Created-";
-		ofstream zFile("items.vsf", ios::binary);
-		zFile.write((char*)saveFile, sizeof(saveFile));
-		zFile.close();
-	}
 	if (LastTakenID < 0) LastTakenID = 0;
 
 	count = 0;
