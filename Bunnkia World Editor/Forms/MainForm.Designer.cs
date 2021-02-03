@@ -46,8 +46,12 @@ namespace Bunnkia_World_Editor
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tileSelect1 = new Bunnkia_World_Editor.TileSelectControl();
+            this.tiledMap1 = new Bunnkia_World_Editor.Controls.TiledMap();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,19 +189,41 @@ namespace Bunnkia_World_Editor
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.tileSelect1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.tiledMap1);
             this.splitContainer1.Size = new System.Drawing.Size(800, 426);
-            this.splitContainer1.SplitterDistance = 266;
+            this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // tileSelect1
+            // 
+            this.tileSelect1.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.tileSelect1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileSelect1.Location = new System.Drawing.Point(0, 0);
+            this.tileSelect1.Name = "tileSelect1";
+            this.tileSelect1.Padding = new System.Windows.Forms.Padding(0, 48, 0, 0);
+            this.tileSelect1.Size = new System.Drawing.Size(330, 422);
+            this.tileSelect1.TabIndex = 0;
+            // 
+            // tiledMap1
+            // 
+            this.tiledMap1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tiledMap1.Location = new System.Drawing.Point(0, 0);
+            this.tiledMap1.Name = "tiledMap1";
+            this.tiledMap1.Padding = new System.Windows.Forms.Padding(0, 96, 0, 0);
+            this.tiledMap1.Size = new System.Drawing.Size(458, 422);
+            this.tiledMap1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
@@ -206,6 +232,8 @@ namespace Bunnkia_World_Editor
             this.Text = "Bunnkia Map Editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -231,6 +259,8 @@ namespace Bunnkia_World_Editor
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private TileSelectControl tileSelect1;
+        private Controls.TiledMap tiledMap1;
     }
 }
 

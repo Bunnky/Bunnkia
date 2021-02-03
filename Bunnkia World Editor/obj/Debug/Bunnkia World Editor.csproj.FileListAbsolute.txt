@@ -1,0 +1,12 @@
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\bin\Debug\Bunnkia World Editor.exe.config
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\bin\Debug\Bunnkia World Editor.exe
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\bin\Debug\Bunnkia World Editor.pdb
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia World Editor.csprojAssemblyReference.cache
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia_World_Editor.MainForm.resources
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia_World_Editor.Properties.Resources.resources
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia_World_Editor.TileSelectControl.resources
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia World Editor.csproj.GenerateResource.cache
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia World Editor.csproj.CoreCompileInputs.cache
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia World Editor.exe
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia World Editor.pdb
+C:\Users\Bill\Desktop\Bunnkia\Bunnkia World Editor\obj\Debug\Bunnkia_World_Editor.Controls.TiledMap.resources
