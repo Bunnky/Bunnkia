@@ -38,10 +38,9 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
-
-
 void Game::initStates()
 {
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
     this->states.push(new GameState(this->window, &this->supportedKeys));
 }
 
