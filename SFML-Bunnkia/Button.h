@@ -32,7 +32,7 @@ public:
 		sf::Font* font, std::string text, 
 		sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
-	~Button();
+	virtual ~Button();
 
 	//Accessors
 	const bool isPressed() const;

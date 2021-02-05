@@ -1,20 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include<iostream>
-#include<ctime>
-#include<cstdlib>
-#include<fstream>
-#include<sstream>
-#include<vector>
-#include<stack>
-#include<map>
-
-#include"SFML\System.hpp"
-#include"SFML\Window.hpp"
-#include"SFML\Graphics.hpp"
-#include"SFML\Audio.hpp"
-#include"SFML\Network.hpp"
+#include"MovementComponent.h"
 
 
 class Entity
@@ -26,7 +13,7 @@ protected:
 	sf::Texture* texture;
 	sf::Sprite* sprite;
 
-	float movementSpeed;
+	MovementComponent* movementComponent;
 
 public:
 	Entity();
@@ -34,8 +21,11 @@ public:
 
 	//Component functions
 	void createSprite(sf::Texture* texture);
+	void createMovementComponent(const float maxVelocity);
 
 	//Functions
+
+	virtual void setPostition(const float x, const float y);
 	virtual void move(const float& dt, const float x, const float y);
 
 	virtual void update(const float& dt);
