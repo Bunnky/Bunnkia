@@ -1,11 +1,2 @@
-﻿  MainMenuState.cpp
-C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\MainMenuState.cpp(49,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-          and
-          [
-              T=float
-          ]
+﻿  Button.cpp
   SFML-Bunnkia.vcxproj -> C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\Debug\SFML-Bunnkia.exe

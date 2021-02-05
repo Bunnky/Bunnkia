@@ -2,9 +2,9 @@
 
 void MainMenuState::initFonts()
 {
-	if(!this->font.loadFromFile("Fonts/Consolas.ttf"))
+	if(!this->font.loadFromFile("Fonts/The Impostor.ttf"))
 	{
-		throw("ERRO::MAINMENUSTATE::COULD NOT LOAD FONT");
+		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
 }
 
