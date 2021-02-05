@@ -20,15 +20,20 @@
 class Entity
 {
 private:
-
+	void initVariables();
 
 protected:
-	sf::RectangleShape shape;
+	sf::Texture* texture;
+	sf::Sprite* sprite;
+
 	float movementSpeed;
 
 public:
 	Entity();
 	virtual ~Entity();
+
+	//Component functions
+	void createSprite(sf::Texture* texture);
 
 	//Functions
 	virtual void move(const float& dt, const float x, const float y);

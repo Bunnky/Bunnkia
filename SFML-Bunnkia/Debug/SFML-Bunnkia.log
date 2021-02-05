@@ -1,15 +1,7 @@
-﻿  Game.cpp
+﻿  Entity.cpp
+  Game.cpp
   GameState.cpp
   MainMenuState.cpp
-C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\MainMenuState.cpp(53,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-          and
-          [
-              T=float
-          ]
   State.cpp
   main.cpp
   Generating Code...
