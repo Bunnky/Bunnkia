@@ -1,2 +1,9 @@
-﻿  Player.cpp
+﻿  Entity.cpp
+  Game.cpp
+  GameState.cpp
+  MainMenuState.cpp
+  Player.cpp
+  State.cpp
+  main.cpp
+  Generating Code...
   SFML-Bunnkia.vcxproj -> C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\Debug\SFML-Bunnkia.exe
