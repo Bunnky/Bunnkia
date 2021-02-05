@@ -22,15 +22,18 @@ private:
 	sf::Sprite& sprite;
 
 	float maxVelocity;
+	float acceleration;
+	float deceleration;
+
 	sf::Vector2f velocity;
-	sf::Vector2f acceleration;
-	sf::Vector2f deceleration;
+
 
 	//Initializer functions
 
 
 public:
-	MovementComponent(sf::Sprite& sprite, float maxVelocity);
+	MovementComponent(sf::Sprite& sprite,
+		float maxVelocity, float acceleration, float deceleration);
 	virtual ~MovementComponent();
 
 	//Accessors
