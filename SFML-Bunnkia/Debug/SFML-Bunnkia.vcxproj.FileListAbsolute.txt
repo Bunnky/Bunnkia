@@ -1,2 +1,0 @@
-C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\Debug\SFML-Bunnkia.exe
-C:\Users\Bill\Desktop\Bunnkia\SFML-Bunnkia\Debug\SFML-Bunnkia.pdb

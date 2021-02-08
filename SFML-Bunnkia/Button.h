@@ -44,7 +44,7 @@ public:
 
 	//Functions
 	void update(const sf::Vector2f mousePos);
-	void render(sf::RenderTarget* target);
+	void render(sf::RenderTarget& target);
 };
 
 #endif

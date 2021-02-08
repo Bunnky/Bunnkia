@@ -44,5 +44,8 @@
 *.suo
 *.vsf
 *.ini
+*.obj
+*.tlog
+*.idb
 *.lastcodeanalysissucceeded
 

@@ -20,6 +20,9 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 
 	this->setPostition(x, y);
 
+	/*This is where we alter the hitbox*/
+	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
+
 	this->createMovementComponent(500.f, 20.f, 10.f);
 	this->createAnimationComponent(texture_sheet);
 
@@ -39,4 +42,6 @@ void Player::update(const float& dt)
 		this->animationComponent->play("IDLE_LEFT", dt);
 	else if(this->movementComponent->getState(MOVING_LEFT))
 		this->animationComponent->play("WALK_LEFT", dt);
+
+	this->hitboxComponent->update();
 }
