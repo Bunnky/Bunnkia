@@ -4,7 +4,7 @@
 //Initializer functions
 void Player::initVariables()
 {
-
+	this->attacking = false;
 }
 
 void Player::initComponents()
@@ -27,8 +27,8 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	this->createAnimationComponent(texture_sheet);
 
 	this->animationComponent->addAnimation("IDLE", 11.f, 0, 0, 3, 0, 32, 32);
-	this->animationComponent->addAnimation("WALK", 7.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("ATTACK", 6.f, 0, 2, 4, 2, 32 * 2, 32);
+	this->animationComponent->addAnimation("WALK", 6.f, 0, 1, 3, 1, 32, 32);
+	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 4, 2, 32 * 2, 32);
 }
 
 Player::~Player()
@@ -38,6 +38,16 @@ Player::~Player()
 void Player::update(const float& dt)
 {
 	this->movementComponent->update(dt);
+
+	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	//{
+	//	this->attacking = true;
+	//}
+
+	if (this->attacking)
+	{
+		this->animationComponent->play("ATTACK", dt, true);
+	}
 
 	if (this->movementComponent->getState(IDLE))
 	{
