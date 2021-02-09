@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainMenuState.h"
 
 //========================================================
@@ -57,26 +58,26 @@ void MainMenuState::initButtons()
 	this->buttons["GAME_STATE"] = new gui::Button(
 		330.f, 170.f, 150.f, 50.f,
 		&this->font, "New Game", 24,
-		sf::Color(70, 70, 70, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	this->buttons["SETTINGS_STATE"] = new gui::Button(
 		330.f, 245.f, 150.f, 50.f,
 		&this->font, "Settings", 24,
-		sf::Color(70, 70, 70, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EDITOR_STATE"] = new gui::Button(
 		330.f, 320.f, 150.f, 50.f,
 		&this->font, "Editor", 24,
-		sf::Color(70, 70, 70, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EXIT_STATE"] = new gui::Button(
 		330.f, 395.f, 150.f, 50.f,
 		&this->font, "Quit", 24,
-		sf::Color(70, 70, 70, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 }
 

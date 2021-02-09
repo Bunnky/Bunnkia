@@ -3,7 +3,6 @@
 
 #include"Player.h"
 
-
 class State
 {
 private:

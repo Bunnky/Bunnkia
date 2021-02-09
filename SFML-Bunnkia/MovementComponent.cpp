@@ -1,4 +1,6 @@
+#include "stdafx.h"
 #include "MovementComponent.h"
+
 //========================================================
 //Constructors/Destructors
 //========================================================
