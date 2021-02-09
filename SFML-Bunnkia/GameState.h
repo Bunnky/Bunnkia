@@ -3,6 +3,7 @@
 
 #include "State.h"
 #include "PauseMenu.h"
+#include "TileMap.h"
 
 
 class GameState :
@@ -13,6 +14,9 @@ private:
     PauseMenu *pmenu;
 
     Player* player;
+    sf::Texture texture;
+
+    TileMap* tileMap;
 
     //===========//
     // Functions //
@@ -22,9 +26,10 @@ private:
     void initTextures();
     void initPauseMenu();
     void initPlayers();
+    void initTileMap();
 
 public:
-    GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+    GameState(StateData* state_data);
     virtual ~GameState();
 
 
