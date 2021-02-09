@@ -56,6 +56,9 @@ void SettingsState::initButtons()
 		&this->font, "Quit", 24,
 		sf::Color(70, 70, 70, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
+	std::string li[] = { "dfgdfg", "wer324", "sdf43256", "fsddfgghd", "23545gf" };
+	this -> ddl = new gui::DropDownList(100, 100, 200, 50, font, li, 5);
 }
 
 SettingsState::SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
@@ -75,6 +78,7 @@ SettingsState::~SettingsState()
 	{
 		delete it->second;
 	}
+	delete this->ddl;
 }
 
 //Accessors
@@ -98,7 +102,7 @@ void SettingsState::updateButtons()
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
 		this->endState();
-	}
+	}	
 }
 
 void SettingsState::update(const float& dt)
@@ -107,6 +111,8 @@ void SettingsState::update(const float& dt)
 	this->updateInput(dt);
 
 	this->updateButtons();
+
+	this -> ddl->update(this->mousePosView, dt);
 }
 
 void SettingsState::renderButtons(sf::RenderTarget& target)
@@ -126,6 +132,7 @@ void SettingsState::render(sf::RenderTarget* target)
 
 	this->renderButtons(*target);
 
+	this->ddl->render(*target);
 	//DEBUG MOUSE POS
 	//sf::Text mouseText;
 	//mouseText.setPosition(this->mousePosView.x -20, this->mousePosView.y - 20);
