@@ -6,7 +6,9 @@
 class Game
 {
 private:
-	//Variables
+	//===========//
+	// Variables //
+	//===========//
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
 	std::vector<sf::VideoMode> videoModes;
@@ -20,35 +22,46 @@ private:
 
 	std::map<std::string, int> supportedKeys;
 
-	//Initialization
+	//===========//
+	// Initialize//
+	//===========//
 	void initVariables();
 	void initWindow();
 	void initKeys();
 	void initStates();
 
-
-
-
 public:
 
-	//Constructors/Destructors
+	//==========================//
+	// Constructors/Destructors //
+	//==========================//
 	Game();
 	virtual ~Game();
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 
-	//Regular
+	//===========//
+	//  Regular  //
+	//===========//
 	void endApplication();
 
-	//Update
+	//===========//
+	//  Update   //
+	//===========//
 	void updateDt();
 	void updateSFMLEvents();
 	void update();
 
-	//Render
+	//===========//
+	//  Render   //
+	//===========//
 	void render();
 
-	//Core
+	//===========//
+	//  Core     //
+	//===========//
 	void run();
 
 };

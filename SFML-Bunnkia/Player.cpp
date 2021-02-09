@@ -1,7 +1,9 @@
 #include "Player.h"
 
 
-//Initializer functions
+//========================================================
+//Initializer Functions
+//========================================================
 void Player::initVariables()
 {
 	this->attacking = false;
@@ -13,7 +15,9 @@ void Player::initComponents()
 }
 
 
-//Constructures/Destructors
+//========================================================
+//Constructors/Destructors
+//========================================================
 Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
 	this->initVariables();	
@@ -36,7 +40,9 @@ Player::~Player()
 
 }
 
+//========================================================
 //Functions
+//========================================================
 void Player::updateAttack()
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

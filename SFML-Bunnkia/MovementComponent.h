@@ -30,7 +30,9 @@ private:
 	sf::Vector2f velocity;
 
 
-	//Initializer functions
+	//===========//
+	// Initialize//
+	//===========//
 
 
 public:
@@ -38,11 +40,15 @@ public:
 		float maxVelocity, float acceleration, float deceleration);
 	virtual ~MovementComponent();
 
-	//Accessors
+	//===========//
+	// Accessors //
+	//===========//
 	const float& getMaxVelocity() const;
 	const sf::Vector2f& getVelocity() const;
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	const bool getState(const short unsigned state) const;
 
 	void move(const float x, const float y, const float& dt);

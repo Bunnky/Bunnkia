@@ -1,5 +1,9 @@
 #include "Gui.h"
-
+//========================================================
+//
+//Buttons
+//
+//========================================================
 gui::Button::Button(float x, float y, float width, float height,
 	sf::Font* font, std::string text, unsigned character_size,
 	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
@@ -38,8 +42,9 @@ gui::Button::~Button()
 {
 
 }
-
+//========================================================
 //Accessors
+//========================================================
 const bool gui::Button::isPressed() const
 {
 	if (this->buttonState == BTN_ACTIVE)
@@ -53,17 +58,17 @@ const std::string& gui::Button::getText() const
 	return this->text.getString();
 }
 
+//========================================================
 //Modifiers
+//========================================================
 void gui::Button::setText(const std::string text)
 {
 	this->text.setString(text);
 }
 
+//========================================================
 //Functions
-
-
-
-
+//========================================================
 void gui::Button::update(const sf::Vector2f& mousePos)
 {
 	/*Update the booleans for hover and pressed*/
@@ -114,8 +119,14 @@ void gui::Button::render(sf::RenderTarget& target)
 }
 
 
-//Drop down list =====================================================
 
+
+
+//========================================================
+//
+//Drop down list
+//
+//========================================================
 gui::DropDownList::DropDownList(float x, float y, float width, float height, 
 	sf::Font& font, std::string list[], 
 	unsigned nrOfElements, unsigned default_index)
@@ -148,7 +159,9 @@ gui::DropDownList::~DropDownList()
 	}
 }
 
+//========================================================
 //Accessors
+//========================================================
 const bool gui::DropDownList::getKeyTime()
 {
 	if (this->keytime >= this->keytimeMax)
@@ -159,7 +172,9 @@ const bool gui::DropDownList::getKeyTime()
 	return false;
 }
 
+//========================================================
 //Functions
+//========================================================
 void gui::DropDownList::updateKeyTime(const float& dt)
 {
 	if (this->keytime < this->keytimeMax)

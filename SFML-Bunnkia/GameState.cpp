@@ -1,6 +1,8 @@
 #include "GameState.h"
 
-//Intializers
+//========================================================
+//Initializer Functions
+//========================================================
 void GameState::initKeybinds()
 {
 	std::ifstream ifs("Config/gamestate_keybinds.ini");
@@ -47,7 +49,9 @@ void GameState::initPlayers()
 	this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
+//========================================================
 //Constructors/Destructors
+//========================================================
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)
 {
@@ -64,6 +68,9 @@ GameState::~GameState()
 	delete this->player;
 }
 
+//========================================================
+//Functions
+//========================================================
 void GameState::updateInput(const float& dt)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeytime())

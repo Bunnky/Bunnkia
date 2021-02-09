@@ -1,5 +1,7 @@
 #include "PauseMenu.h"
-
+//========================================================
+//Constructors/Destructors
+//========================================================
 PauseMenu::PauseMenu(sf::RenderWindow& window, sf::Font& font)
 	: font(font)
 {
@@ -51,10 +53,9 @@ std::map<std::string, gui::Button*>& PauseMenu::getButtons()
 	return this->buttons;
 }
 
-
-
+//========================================================
 //Functions
-
+//========================================================
 const bool PauseMenu::isButtonPressed(const std::string key)
 {
 	return this->buttons[key]->isPressed();

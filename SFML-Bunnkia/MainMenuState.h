@@ -10,7 +10,9 @@ class MainMenuState :
     public State
 {
 private:
-    //Variables
+    //===========//
+    // Variables //
+    //===========//
     sf::Texture backgroundTexture;
     sf::RectangleShape background;
     sf::Font font;
@@ -18,7 +20,9 @@ private:
 
     std::map<std::string, gui::Button*> buttons;
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void initVariables();
     void initBackground();
     void initFonts();
@@ -30,7 +34,9 @@ public:
     virtual ~MainMenuState();
 
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void updateInput(const float& dt);
     void updateButtons();
     void update(const float& dt);

@@ -1,9 +1,7 @@
 #include "MainMenuState.h"
 
 //========================================================
-//
 //Initializer Functions
-//
 //========================================================
 void MainMenuState::initVariables()
 {
@@ -83,9 +81,7 @@ void MainMenuState::initButtons()
 }
 
 //========================================================
-//
 //Constructors/Destructors
-//
 //========================================================
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)
@@ -106,6 +102,9 @@ MainMenuState::~MainMenuState()
 	}
 }
 
+//========================================================
+//Functions
+//========================================================
 void MainMenuState::updateInput(const float& dt)
 {
 	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::G))

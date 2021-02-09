@@ -1,5 +1,8 @@
 #include "State.h"
 
+//========================================================
+//Constructors/Destructors
+//========================================================
 State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 {
 	this->window = window;
@@ -16,7 +19,9 @@ State::~State()
 
 }
 
+//========================================================
 //Accessors
+//========================================================
 const bool& State::getQuit() const
 {
 	return this->quit;
@@ -33,7 +38,9 @@ const bool State::getKeytime()
 	return false;
 }
 
-//Function
+//========================================================
+//Functions
+//========================================================
 void State::endState()
 {
 	this->quit = true;

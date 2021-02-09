@@ -1,5 +1,7 @@
 #include "MovementComponent.h"
-
+//========================================================
+//Constructors/Destructors
+//========================================================
 MovementComponent::MovementComponent(sf::Sprite& sprite,
 	float maxVelocity, float acceleration, float deceleration)
 	: sprite(sprite), maxVelocity(maxVelocity), acceleration(acceleration), deceleration(deceleration)
@@ -12,8 +14,9 @@ MovementComponent::~MovementComponent()
 
 }
 
-
+//========================================================
 //Accessors
+//========================================================
 const float& MovementComponent::getMaxVelocity() const
 {
 	return this->maxVelocity;
@@ -24,11 +27,9 @@ const sf::Vector2f& MovementComponent::getVelocity() const
 	return this->velocity;
 }
 
-
+//========================================================
 //Functions
-
-
-
+//========================================================
 const bool MovementComponent::getState(const short unsigned state) const
 {
 	switch (state)

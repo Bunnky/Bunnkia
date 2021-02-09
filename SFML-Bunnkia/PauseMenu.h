@@ -29,16 +29,23 @@ private:
 
 	std::map<std::string, gui::Button*> buttons;
 
-	//Private Functions
+	//===========//
+	// Functions //
+	//===========//
+
 
 public:
 	PauseMenu(sf::RenderWindow & window, sf::Font& font);
 	virtual ~PauseMenu();
 
-	//Accessor
+	//===========//
+	// Accessors //
+	//===========//
 	std::map<std::string, gui::Button*>& getButtons();
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	const bool isButtonPressed(const std::string key);
 	void addButton(const std::string key, float y, const std::string text);
 	void update(const sf::Vector2f& mousePos);

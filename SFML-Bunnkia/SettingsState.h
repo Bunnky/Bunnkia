@@ -9,7 +9,9 @@ class SettingsState :
     public State
 {
 private:
-    //Variables
+    //===========//
+    // Variables //
+    //===========//
     sf::Texture backgroundTexture;
     sf::RectangleShape background;
     sf::Font font;
@@ -19,7 +21,9 @@ private:
 
     gui::DropDownList* ddl;
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void initVariables();
     void initBackground();
     void initFonts();
@@ -30,9 +34,14 @@ public:
     SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
     virtual ~SettingsState();
 
-    //Accessors
+    //===========//
+    // Accessors //
+    //===========//
 
-    //Functions
+
+    //===========//
+    // Functions //
+    //===========//
     void updateInput(const float& dt);
     void updateButtons();
     void update(const float& dt);

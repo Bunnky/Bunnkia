@@ -1,5 +1,8 @@
 #include "SettingsState.h"
 
+//========================================================
+//Initializer Functions
+//========================================================
 void SettingsState::initVariables()
 {
 
@@ -61,6 +64,9 @@ void SettingsState::initButtons()
 	this -> ddl = new gui::DropDownList(100, 100, 200, 50, font, li, 5);
 }
 
+//========================================================
+//Constructors/Destructors
+//========================================================
 SettingsState::SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states )
 {
@@ -81,9 +87,14 @@ SettingsState::~SettingsState()
 	delete this->ddl;
 }
 
+//========================================================
 //Accessors
+//========================================================
 
+
+//========================================================
 //Functions
+//========================================================
 void SettingsState::updateInput(const float& dt)
 {
 	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::G))

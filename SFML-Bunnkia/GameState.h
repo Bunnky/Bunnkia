@@ -14,7 +14,9 @@ private:
 
     Player* player;
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void initKeybinds();
     void initFonts();
     void initTextures();
@@ -26,7 +28,9 @@ public:
     virtual ~GameState();
 
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void updateInput(const float& dt);
     void updatePlayerInput(const float& dt);
     void updatePauseMenuButtons();

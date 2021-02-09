@@ -25,7 +25,9 @@ public:
 		float width, float height);
 	virtual ~HitboxComponent();
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	bool checkIntersect(const sf::FloatRect& frect);
 
 	void update();

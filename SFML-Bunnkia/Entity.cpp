@@ -1,6 +1,8 @@
 #include "Entity.h"
 
-
+//========================================================
+//Initializer Functions
+//========================================================
 void Entity::initVariables()
 {
 	this->hitboxComponent = NULL;
@@ -8,6 +10,9 @@ void Entity::initVariables()
 	this->animationComponent = NULL;
 }
 
+//========================================================
+//Constructors/Destructors
+//========================================================
 Entity::Entity()
 {
 	this->initVariables();
@@ -20,7 +25,9 @@ Entity::~Entity()
 	delete this->animationComponent;
 }
 
+//========================================================
 //Component functions
+//========================================================
 void Entity::setTexture(sf::Texture& texture)
 {
 	this->sprite.setTexture(texture);
@@ -43,7 +50,9 @@ void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
 }
 
+//========================================================
 //Functions
+//========================================================
 void Entity::setPostition(const float x, const float y)
 {
 	this->sprite.setPosition(x, y);

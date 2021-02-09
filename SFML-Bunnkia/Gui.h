@@ -41,14 +41,20 @@ namespace gui
 
 		virtual ~Button();
 
-		//Accessors
+		//===========//
+		// Accessors //
+		//===========//
 		const bool isPressed() const;
 		const std::string& getText() const;
 
-		//Modifiers
+		//===========//
+		// Modifiers //
+		//===========//
 		void setText(const std::string text);
 
-		//Functions
+		//===========//
+		// Functions //
+		//===========//
 		void update(const sf::Vector2f& mousePos);
 		void render(sf::RenderTarget& target);
 	};
@@ -67,7 +73,9 @@ namespace gui
 			DropDownList(float x, float y, float width, float height, sf::Font& font, std::string list[], unsigned nrOfElements, unsigned default_index = 0);
 			~DropDownList();
 
-			//Functions
+			//===========//
+			// Functions //
+			//===========//
 			const bool getKeyTime();
 			void updateKeyTime(const float& dt);
 			void update(const sf::Vector2f& mousePos, const float& dt);

@@ -17,7 +17,9 @@ private:
 	class Animation
 	{
 	public:
-		//Variables
+		//===========//
+		// Variables //
+		//===========//
 		sf::Sprite& sprite;
 		sf::Texture& textureSheet;
 		float animationTimer;
@@ -45,13 +47,17 @@ private:
 
 		}
 
-		//Accessor
+		//===========//
+		// Accessor  //
+		//===========//
 		const bool& isDone() const
 		{
 			return this->done;
 		}
 
-		//Functions
+		//===========//
+		// Functions //
+		//===========//
 		const bool& play(const float& dt)
 		{
 			//Update timer
@@ -127,10 +133,14 @@ public:
 	AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet);
 	virtual ~AnimationComponent();
 
-	//Accessor
+	//===========//
+	// Accessor  //
+	//===========//
 	const bool& isDone(const std::string key);
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	void addAnimation(const std::string key,
 		float animation_timer,
 		int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);

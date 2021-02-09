@@ -1,5 +1,7 @@
 #include "HitboxComponent.h"
-
+//========================================================
+//Constructors/Destructors
+//========================================================
 HitboxComponent::HitboxComponent(sf::Sprite& sprite,
 	float offset_x, float offset_y,
 	float width, float height)
@@ -17,6 +19,9 @@ HitboxComponent::~HitboxComponent()
 
 }
 
+//========================================================
+//Functions
+//========================================================
 bool HitboxComponent::checkIntersect(const sf::FloatRect& frect)
 {
 	return this->hitbox.getGlobalBounds().intersects(frect);

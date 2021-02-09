@@ -1,9 +1,7 @@
 #include "EditorState.h"
 
 //========================================================
-//
 //Initializer Functions
-//
 //========================================================
 void EditorState::initVariables()
 {
@@ -47,9 +45,7 @@ void EditorState::initButtons()
 }
 
 //========================================================
-//
 //Constructors/Destructors
-//
 //========================================================
 EditorState::EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)

@@ -8,12 +8,16 @@ class EditorState :
     public State
 {
 private:
-    //Variables
+    //===========//
+    // Variables //
+    //===========//
     sf::Font font;
 
     std::map<std::string, gui::Button*> buttons;
 
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void initVariables();
     void initBackground();
     void initFonts();
@@ -24,8 +28,9 @@ public:
     EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
     virtual ~EditorState();
 
-
-    //Functions
+    //===========//
+    // Functions //
+    //===========//
     void updateInput(const float& dt);
     void updateButtons();
     void update(const float& dt);

@@ -1,7 +1,8 @@
 #include "AnimationComponent.h"
 
-
-
+//========================================================
+//Constructors/Destructors
+//========================================================
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet)
 	: sprite(sprite), textureSheet(texture_sheet), lastAnimation(NULL), priorityAnimation(NULL)
 {
@@ -16,13 +17,17 @@ AnimationComponent::~AnimationComponent()
 	}
 }
 
+//========================================================
 //Accessors
+//========================================================
 const bool& AnimationComponent::isDone(const std::string key)
 {
 	return this->animations[key]->isDone();
 }
 
+//========================================================
 //Functions
+//========================================================
 void AnimationComponent::addAnimation(
 	const std::string key,
 	float animation_timer,
@@ -35,7 +40,6 @@ void AnimationComponent::addAnimation(
 		start_frame_x, start_frame_y, frames_x, frames_y, width, height
 	);
 }
-
 
 const bool& AnimationComponent::play(const std::string key, const float& dt, const bool priority)
 {

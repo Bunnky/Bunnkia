@@ -26,18 +26,25 @@ protected:
 	//Resources
 	std::map<std::string, sf::Texture> textures;
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	virtual void initKeybinds() = 0;
 
 public:
 	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 	virtual ~State();
 
-	//Accessorys
+	//===========//
+	// Accessors //
+	//===========//
 	const bool& getQuit() const;
 	const bool getKeytime();
 
-	//Functions
+
+	//===========//
+	// Functions //
+	//===========//
 	void endState();
 	void pausedState();
 	void unpausedState();
