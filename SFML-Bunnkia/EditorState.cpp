@@ -6,7 +6,7 @@
 //========================================================
 void EditorState::initVariables()
 {
-
+	this->textureRect = sf::IntRect(0, 0, static_cast<int>(this->stateData->gridSize), static_cast<int>(this->stateData->gridSize));
 }
 
 void EditorState::initBackground()
@@ -62,7 +62,7 @@ void EditorState::initGui()
 
 void EditorState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10);
+	this->tileMap = new TileMap(this->stateData->gridSize, 100, 100);
 }
 
 //========================================================
@@ -107,6 +107,40 @@ void EditorState::updateInput(const float& dt)
 	}
 }
 
+void EditorState::updateEditorInput(const float& dt)
+{
+	//Add a tile to the tilemap
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
+		//---------------------------------------------------------//
+		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW //
+		//--------------------------------------------------------//
+		//&& this->getKeytime()
+		)
+
+	{
+		this->tileMap->addTile(this->mousePosGrid.x, this->mousePosGrid.y, 0, this->textureRect);
+	}
+	//Remove a tile from the tilemap
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)
+		//---------------------------------------------------------//
+		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW //
+		//--------------------------------------------------------//
+		//&& this->getKeytime()
+		)
+	{
+		this->tileMap->removeTile(this->mousePosGrid.x, this->mousePosGrid.y, 0);
+	}
+
+	//Change texture
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && this->getKeytime())
+	{
+		if (this->textureRect.left < 32)
+		{
+			this->textureRect.left += 32;
+		}
+	}
+}
+
 void EditorState::updateButtons()
 {
 	/*Updates all the buttons the the state and handles their functionality*/
@@ -139,6 +173,7 @@ void EditorState::update(const float& dt)
 	{		
 		this->updateButtons();
 		this->updateGui();
+		this->updateEditorInput(dt);
 	}
 	else //Paused
 	{
@@ -185,7 +220,7 @@ void EditorState::render(sf::RenderTarget* target)
 	mouseText.setOutlineThickness(1);
 	mouseText.setCharacterSize(12);
 	std::stringstream ss;
-	ss << this->mousePosView.x << " " << this->mousePosView.y;
+	ss << this->mousePosView.x << " " << this->mousePosView.y << "\n" << this->textureRect.left << " " << this->textureRect.top;
 	mouseText.setString(ss.str());
 	target->draw(mouseText);
 }
