@@ -19,6 +19,7 @@ private:
     // Variables //
     //===========//
     sf::Font font;
+    sf::Text cursorText;
     PauseMenu* pmenu;
 
     std::map<std::string, gui::Button*> buttons;
@@ -28,17 +29,20 @@ private:
     sf::IntRect textureRect;
     sf::RectangleShape selectorRect;
 
+    gui::TextureSelector* textureSelector;
+
     //===========//
     // Functions //
     //===========//
     void initVariables();
     void initBackground();
     void initFonts();
+    void initText();
     void initKeybinds();
     void initPauseMenu();
     void initButtons();
-    void initGui();
     void initTileMap();
+    void initGui();
 
 public:
     EditorState(StateData* state_data);
