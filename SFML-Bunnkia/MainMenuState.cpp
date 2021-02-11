@@ -124,6 +124,7 @@ void MainMenuState::updateButtons()
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->stateData));
+		Sleep(100);
 	}
 
 	//Settings
@@ -136,6 +137,7 @@ void MainMenuState::updateButtons()
 	if (this->buttons["EDITOR_STATE"]->isPressed())
 	{
 		this->states->push(new EditorState(this->stateData));
+		Sleep(100);
 	}
 
 	//Quit the game

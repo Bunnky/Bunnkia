@@ -2,7 +2,14 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+#include"SFML\System.hpp"
+#include"SFML\Window.hpp"
+#include"SFML\Graphics.hpp"
+#include"SFML\Audio.hpp"
+#include"SFML\Network.hpp"
+
 //Core
+#include <Windows.h>
 #include <algorithm>
 #include <deque>
 #include <iostream>
@@ -19,13 +26,6 @@
 #include <fstream>
 #include <cmath>
 #include <cstdlib>
-
-//SFML
-#include"SFML\System.hpp"
-#include"SFML\Window.hpp"
-#include"SFML\Graphics.hpp"
-#include"SFML\Audio.hpp"
-#include"SFML\Network.hpp"
 
 #endif
 
