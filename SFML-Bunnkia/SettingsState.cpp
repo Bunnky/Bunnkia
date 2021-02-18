@@ -58,13 +58,13 @@ void SettingsState::initGui()
 	this->buttons["BACK"] = new gui::Button(
 		230.f, 495.f, 150.f, 50.f,
 		&this->font, "Back", 24,
-		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["APPLY"] = new gui::Button(
 		430.f, 495.f, 150.f, 50.f,
 		&this->font, "Apply", 24,
-		sf::Color(200, 200, 200, 200), sf::Color(0, 0, 0, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	std::vector<std::string> modes_str;
