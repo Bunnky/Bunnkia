@@ -5,5 +5,9 @@ int main()
 {
     Game game;
     game.run();
+
+    //DEBUG
+    //system("pause");
+
     return 0;
 }

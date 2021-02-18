@@ -14,11 +14,13 @@ protected:
 
 public:
 	Tile();
-	Tile(float x, float y, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texture_rect,
+	Tile(unsigned grid_x, unsigned grid_y, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texture_rect,
 		bool collision = false, short type = TileTypes::DEFAULT);
 	virtual ~Tile();
 
 	//Functions
+	virtual const bool& getCollision() const;
+	const sf::Vector2f& getPosition() const;
 	const std::string getAsString() const;
 
 	void update();

@@ -16,9 +16,21 @@ public:
 	virtual ~HitboxComponent();
 
 	//===========//
+	// Accessors //
+	//===========//
+	const sf::Vector2f& getPosition() const;
+	const sf::FloatRect getGlobalBounds() const;
+
+	//===========//
+	// Modifiers //
+	//===========//
+	void setPosition(const sf::Vector2f& position);
+	void setPosition(const float x, const float y);
+
+	//===========//
 	// Functions //
 	//===========//
-	bool checkIntersect(const sf::FloatRect& frect);
+	bool intersects(const sf::FloatRect& frect);
 
 	void update();
 	void render(sf::RenderTarget& target);
