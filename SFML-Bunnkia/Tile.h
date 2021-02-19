@@ -21,6 +21,7 @@ public:
 	//Functions
 	virtual const bool& getCollision() const;
 	const sf::Vector2f& getPosition() const;
+	const bool intersects(const sf::FloatRect bounds) const;
 	const std::string getAsString() const;
 
 	void update();
