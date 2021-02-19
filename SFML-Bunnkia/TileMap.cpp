@@ -31,6 +31,12 @@ TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string te
 	this->maxSizeWorldF.y = static_cast<float>(height) * gridSize;
 	this->layers = 1;
 	this->textureFile = texture_file;
+
+	this->fromX = 0;
+	this->toX = 0;
+	this->fromY = 0;
+	this->toY = 0;
+	this->layer = 0;
 	
 	this->map.resize(this->maxSizeWorldGrid.x, std::vector< std::vector<Tile*> >());
 	for (size_t x = 0; x < this->maxSizeWorldGrid.x; x++)
@@ -232,16 +238,62 @@ void TileMap::updateCollision(Entity* entity)
 {
 	//WORLD BOUNDS
 	if (entity->getPosition().x < 0.f)
+	{
 		entity->setPostition(0.f, entity->getPosition().y);
+		entity->stopVelocityX();
+	}		
 	else if (entity->getPosition().x + entity->getGlobalBounds().width > this->maxSizeWorldF.x)
+	{
 		entity->setPostition(this->maxSizeWorldF.x - entity->getGlobalBounds().width, entity->getPosition().y);
+		entity->stopVelocityX();
+	}
+
 
 	if (entity->getPosition().y < 0.f)
+	{
 		entity->setPostition(entity->getPosition().x, 0.f);
+		entity->stopVelocityY();
+	}
 	else if (entity->getPosition().y + entity->getGlobalBounds().height > this->maxSizeWorldF.y)
+	{
 		entity->setPostition(entity->getPosition().x, this->maxSizeWorldF.y - entity->getGlobalBounds().height);
+		entity->stopVelocityY();
+	}
+
 
 	//TILES
+	this->fromX = entity->getGridPosition(this->gridSizeU).x - 2;
+	if (this->fromX < 0)
+		this->fromX = 0;
+	else if (this->fromX >= this->maxSizeWorldGrid.x)
+		this->fromX = this->maxSizeWorldGrid.x - 1;
+
+	this->toX = entity->getGridPosition(this->gridSizeU).x + 1;
+	if (this->toX < 0)
+		this->toX = 0;
+	else if (this->toX >= this->maxSizeWorldGrid.x)
+		this->toX = this->maxSizeWorldGrid.x - 1;
+
+	this->fromY = entity->getGridPosition(this->gridSizeU).y - 2;
+	if (this->fromY < 0)
+		this->fromY = 0;
+	else if (this->fromY >= this->maxSizeWorldGrid.y)
+		this->fromY = this->maxSizeWorldGrid.y - 1;
+
+	this->toY = entity->getGridPosition(this->gridSizeU).y + 1;
+	if (this->toY < 0)
+		this->toY = 0;
+	else if (this->toY >= this->maxSizeWorldGrid.y)
+		this->toY = this->maxSizeWorldGrid.y - 1;
+
+	for (size_t x = fromX; x < this->toX; x++)
+	{
+		for (size_t y = fromY; y < this->toY; y++)
+		{
+
+		}
+	}
+
 }
 
 void TileMap::update()
