@@ -72,10 +72,10 @@ void Game::initKeys()
     ifs.close();
 
     //DEBUG REMOVE LATER
-    for (auto i : this->supportedKeys)
-    {
-        std::cout << i.first << " " << i.second << "\n";
-    }
+    //for (auto i : this->supportedKeys)
+    //{
+    //    std::cout << i.first << " " << i.second << "\n";
+    //}
     
 }
 
@@ -142,15 +142,18 @@ void Game::update()
 {
     this->updateSFMLEvents();
 
-    if (!this->states.empty() && this->window->hasFocus())
+    if (!this->states.empty())
     {
-        this->states.top()->update(this->dt);
-
-        if (this->states.top()->getQuit())
+        if (this->window->hasFocus())
         {
-            this->states.top()->endState();
-            delete this->states.top();
-            this->states.pop();
+            this->states.top()->update(this->dt);
+
+            if (this->states.top()->getQuit())
+            {
+                this->states.top()->endState();
+                delete this->states.top();
+                this->states.pop();
+            }
         }
     }
     //Application end
@@ -159,8 +162,6 @@ void Game::update()
         this->endApplication();
         this->window->close();
     }
-
-
 }
 
 void Game::render()

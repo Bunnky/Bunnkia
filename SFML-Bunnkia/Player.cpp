@@ -23,12 +23,11 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
 	this->initVariables();	
 
-	this->setPostition(x, y);
+	this->setPosition(x, y);
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
-
-	this->createMovementComponent(500.f, 20.f, 10.f);
+	this->createMovementComponent(500.f, 2000.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 
 	this->animationComponent->addAnimation("IDLE", 11.f, 0, 0, 3, 0, 32, 32);

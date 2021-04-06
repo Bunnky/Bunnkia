@@ -1,7 +1,7 @@
 #ifndef TILE_H
 #define TILE_H
 
-enum TileTypes {DEFAULT = 0, DAMAGING};
+enum TileTypes {DEFAULT = 0, DAMAGING, OVERLAY};
 
 class Tile
 {
@@ -14,13 +14,14 @@ protected:
 
 public:
 	Tile();
-	Tile(unsigned grid_x, unsigned grid_y, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texture_rect,
+	Tile(int grid_x, int grid_y, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texture_rect,
 		bool collision = false, short type = TileTypes::DEFAULT);
 	virtual ~Tile();
 
 	//Functions
 	virtual const bool& getCollision() const;
 	const sf::Vector2f& getPosition() const;
+	const sf::FloatRect getGlobalBounds() const;
 	const bool intersects(const sf::FloatRect bounds) const;
 	const std::string getAsString() const;
 

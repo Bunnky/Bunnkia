@@ -12,20 +12,21 @@ void EditorState::initVariables()
 	this->collision = false;
 	this->type = TileTypes::DEFAULT;
 	this->cameraSpeed = 1000.f;
+	this->layer = 0;
 }
 
 void EditorState::initView()
 {
 	this->view.setSize(
 		sf::Vector2f(
-			this->stateData->gfxSettings->resolution.width, 
-			this->stateData->gfxSettings->resolution.height
+			static_cast<float>(this->stateData->gfxSettings->resolution.width),
+			static_cast<float>(this->stateData->gfxSettings->resolution.height)
 		)
 	);
 
 	this->view.setCenter(
-		this->stateData->gfxSettings->resolution.width / 2.f, 
-		this->stateData->gfxSettings->resolution.height / 2.f
+		static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
+			static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f
 	);
 }
 
@@ -109,7 +110,7 @@ void EditorState::initGui()
 
 void EditorState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "Resources/Images/Tiles/grassSheet.png");
+	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "Resources/Images/Tiles/tileSheet.png");
 }
 
 //========================================================
@@ -183,7 +184,7 @@ void EditorState::updateEditorInput(const float& dt)
 		//---------------------------------------------------------//
 		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW		  //
 		//--------------------------------------------------------//
-		//&& this->getKeytime()
+		&& this->getKeytime()
 		)
 
 	{
@@ -205,7 +206,7 @@ void EditorState::updateEditorInput(const float& dt)
 		//---------------------------------------------------------//
 		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW		  //
 		//--------------------------------------------------------//
-		//&& this->getKeytime()
+		&& this->getKeytime()
 		)
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(this->mousePosWindow)))
@@ -265,7 +266,8 @@ void EditorState::updateGui(const float& dt)
 		"\n" << this->mousePosGrid.x << " " << this->mousePosGrid.y << 
 		"\n" << this->textureRect.left << " " << this->textureRect.top << 
 		"\n" << "Collision: " << this->collision <<
-		"\n" << "Type: " << this->type;
+		"\n" << "Type: " << this->type <<
+		"\n" << "Tiles: " << this->tileMap->getLayerSize(this->mousePosGrid.x, this->mousePosGrid.y, this->layer);
 	this->cursorText.setString(ss.str());
 
 
@@ -335,7 +337,7 @@ void EditorState::render(sf::RenderTarget* target)
 		target = this->window;
 
 	target->setView(this->view);
-	this->tileMap->render(*target);
+	this->tileMap->render(*target, this->mousePosGrid);
 
 	target->setView(this->window->getDefaultView());
 	this->renderButtons(*target);
