@@ -25,6 +25,11 @@ public:
     virtual ~Player();
 
     //===========//
+    // Accessors //
+    //===========//
+    AttributeComponent* getAttributeComponent();
+
+    //===========//
     // Functions //
     //===========//
     void updateAttack();
