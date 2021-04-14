@@ -383,29 +383,30 @@ void TileMap::update()
 
 }
 
+//FOG OF WAR
 void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition)
 {
 	this->layer = 0;
 
-	this->fromX = gridPosition.x - 4;
+	this->fromX = gridPosition.x - 40;
 	if (this->fromX < 0)
 		this->fromX = 0;
 	else if (this->fromX > this->maxSizeWorldGrid.x)
 		this->fromX = this->maxSizeWorldGrid.x;
 
-	this->toX = gridPosition.x + 5;
+	this->toX = gridPosition.x + 50;
 	if (this->toX < 0)
 		this->toX = 0;
 	else if (this->toX > this->maxSizeWorldGrid.x)
 		this->toX = this->maxSizeWorldGrid.x;
 
-	this->fromY = gridPosition.y - 3;
+	this->fromY = gridPosition.y - 30;
 	if (this->fromY < 0)
 		this->fromY = 0;
 	else if (this->fromY > this->maxSizeWorldGrid.y)
 		this->fromY = this->maxSizeWorldGrid.y;
 
-	this->toY = gridPosition.y + 5;
+	this->toY = gridPosition.y + 50;
 	if (this->toY < 0)
 		this->toY = 0;
 	else if (this->toY > this->maxSizeWorldGrid.y)
@@ -417,7 +418,15 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition)
 		{
 			for (size_t k = 0; k < this->map[x][y][this->layer].size(); k++)
 			{
-				this->map[x][y][this->layer][k]->render(target);
+				if (this->map[x][y][this->layer][k]->getType() == TileTypes::DOODAD)
+				{
+					this->deferredRenderStack.push(this->map[x][y][this->layer][k]);
+				}
+				else
+				{
+					this->map[x][y][this->layer][k]->render(target);
+				}
+				
 				if (this->map[x][y][this->layer][k]->getCollision())
 				{
 					this->collisionBox.setPosition(this->map[x][y][this->layer][k]->getPosition());
@@ -425,6 +434,15 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition)
 				}
 			}
 		}
+	}
+}
+
+void TileMap::renderDeferred(sf::RenderTarget& target)
+{
+	while (!this->deferredRenderStack.empty())
+	{
+		deferredRenderStack.top()->render(target);
+		deferredRenderStack.pop();
 	}
 }
 
