@@ -6,6 +6,7 @@ c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\tilemap.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\tile.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\state.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\settingsstate.obj
+c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\playergui.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\player.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\pausemenu.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\movementcomponent.obj
@@ -18,6 +19,7 @@ c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\entity.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\editorstate.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\gui.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\graphicssettings.obj
+c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\attributecomponent.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\animationcomponent.obj
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\sfml-bunnkia.exe
 c:\users\bill\desktop\bunnkia\sfml-bunnkia\debug\sfml-bunnkia.ilk
