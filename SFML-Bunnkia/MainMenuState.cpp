@@ -58,28 +58,28 @@ void MainMenuState::initButtons()
 	this->buttons["GAME_STATE"] = new gui::Button(
 		this->p2pX(41.2f), this->p2pY(28.3f), 
 		this->p2pX(18.7f), p2pY(6.6f),
-		&this->font, "New Game", 24,
+		&this->font, "New Game", this->calcCharSize(),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["SETTINGS_STATE"] = new gui::Button(
 		this->p2pX(41.2f), this->p2pY(40.8f), 
 		this->p2pX(18.7f), p2pY(6.6f),
-		&this->font, "Settings", 24,
+		&this->font, "Settings", this->calcCharSize(),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EDITOR_STATE"] = new gui::Button(
 		this->p2pX(41.2f), this->p2pY(53.3f), 
 		this->p2pX(18.7f), p2pY(6.6f),
-		&this->font, "Editor", 24,
+		&this->font, "Editor", this->calcCharSize(),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EXIT_STATE"] = new gui::Button(
 		this->p2pX(41.2f), this->p2pY(65.8f), 
 		this->p2pX(18.7f), p2pY(6.6f),
-		&this->font, "Quit", 24,
+		&this->font, "Quit", this->calcCharSize(),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 }

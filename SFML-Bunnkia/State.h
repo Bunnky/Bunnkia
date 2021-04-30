@@ -66,8 +66,9 @@ public:
 	//===========//
 	// Functions //
 	//===========//
-	const float p2pX(const float perc);
-	const float p2pY(const float perc);
+	const float p2pX(const float perc) const;
+	const float p2pY(const float perc) const;
+	const unsigned calcCharSize() const;
 
 	void endState();
 	void pausedState();
