@@ -12,6 +12,11 @@ private:
 	sf::Font font;
 
 	//Exp Bar
+	std::string expBarString;
+	sf::Text expBarText;
+	float expBarMaxWidth;
+	sf::RectangleShape expBarBack;
+	sf::RectangleShape expBarInner;
 
 	//HP Bar
 	std::string hpBarString;
@@ -22,6 +27,7 @@ private:
 
 
 	void initFont();
+	void initEXPBar();
 	void initHPBar();
 
 public:
@@ -29,9 +35,11 @@ public:
 	virtual ~PlayerGUI();
 
 	//Functions
+	void updateEXPBar();
 	void updateHPBar();
 	void update(const float& dt);
 
+	void renderEXPBar(sf::RenderTarget& target);
 	void renderHPBar(sf::RenderTarget& target);
 	void render(sf::RenderTarget& target);
 };
