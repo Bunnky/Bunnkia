@@ -9,24 +9,6 @@ void MainMenuState::initVariables()
 
 }
 
-void MainMenuState::initBackground()
-{
-	this->background.setSize(
-		sf::Vector2f
-		(
-			static_cast<float>(this->window->getSize().x),
-			static_cast<float>(this->window->getSize().y)
-		)
-	);
-
-	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.bmp"))
-	{
-		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
-	}
-
-	this->background.setTexture(&this->backgroundTexture);
-}
-
 void MainMenuState::initFonts()
 {
 	if(!this->font.loadFromFile("Fonts/The Impostor.ttf"))
@@ -57,6 +39,34 @@ void MainMenuState::initGui()
 {
 	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
 
+	//Background
+	this->background.setSize(
+		sf::Vector2f
+		(
+			static_cast<float>(vm.width),
+			static_cast<float>(vm.height)
+		)
+	);
+
+	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.bmp"))
+	{
+		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
+	}
+
+	this->background.setTexture(&this->backgroundTexture);
+
+	//Button Background
+	this->btnBackground.setSize(
+		sf::Vector2f(
+			static_cast<float>(vm.width / 4),
+			static_cast<float>(vm.height - gui::p2pY(50.f, vm))
+		)
+	);
+
+	this->btnBackground.setPosition(gui::p2pX(38.1f, vm), gui::p2pY(25.f, vm));
+	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 150));
+
+	//Buttons
 	this->buttons["GAME_STATE"] = new gui::Button(
 		gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
 		gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
@@ -94,7 +104,11 @@ void MainMenuState::resetGui()
 	* @return void 
 	* 
 	*/
-
+	auto it = this->buttons.begin();
+	for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
+	{
+		delete it->second;
+	}
 	this->buttons.clear();
 
 	this->initGui();
@@ -107,7 +121,6 @@ MainMenuState::MainMenuState(StateData* state_data)
 	: State(state_data)
 {
 	this->initVariables();
-	this->initBackground();
 	this->initFonts();
 	this->initKeybinds();
 	this->initGui();
@@ -189,6 +202,8 @@ void MainMenuState::render(sf::RenderTarget* target)
 		target = this->window;
 
 	target->draw(this->background);
+
+	target->draw(this->btnBackground);
 
 	this->renderButtons(*target);
 
