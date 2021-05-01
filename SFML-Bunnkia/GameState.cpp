@@ -68,7 +68,7 @@ void GameState::initFonts()
 
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/wizwar_anim2.png"))
+	if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/NEW.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
@@ -157,14 +157,14 @@ void GameState::updatePlayerInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
 	{
 		this->player->move(0.f, -1.f, dt);
-		if (this->getKeytime())
-			this->player->gainEXP(10);
+		//if (this->getKeytime())
+		//	this->player->gainEXP(10);
 	}		
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
-		if (this->getKeytime())
-			this->player->loseEXP(10);
+		//if (this->getKeytime())
+		//	this->player->loseEXP(10);
 	}
 			
 }
@@ -220,9 +220,9 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderTexture.clear();
 
 	this->renderTexture.setView(this->view);
-	this->tileMap->render(this->renderTexture, this->player->getGridPosition(static_cast<int>(this->stateData->gridSize)));
+	this->tileMap->render(this->renderTexture, this->player->getGridPosition(static_cast<int>(this->stateData->gridSize)), false);
 
-	this->player->render(this->renderTexture);
+	this->player->render(this->renderTexture, false);
 
 	this->tileMap->renderDeferred(this->renderTexture);
 
