@@ -194,7 +194,6 @@
     <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="vertex_shader.vert" />
   </ItemGroup>
   <ItemGroup>

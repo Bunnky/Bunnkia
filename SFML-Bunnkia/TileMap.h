@@ -23,7 +23,9 @@ private:
 	sf::Texture tileSheet;
 	sf::RectangleShape collisionBox;
 
-	//Culling
+	//===========//
+	//  Culling  //
+	//===========//
 	int fromX;
 	int toX;
 	int fromY;
@@ -34,11 +36,15 @@ public:
 	TileMap(float gridSize, int width, int height, std::string texture_file);
 	virtual ~TileMap();
 
-	//Accessor
+	//===========//
+	// Accessors //
+	//===========//
 	const sf::Texture* getTileSheet() const;
 	const int getLayerSize(const int x, const int y, const int layer) const;
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	void addTile(const int x, const int y, const int z, const sf::IntRect& texture_rect, const bool& collision, const short& type);
 	void removeTile(const int x, const int y, const int z);
 

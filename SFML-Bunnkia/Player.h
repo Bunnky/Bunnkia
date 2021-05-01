@@ -13,6 +13,8 @@ private:
     // Variables //
     //===========//
     bool attacking;
+    sf::Texture weapon_texture;
+    sf::Sprite weapon_sprite;
 
     //==============//
     // Initializers //
@@ -39,7 +41,7 @@ public:
 
     void updateAttack();
     void updateAnimation(const float& dt);
-    void update(const float& dt);
+    void update(const float& dt, sf::Vector2f& mouse_pos_view);
 
     void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const bool show_hitbox = false);
 };

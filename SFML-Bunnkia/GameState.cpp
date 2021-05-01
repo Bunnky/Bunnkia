@@ -21,25 +21,30 @@ void GameState::initDeferredRender()
 }
 
 //========================================================
+// 
 //Initializer Functions
+// 
 //========================================================
+
+//----------------------
+//Initialize View
+//----------------------
 void GameState::initView()
 {
-	this->view.setSize(
-		sf::Vector2f(
+	this->view.setSize(sf::Vector2f(
 			static_cast<float>(this->stateData->gfxSettings->resolution.width),
-			static_cast<float>(this->stateData->gfxSettings->resolution.height)
-		)
+			static_cast<float>(this->stateData->gfxSettings->resolution.height))
 	);
 
-	this->view.setCenter(
-		sf::Vector2f(
+	this->view.setCenter(sf::Vector2f(
 			static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
-			static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f
-		)
+			static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f)
 	);
 }
 
+//----------------------
+//Initialize Keybinds
+//----------------------
 void GameState::initKeybinds()
 {
 	std::ifstream ifs("Config/gamestate_keybinds.ini");
@@ -58,6 +63,9 @@ void GameState::initKeybinds()
 	ifs.close();
 }
 
+//----------------------
+//Initialize Fonts
+//----------------------
 void GameState::initFonts()
 {
 	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
@@ -66,6 +74,9 @@ void GameState::initFonts()
 	}
 }
 
+//----------------------
+//Initialize Textures
+//----------------------
 void GameState::initTextures()
 {
 	if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/NEW.png"))
@@ -74,6 +85,9 @@ void GameState::initTextures()
 	}
 }
 
+//----------------------
+//Initialize PauseMenu
+//----------------------
 void GameState::initPauseMenu()
 {
 	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
@@ -82,6 +96,9 @@ void GameState::initPauseMenu()
 	this->pmenu->addButton("QUIT", gui::p2pY(83.3f, vm), gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm), gui::calcCharSize(vm), "Quit");
 }
 
+//----------------------
+//Initialize Shaders
+//----------------------
 void GameState::initShaders()
 {
 	if (!this->core_shader.loadFromFile("vertex_shader.vert", "fragment_shader.frag"))
@@ -90,16 +107,25 @@ void GameState::initShaders()
 	}
 }
 
+//----------------------
+//Initialize Players
+//----------------------
 void GameState::initPlayers()
 {
 	this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
+//----------------------
+//Initialize PlayerGUI
+//----------------------
 void GameState::initPlayerGUI()
 {
 	this -> playerGUI = new PlayerGUI(this->player, this->stateData->gfxSettings->resolution);
 }
 
+//----------------------
+//Initialize TileMap
+//----------------------
 void GameState::initTileMap()
 {
 	this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
@@ -107,7 +133,9 @@ void GameState::initTileMap()
 }
 
 //========================================================
+// 
 //Constructors/Destructors
+// 
 //========================================================
 GameState::GameState(StateData* state_data)
 	: State(state_data)
@@ -134,7 +162,9 @@ GameState::~GameState()
 }
 
 //========================================================
+// 
 //Functions
+// 
 //========================================================
 void GameState::updateView(const float& dt)
 {
@@ -142,6 +172,23 @@ void GameState::updateView(const float& dt)
 		std::floor(this->player->getPosition().x + (static_cast<float>(this->mousePosWindow.x) - static_cast<float>(this->stateData->gfxSettings->resolution.width / 2)) / 5.f), 
 		std::floor(this->player->getPosition().y + (static_cast<float>(this->mousePosWindow.y) - static_cast<float>(this->stateData->gfxSettings->resolution.height / 2)) / 5.f)
 	);
+
+	if (this->view.getCenter().x - this->view.getSize().x / 2.f < 0.f)
+	{
+		this->view.setCenter(0.f + this->view.getSize().x / 2.f, this->view.getCenter().y);
+	}
+	else if (this->view.getCenter().x + this->view.getSize().x / 2.f > 5000.f)
+	{
+		this->view.setCenter(5000.f - this->view.getSize().x / 2.f, this->view.getCenter().y);
+	}
+	if (this->view.getCenter().y - this->view.getSize().y / 2.f < 0.f)
+	{
+		this->view.setCenter(this->view.getCenter().x, 0.f + this->view.getSize().y / 2.f);
+	}
+	else if (this->view.getCenter().y + this->view.getSize().y / 2.f > 5000.f)
+	{
+		this->view.setCenter(this->view.getCenter().x, 5000.f - this->view.getSize().y / 2.f);
+	}
 }
 
 void GameState::updateInput(const float& dt)
@@ -209,7 +256,7 @@ void GameState::update(const float& dt)
 
 		this->updateTileMap(dt);
 
-		this->player->update(dt);
+		this->player->update(dt, this->mousePosView);
 
 		this->playerGUI->update(dt);
 	}
@@ -229,6 +276,7 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderTexture.clear();
 
 	this->renderTexture.setView(this->view);
+
 	this->tileMap->render
 	(
 		this->renderTexture, 

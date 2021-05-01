@@ -8,6 +8,9 @@ class Tile
 private:
 
 protected:
+    //===========//
+    // Variables //
+    //===========//
 	sf::Sprite shape;
 	bool collision;
 	short type;
@@ -18,10 +21,14 @@ public:
 		bool collision = false, short type = TileTypes::DEFAULT);
 	virtual ~Tile();
 
-	//Accessors
+	//===========//
+	// Accessors //
+	//===========//
 	const short& getType() const;
 
-	//Functions
+	//===========//
+	// Functions //
+	//===========//
 	virtual const bool& getCollision() const;
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getGlobalBounds() const;
