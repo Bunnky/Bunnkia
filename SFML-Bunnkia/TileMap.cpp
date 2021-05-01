@@ -384,29 +384,36 @@ void TileMap::update()
 }
 
 //FOG OF WAR
-void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition, const bool show_collision)
+void TileMap::render
+(
+	sf::RenderTarget& target, 
+	const sf::Vector2i& gridPosition, 
+	sf::Shader* shader, 
+	const sf::Vector2f playerPosition, 
+	const bool show_collision
+)
 {
 	this->layer = 0;
 
-	this->fromX = gridPosition.x - 8;
+	this->fromX = gridPosition.x - 15;
 	if (this->fromX < 0)
 		this->fromX = 0;
 	else if (this->fromX > this->maxSizeWorldGrid.x)
 		this->fromX = this->maxSizeWorldGrid.x;
 
-	this->toX = gridPosition.x + 10;
+	this->toX = gridPosition.x + 16;
 	if (this->toX < 0)
 		this->toX = 0;
 	else if (this->toX > this->maxSizeWorldGrid.x)
 		this->toX = this->maxSizeWorldGrid.x;
 
-	this->fromY = gridPosition.y - 6;
+	this->fromY = gridPosition.y - 13;
 	if (this->fromY < 0)
 		this->fromY = 0;
 	else if (this->fromY > this->maxSizeWorldGrid.y)
 		this->fromY = this->maxSizeWorldGrid.y;
 
-	this->toY = gridPosition.y + 10;
+	this->toY = gridPosition.y + 13;
 	if (this->toY < 0)
 		this->toY = 0;
 	else if (this->toY > this->maxSizeWorldGrid.y)
@@ -424,7 +431,10 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition,
 				}
 				else
 				{
-					this->map[x][y][this->layer][k]->render(target);
+					if(shader)
+						this->map[x][y][this->layer][k]->render(target, shader, playerPosition);
+					else
+						this->map[x][y][this->layer][k]->render(target);
 				}
 				if (show_collision)
 				{
@@ -440,12 +450,17 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition,
 	}
 }
 
-void TileMap::renderDeferred(sf::RenderTarget& target)
+void TileMap::renderDeferred(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f playerPosition)
 {
 	while (!this->deferredRenderStack.empty())
 	{
-		deferredRenderStack.top()->render(target);
+		if (shader)		
+			deferredRenderStack.top()->render(target, shader, playerPosition);		
+		else		
+			deferredRenderStack.top()->render(target);
+		
 		deferredRenderStack.pop();
+
 	}
 }
 

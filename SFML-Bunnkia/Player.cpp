@@ -165,9 +165,12 @@ void Player::update(const float& dt)
 	this->hitboxComponent->update();
 }
 
-void Player::render(sf::RenderTarget& target, const bool show_hitbox)
+void Player::render(sf::RenderTarget& target, sf::Shader* shader, const bool show_hitbox)
 {
-	target.draw(this->sprite);
+	shader->setUniform("hasTexture", true);
+	shader->setUniform("lightPos", this->getCenter());
+
+	target.draw(this->sprite, shader);
 
 	if (show_hitbox)
 		this->hitboxComponent->render(target);
