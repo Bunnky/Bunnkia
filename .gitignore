@@ -27,7 +27,9 @@
 
 /Image Converter/Graphics
 
-/SFML-Bunnkia/Debug/SFML-Bunnkia.log
+/SFML-Bunnkia/Debug/
+/SFML-Bunnkia/packages/
+/SFML-Bunnkia/packages.config
 
 *.lnk
 *.exe
@@ -54,3 +56,6 @@
 *.FileListAbsolute.txt
 *.lastcodeanalysissucceeded
 
+*.enc
+*.log
+*.pch
