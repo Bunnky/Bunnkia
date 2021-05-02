@@ -70,8 +70,11 @@ TileMap::~TileMap()
 {
 	this->clear();
 }
-
+//========================================================
+// 
 //Accessors
+// 
+//========================================================
 const sf::Texture* TileMap::getTileSheet() const
 {
 	return &this->tileSheet;
@@ -93,7 +96,21 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
 	return -1;
 }
 
+const sf::Vector2i & TileMap::getMaxSizeGrid() const
+{
+	return this->maxSizeWorldGrid;
+}
+
+const sf::Vector2f & TileMap::getMaxSizeF() const
+{
+	return this->maxSizeWorldF;
+}
+
+//========================================================
+// 
 //Functions
+// 
+//========================================================
 void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect& texture_rect, const bool& collision, const short& type)
 {
 	/* Take three indicies from the mouse position in the grid and add a tile to that position if the internal tilemap array allows it */
@@ -293,7 +310,7 @@ void TileMap::updateCollision(Entity* entity, const float& dt)
 	else if (this->fromX > this->maxSizeWorldGrid.x)
 		this->fromX = this->maxSizeWorldGrid.x;
 
-	this->toX = entity->getGridPosition(this->gridSizeI).x + 3;
+	this->toX = entity->getGridPosition(this->gridSizeI).x + 9;
 	if (this->toX < 0)
 		this->toX = 0;
 	else if (this->toX > this->maxSizeWorldGrid.x)
@@ -395,7 +412,7 @@ void TileMap::render
 {
 	this->layer = 0;
 
-	this->fromX = gridPosition.x - 15;
+	this->fromX = gridPosition.x - 16;
 	if (this->fromX < 0)
 		this->fromX = 0;
 	else if (this->fromX > this->maxSizeWorldGrid.x)
