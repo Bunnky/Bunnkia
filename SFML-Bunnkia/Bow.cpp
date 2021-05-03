@@ -3,7 +3,7 @@
 
 Bow::Bow()
 {
-	std::cout << "Bow" << "\n";
+
 }
 
 Bow::~Bow()
