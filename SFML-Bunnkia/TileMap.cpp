@@ -70,6 +70,18 @@ TileMap::~TileMap()
 {
 	this->clear();
 }
+
+const bool TileMap::tileEmpty(const int x, const int y, const int z) const
+{
+	if (x >= 0 && x < this->maxSizeWorldGrid.x &&
+		y >= 0 && y < this->maxSizeWorldGrid.y &&
+		z >= 0 && z < this->layers)
+	{
+		return this->map[x][y][z].empty();
+	}
+
+	throw("ERROR::TILEMAP::TILEEMPTY::TRYING TO ACCESS OUT OF BOUNDS TILE");
+}
 //========================================================
 // 
 //Accessors
@@ -418,7 +430,7 @@ void TileMap::render
 	else if (this->fromX > this->maxSizeWorldGrid.x)
 		this->fromX = this->maxSizeWorldGrid.x;
 
-	this->toX = gridPosition.x + 16;
+	this->toX = gridPosition.x + 17;
 	if (this->toX < 0)
 		this->toX = 0;
 	else if (this->toX > this->maxSizeWorldGrid.x)
