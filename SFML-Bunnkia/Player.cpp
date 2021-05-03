@@ -147,8 +147,6 @@ void Player::render(sf::RenderTarget& target, sf::Shader* shader, const bool sho
 		shader->setUniform("hasTexture", true);
 		shader->setUniform("lightPos", this->getCenter());
 		this->sword.render(target, shader);
-
-
 	}
 	else
 	{
