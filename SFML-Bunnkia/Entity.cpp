@@ -138,7 +138,14 @@ void Entity::setPosition(const float x, const float y)
 void Entity::move(const float dir_x, const float dir_y, const float& dt)
 {
 	if (this->movementComponent)
-		this->movementComponent->move(dir_x, dir_y, dt); //Sets velocity		
+		this->movementComponent->move(dir_x, dir_y, dt); //Sets velocity
+
+	if (this->skillComponent)
+	{
+		this->skillComponent->gainExp(ENDURANCE, 1);
+		//std::cout << this->skillComponent->getSkill(ENDURANCE) << "\n";
+	}
+
 }
 
 void Entity::stopVelocity()

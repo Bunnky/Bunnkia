@@ -30,6 +30,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	this->createMovementComponent(500.f, 2000.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 	this->createAttributeComponent(1);
+	this->createSkillComponent();
 
 	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
 	this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);

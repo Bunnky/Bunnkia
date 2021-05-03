@@ -1,6 +1,7 @@
 #ifndef SKILLCOMPONENT_H
 #define SKILLCOMPONENT_H
 
+enum SKILLS { HEALTH = 0, ATTACK, ACCURACY, ENDURANCE };
 
 class SkillComponent
 {
@@ -8,14 +9,16 @@ private:
 	class Skill
 	{
 	private:
+		int type;
 		int level;
 		int levelCap;
 		int exp;
 		int expNext;
 
 	public:
-		Skill()
+		Skill(int type)
 		{
+			this->type = type;
 			this->level = 1;
 			this->levelCap = 99;
 			this->exp = 0;
@@ -24,6 +27,7 @@ private:
 		~Skill() {}
 
 		//Accessors
+		inline const int& getType() const { return this->type; }
 		inline const int& getLevel() const { return this->level; }
 		inline const int& getExp() const { return this->exp; }
 		inline const int& getExpLast() const { return this->expNext; }
@@ -59,7 +63,7 @@ private:
 						if (this->level < this->levelCap)
 						{
 							this->level++;
-							this->expNext = std::pow(this->level, 2) + this->level * 10 + this->level * 2;
+							this->expNext = static_cast<int>(std::pow(this->level, 2)) + this->level * 10 + this->level * 2;
 						}
 					}
 				}
@@ -73,7 +77,7 @@ private:
 						if (this->level > 0)
 						{
 							this->level--;
-							this->expNext = std::pow(this->level, 2) + this->level * 10 + this->level * 2;
+							this->expNext = static_cast<int>(std::pow(this->level, 2)) + this->level * 10 + this->level * 2;
 						}
 					}
 				}
@@ -87,10 +91,14 @@ private:
 		}
 	};
 
+	std::vector<Skill> skills;
+	
 public:
 	SkillComponent();
 	virtual ~SkillComponent();
 
+	const int getSkill(const int skill) const;
+	const void gainExp(const int skill, const int exp);
 };
 
 #endif //SKILLCOMPONENT_H
