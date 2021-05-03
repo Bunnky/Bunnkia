@@ -6,6 +6,9 @@
 //========================================================
 //Initializer Functions
 //========================================================
+//----------------------
+//Initialize Variables
+//----------------------
 void EditorState::initVariables()
 {
 	this->textureRect = sf::IntRect(0, 0, static_cast<int>(this->stateData->gridSize), static_cast<int>(this->stateData->gridSize));
@@ -16,6 +19,9 @@ void EditorState::initVariables()
 	this->tileAddLock = false;
 }
 
+//----------------------
+//Initialize View
+//----------------------
 void EditorState::initView()
 {
 	this->view.setSize(
@@ -31,11 +37,17 @@ void EditorState::initView()
 	);
 }
 
+//----------------------
+//Initialize Background
+//----------------------
 void EditorState::initBackground()
 {
 
 }
 
+//----------------------
+//Initialize Fonts
+//----------------------
 void EditorState::initFonts()
 {
 	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
@@ -44,6 +56,9 @@ void EditorState::initFonts()
 	}
 }
 
+//----------------------
+//Initialize Text
+//----------------------
 void EditorState::initText()
 {
 	this->cursorText.setFont(this->font);
@@ -54,6 +69,9 @@ void EditorState::initText()
 	this->cursorText.setPosition(this->mousePosView.x, this->mousePosView.y);
 }
 
+//----------------------
+//Initialize Keybinds
+//----------------------
 void EditorState::initKeybinds()
 {
 	std::ifstream ifs("Config/editorstate_keybinds.ini");
@@ -72,6 +90,9 @@ void EditorState::initKeybinds()
 	ifs.close();
 }
 
+//----------------------
+//Initialize PauseMenu
+//----------------------
 void EditorState::initPauseMenu()
 {
 	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
@@ -83,11 +104,17 @@ void EditorState::initPauseMenu()
 	this->pmenu->addButton("QUIT", gui::p2pY(83.3f, vm), gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm), gui::calcCharSize(vm), "Quit");
 }
 
+//----------------------
+//Initialize Buttons
+//----------------------
 void EditorState::initButtons()
 {
 
 }
 
+//----------------------
+//Initialize GUI
+//----------------------
 void EditorState::initGui()
 {
 	this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->stateData->gfxSettings->resolution.height)));
@@ -111,6 +138,9 @@ void EditorState::initGui()
 	);
 }
 
+//----------------------
+//Initialize TileMap
+//----------------------
 void EditorState::initTileMap()
 {
 	this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
