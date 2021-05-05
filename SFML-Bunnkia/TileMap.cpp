@@ -227,6 +227,7 @@ void TileMap::saveToFile(const std::string file_name)
 		std::cout << "ERROR::TILEMAP::COULD_NOT_SAVE_TO_FILE::FILENAME: " << file_name << "\n";
 	}
 	
+	std::cout << "Saved as: " << file_name << "\n";
 	out_file.close();
 }
 
@@ -302,6 +303,7 @@ void TileMap::loadFromFile(const std::string file_name)
 		std::cout << "ERROR::TILEMAP::COULD_NOT_LOAD_FROM_FILE::FILENAME: " << file_name << "\n";
 	}
 
+	std::cout << "Loaded: " << file_name << "\n";
 	in_file.close();
 
 }

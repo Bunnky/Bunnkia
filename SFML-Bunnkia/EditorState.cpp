@@ -344,7 +344,6 @@ void EditorState::updatePauseMenuButtons()
 	{
 		this->tileMap->loadFromFile("test.slmp");
 		this->paused = false;
-		std::cout << "Loaded!" << "\n";
 	}
 		
 }
