@@ -15,31 +15,14 @@ void Player::initComponents()
 
 }
 
-
-//========================================================
-//Constructors/Destructors
-//========================================================
-Player::Player(float x, float y, sf::Texture& texture_sheet)
+void Player::initAnimations()
 {
-	this->initVariables();	
-
-	this->setPosition(x, y);
-
-	/*This is where we alter the hitbox*/
-	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
-	this->createMovementComponent(500.f, 2000.f, 1000.f);
-	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(1);
-	this->createSkillComponent();
-
 	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
 	this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);
 	this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 4, 1, 7, 1, 32, 32);
 	this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 1, 3, 1, 32, 32);
 	this->animationComponent->addAnimation("WALK_UP", 6.f, 4, 1, 7, 1, 32, 32);
 	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 4, 2, 32 * 2, 32);
-
-
 
 	//========================================================
 	//CHANGE THESE IF WE WANT TO DO DIRECTIONAL PLAYER SPRITES
@@ -48,7 +31,25 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	//this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);
 	//this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 0, 1, 3, 1, 32, 32);
 	//this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 1, 3, 1, 32, 32);
-	
+}
+
+
+//========================================================
+//Constructors/Destructors
+//========================================================
+Player::Player(float x, float y, sf::Texture& texture_sheet)
+{
+	this->initVariables();	
+
+	/*This is where we alter the hitbox*/
+	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
+	this->createMovementComponent(500.f, 2000.f, 1000.f);
+	this->createAnimationComponent(texture_sheet);
+	this->createAttributeComponent(1);
+	this->createSkillComponent();
+
+	this->setPosition(x, y);
+	this->initAnimations();
 }
 
 Player::~Player()

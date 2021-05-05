@@ -52,27 +52,10 @@ void PlayerGUI::initEXPBar()
 
 void PlayerGUI::initHPBar()
 {
-	float width = gui::p2pX(18.7f, this->vm);
-	float height = gui::p2pY(3.3f, this->vm);
-	float x = gui::p2pX(2.5f, this->vm);
-	float y = gui::p2pY(3.3f, this->vm);
-
-	this->hpBarMaxWidth = width;
-
-	this->hpBarBack.setSize(sf::Vector2f(width, height));
-	this->hpBarBack.setFillColor(sf::Color(50, 50, 50, 200));
-	this->hpBarBack.setPosition(x, y);
-
-	this->hpBarInner.setSize(sf::Vector2f(width, height));
-	this->hpBarInner.setFillColor(sf::Color(250, 20, 20, 200));
-	this->hpBarInner.setPosition(this->hpBarBack.getPosition());
-
-	this->hpBarText.setFont(this->font);
-	this->hpBarText.setCharacterSize(gui::calcCharSize(this->vm, 120));
-	this->hpBarText.setPosition(
-		this->hpBarInner.getPosition().x + gui::p2pX(0.53f, this->vm),
-		this->hpBarInner.getPosition().y + gui::p2pY(0.5f, this->vm)
-	);
+	this->hpBar = new gui::ProgressBar(
+		2.5f, 3.3f, 18.7f, 3.3f, 
+		this->player->getAttributeComponent()->hpMax, 
+		this->vm, &this->font);
 }
 
 PlayerGUI::PlayerGUI(Player* player, sf::VideoMode& vm)
@@ -88,7 +71,7 @@ PlayerGUI::PlayerGUI(Player* player, sf::VideoMode& vm)
 
 PlayerGUI::~PlayerGUI()
 {
-
+	delete this->hpBar;
 }
 
 //Functions
@@ -115,17 +98,7 @@ void PlayerGUI::updateEXPBar()
 
 void PlayerGUI::updateHPBar()
 {
-	float percent = static_cast<float>(this->player->getAttributeComponent()->hp) / static_cast<float>(this->player->getAttributeComponent()->hpMax);
-
-	this->hpBarInner.setSize(
-		sf::Vector2f(
-			static_cast<float>(std::floor(this->hpBarMaxWidth * percent)),
-			this->hpBarInner.getSize().y
-		)
-	);
-
-	this->hpBarString = std::to_string(this->player->getAttributeComponent()->hp) + "/" + std::to_string(this->player->getAttributeComponent()->hpMax);
-	this->hpBarText.setString(this->hpBarString);
+	this->hpBar->update(this->player->getAttributeComponent()->hp);
 }
 
 void PlayerGUI::update(const float& dt)
@@ -150,9 +123,7 @@ void PlayerGUI::renderEXPBar(sf::RenderTarget& target)
 
 void PlayerGUI::renderHPBar(sf::RenderTarget& target)
 {
-	target.draw(this->hpBarBack);
-	target.draw(this->hpBarInner);
-	target.draw(this->hpBarText);
+	this->hpBar->render(target);
 }
 
 void PlayerGUI::render(sf::RenderTarget& target)
