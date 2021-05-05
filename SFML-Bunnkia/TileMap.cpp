@@ -308,7 +308,7 @@ void TileMap::loadFromFile(const std::string file_name)
 
 }
 
-void TileMap::updateCollision(Entity* entity, const float& dt)
+void TileMap::update(Entity* entity, const float& dt)
 {
 	//WORLD BOUNDS
 	if (entity->getPosition().x < 0.f)
@@ -344,7 +344,7 @@ void TileMap::updateCollision(Entity* entity, const float& dt)
 	else if (this->fromX > this->maxSizeWorldGrid.x)
 		this->fromX = this->maxSizeWorldGrid.x;
 
-	this->toX = entity->getGridPosition(this->gridSizeI).x + 9;
+	this->toX = entity->getGridPosition(this->gridSizeI).x + 3;
 	if (this->toX < 0)
 		this->toX = 0;
 	else if (this->toX > this->maxSizeWorldGrid.x)
@@ -371,6 +371,8 @@ void TileMap::updateCollision(Entity* entity, const float& dt)
 		{
 			for (size_t k = 0; k < this->map[x][y][this->layer].size(); k++)
 			{
+				this->map[x][y][this->layer][k]->update();
+
 				sf::FloatRect playerBounds = entity->getGlobalBounds();
 				sf::FloatRect wallBounds = this->map[x][y][this->layer][k]->getGlobalBounds();
 				sf::FloatRect nextPositionBounds = entity->getNextPositionBounds(dt);
@@ -426,11 +428,6 @@ void TileMap::updateCollision(Entity* entity, const float& dt)
 			}			
 		}
 	}
-
-}
-
-void TileMap::update()
-{
 
 }
 

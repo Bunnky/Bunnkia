@@ -55,9 +55,8 @@ public:
 	void saveToFile(const std::string file_name);
 	void loadFromFile(const std::string file_name);
 
-	void updateCollision(Entity* entity, const float& dt);
+	void update(Entity* entity, const float& dt);
 
-	void update();
 	void render(sf::RenderTarget& target,
 		const sf::Vector2i& gridPosition, 
 		sf::Shader* shader = NULL, 
