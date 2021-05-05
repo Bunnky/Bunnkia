@@ -37,10 +37,8 @@ Enemy::Enemy(float x, float y, sf::Texture& texture_sheet)
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
-	this->createMovementComponent(500.f, 2000.f, 1000.f);
+	this->createMovementComponent(200.f, 50.f, 25.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(1);
-	this->createSkillComponent();
 
 	this->setPosition(x, y);
 	this->initAnimations();
@@ -51,13 +49,37 @@ Enemy::~Enemy()
 
 }
 
+void Enemy::updateAnimation(const float& dt)
+{
+	if (this->movementComponent->getState(IDLE))
+	{
+		this->animationComponent->play("IDLE", dt);
+	}
+	else if (this->movementComponent->getState(MOVING_LEFT))
+	{
+		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_RIGHT))
+	{
+		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_UP))
+	{
+		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_DOWN))
+	{
+		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+	}
+}
+
 void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view)
 {
 	this->movementComponent->update(dt);
 
 	//this->updateAttack();
 
-	//this->updateAnimation(dt);
+	this->updateAnimation(dt);
 
 	this->hitboxComponent->update();
 }

@@ -334,10 +334,19 @@ void EditorState::updatePauseMenuButtons()
 		this->endState();
 
 	if (this->pmenu->isButtonPressed("SAVE"))
+	{
 		this->tileMap->saveToFile("test.slmp");
+		this->paused = false;
+		std::cout << "Saved!" << "\n";
+	}		
 
 	if (this->pmenu->isButtonPressed("LOAD"))
+	{
 		this->tileMap->loadFromFile("test.slmp");
+		this->paused = false;
+		std::cout << "Loaded!" << "\n";
+	}
+		
 }
 
 void EditorState::update(const float& dt)
