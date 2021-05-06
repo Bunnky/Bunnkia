@@ -66,7 +66,7 @@ const std::string Tile::getAsString() const
 
 void Tile::update()
 {
-	this->shape.setColor(sf::Color::Red);
+	//this->shape.setColor(sf::Color::Red);
 }
 
 void Tile::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f player_position)
