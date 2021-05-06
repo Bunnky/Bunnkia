@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "Entity.h"
-
 #include "Sword.h"
 
 class Entity;

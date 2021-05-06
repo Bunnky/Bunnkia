@@ -12,11 +12,11 @@ void Enemy::initVariables()
 void Enemy::initAnimations()
 {
 	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
-	this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 4, 1, 7, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_UP", 6.f, 4, 1, 7, 1, 32, 32);
-	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 4, 2, 32 * 2, 32);
+	this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 0, 3, 0, 32, 32);
+	this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 0, 0, 3, 0, 32, 32);
+	this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 0, 3, 0, 32, 32);
+	this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 0, 3, 0, 32, 32);
+	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 0, 3, 0, 32, 32);
 
 	//========================================================
 	//CHANGE THESE IF WE WANT TO DO DIRECTIONAL PLAYER SPRITES
@@ -31,14 +31,13 @@ void Enemy::initAnimations()
 //========================================================
 //Constructors/Destructors
 //========================================================
-Enemy::Enemy(EnemySpawner& enemy_spawner, float x, float y, sf::Texture& texture_sheet)
-	: enemySpawner(enemy_spawner)
+Enemy::Enemy(float x, float y, sf::Texture& texture_sheet)
 {
 	this->initVariables();
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
-	this->createMovementComponent(200.f, 50.f, 25.f);
+	this->createMovementComponent(50.f, 1600.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 
 	this->setPosition(x, y);

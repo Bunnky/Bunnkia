@@ -4,7 +4,7 @@
 Sword::Sword()
 {
 	//Visual Weapon
-	if (!this->weapon_texture.loadFromFile("Resources/Images/Sprites/Player/sword.png"))
+	if (!this->weapon_texture.loadFromFile("Resources/Images/Sprites/Player/sword4.png"))
 		std::cout << "ERROR::PLAYER::COULD NOT LOAD WEAPON TEXTURE." << "\n";
 
 	this->weapon_sprite.setTexture(this->weapon_texture);
