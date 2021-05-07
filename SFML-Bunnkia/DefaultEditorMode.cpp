@@ -64,7 +64,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 		//---------------------------------------------------------//
 		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW		  //
 		//--------------------------------------------------------//
-		&& this->getKeytime()
+		//&& this->getKeytime()
 		)
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))

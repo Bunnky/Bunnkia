@@ -9,7 +9,7 @@ Tile::Tile()
 
 Tile::Tile(short type, int grid_x, int grid_y, float gridSizeF, 
 	const sf::Texture& texture, const sf::IntRect& texture_rect,
-	bool collision)
+	const bool collision)
 {
 	//this->shape.setSize(sf::Vector2f(gridSizeF, gridSizeF));
 	//this->shape.setFillColor(sf::Color::White);
@@ -39,7 +39,6 @@ const bool& Tile::getCollision() const
 	return this->collision;
 }
 
-
 const sf::Vector2f& Tile::getPosition() const
 {
 	return this->shape.getPosition();
@@ -55,32 +54,4 @@ const sf::FloatRect Tile::getGlobalBounds() const
 {
 	return this->shape.getGlobalBounds();
 }
-
-const std::string Tile::getAsString() const
-{
-	std::stringstream ss;
-
-	ss << this->type << " " << this->shape.getTextureRect().left << " " << this->shape.getTextureRect().top << " " << this->collision;
-
-	return ss.str();
-}
-
-void Tile::update()
-{
-	//this->shape.setColor(sf::Color::Red);
-}
-
-void Tile::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f player_position)
-{
-	if (shader)
-	{
-		shader->setUniform("hasTexture", true);
-		shader->setUniform("lightPos", player_position);
-
-		target.draw(this->shape, shader);
-	}
-	else
-		target.draw(this->shape);
-}
-
 

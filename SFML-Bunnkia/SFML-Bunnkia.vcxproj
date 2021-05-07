@@ -155,7 +155,7 @@
     <ClCompile Include="EditorMode.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyEditorMode.cpp" />
-    <ClCompile Include="EnemySpawner.cpp" />
+    <ClCompile Include="EnemySpawnerTile.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="GraphicsSettings.cpp" />
     <ClCompile Include="Gui.cpp" />
@@ -173,6 +173,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
     <ClCompile Include="RangedWeapon.cpp" />
+    <ClCompile Include="RegularTile.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="SkillComponent.cpp" />
     <ClCompile Include="State.cpp" />
@@ -194,7 +195,7 @@
     <ClInclude Include="Enemies_include.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyEditorMode.h" />
-    <ClInclude Include="EnemySpawner.h" />
+    <ClInclude Include="EnemySpawnerTile.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="GraphicsSettings.h" />
     <ClInclude Include="Gui.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
     <ClInclude Include="RangedWeapon.h" />
+    <ClInclude Include="RegularTile.h" />
     <ClInclude Include="SettingsState.h" />
     <ClInclude Include="SkillComponent.h" />
     <ClInclude Include="State.h" />

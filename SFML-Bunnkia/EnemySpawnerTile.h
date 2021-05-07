@@ -1,11 +1,11 @@
-#ifndef ENEMYSPAWNER_H
-#define ENEMYSPAWNER_H
+#ifndef ENEMYSPAWNERTILE_H
+#define ENEMYSPAWNERTILE_H
 
 #include "Tile.h"
 
 class Tile;
 
-class EnemySpawner
+class EnemySpawnerTile
 	: public Tile
 {
 private:
@@ -16,16 +16,16 @@ private:
 
 
 public:
-	EnemySpawner(int grid_x, int grid_y, float gridSizeF, 
+	EnemySpawnerTile(int grid_x, int grid_y, float gridSizeF,
 		const sf::Texture& texture, const sf::IntRect& texture_rect,
 		int enemy_type, int enemy_amount, int enemy_time_to_spawn, float enemy_max_distance);
-	virtual ~EnemySpawner();
+	virtual ~EnemySpawnerTile();
 
-	const std::string getAsString() const;
+	virtual const std::string getAsString() const;
 
 	void update();
 	void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f player_position = sf::Vector2f());
 
 };
 
-#endif // !ENEMYSPAWNER_H
+#endif // !ENEMYSPAWNERTILE_H
