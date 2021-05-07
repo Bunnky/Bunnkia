@@ -17,14 +17,6 @@ void Goblin::initAnimations()
 	this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 0, 3, 0, 32, 32);
 	this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 0, 3, 0, 32, 32);
 	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 0, 3, 0, 32, 32);
-
-	//========================================================
-	//CHANGE THESE IF WE WANT TO DO DIRECTIONAL PLAYER SPRITES
-	//========================================================
-	//this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 1, 3, 1, 32, 32);
-	//this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);
-	//this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 0, 1, 3, 1, 32, 32);
-	//this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 1, 3, 1, 32, 32);
 }
 
 //========================================================

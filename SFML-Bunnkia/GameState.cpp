@@ -159,11 +159,7 @@ GameState::GameState(StateData* state_data)
 	this->initPlayerGUI();
 	this->initTileMap();
 
-	this->activeEnemies.push_back(new Goblin(200.f, 100.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Goblin(500.f, 200.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Goblin(300.f, 300.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Goblin(400.f, 250.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Goblin(400.f, 150.f, this->textures["GOBLIN_SHEET"]));
+
 }
 
 GameState::~GameState()
@@ -267,12 +263,24 @@ void GameState::updatePauseMenuButtons()
 
 void GameState::updateTileMap(const float& dt)
 {
-	this->tileMap->update(this->player, dt);
+	this->tileMap->updateWorldBoundsCollision(this->player, dt);
+	this->tileMap->updateTileCollision(this->player, dt);
+	this->tileMap->updateTiles(this->player, dt, this->activeEnemies, this->textures);
 
 	for (auto* i : this->activeEnemies)
 	{
-		this->tileMap->update(i, dt);
+		this->tileMap->updateWorldBoundsCollision(i, dt);
+		this->tileMap->updateTileCollision(i, dt);
 	}
+}
+
+void GameState::updatePlayer(const float& dt)
+{
+}
+
+void GameState::updateEnemies(const float& dt)
+{
+	//this->activeEnemies.push_back(new Goblin(200.f, 100.f, this->textures["GOBLIN_SHEET"]));
 }
 
 void GameState::update(const float& dt)
