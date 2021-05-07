@@ -159,11 +159,11 @@ GameState::GameState(StateData* state_data)
 	this->initPlayerGUI();
 	this->initTileMap();
 
-	this->activeEnemies.push_back(new Enemy(200.f, 100.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Enemy(500.f, 200.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Enemy(300.f, 300.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Enemy(400.f, 250.f, this->textures["GOBLIN_SHEET"]));
-	this->activeEnemies.push_back(new Enemy(400.f, 150.f, this->textures["GOBLIN_SHEET"]));
+	this->activeEnemies.push_back(new Goblin(200.f, 100.f, this->textures["GOBLIN_SHEET"]));
+	this->activeEnemies.push_back(new Goblin(500.f, 200.f, this->textures["GOBLIN_SHEET"]));
+	this->activeEnemies.push_back(new Goblin(300.f, 300.f, this->textures["GOBLIN_SHEET"]));
+	this->activeEnemies.push_back(new Goblin(400.f, 250.f, this->textures["GOBLIN_SHEET"]));
+	this->activeEnemies.push_back(new Goblin(400.f, 150.f, this->textures["GOBLIN_SHEET"]));
 }
 
 GameState::~GameState()
