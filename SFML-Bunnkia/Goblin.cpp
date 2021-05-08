@@ -42,11 +42,6 @@ Goblin::~Goblin()
 
 }
 
-void Goblin::takeDamage(const int damage)
-{
-	this->attributeComponent->loseHP(damage);
-}
-
 void Goblin::updateAnimation(const float& dt)
 {
 	if (this->movementComponent->getState(IDLE))

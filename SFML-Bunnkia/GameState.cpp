@@ -288,36 +288,47 @@ void GameState::updateTileMap(const float& dt)
 	this->tileMap->updateWorldBoundsCollision(this->player, dt);
 	this->tileMap->updateTileCollision(this->player, dt);
 	this->tileMap->updateTiles(this->player, dt, *this->enemySystem);
-
-	for (auto* i : this->activeEnemies)
-	{
-		this->tileMap->updateWorldBoundsCollision(i, dt);
-		this->tileMap->updateTileCollision(i, dt);
-	}
 }
 
 void GameState::updatePlayer(const float& dt)
 {
 }
 
-void GameState::updateEnemies(const float& dt)
+void GameState::updateCombatAndEnemies(const float& dt)
 {
-	//Update all enemies
-	for (auto* i : this->activeEnemies)
+	unsigned index = 0;
+	for (auto* enemy : this->activeEnemies)
 	{
-		i->update(dt, this->mousePosView);
-		this->updateCombat(i, dt);
+		enemy->update(dt, this->mousePosView);
+
+		this->tileMap->updateWorldBoundsCollision(enemy, dt);
+		this->tileMap->updateTileCollision(enemy, dt);
+
+		this->updateCombat(enemy, index, dt);
+
+		//DANGEROUS
+		if (enemy->isDead())
+		{
+			this->player->gainEXP(enemy->getGainExp());
+
+			this->activeEnemies.erase(this->activeEnemies.begin() + index);
+			--index;
+		}
+
+
+		++index;
 	}
 }
 
-void GameState::updateCombat(Enemy* enemy, const float& dt)
+void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 {	
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (enemy->getGlobalBounds().contains(this->mousePosView) && enemy->getDistance(*this->player) < 30.f)
 		{
 			//Get to this!!
-			std::cout << "Hit!" << rand()%29 << "\n";			
+			enemy->loseHP(this->player->getWeapon()->getDamageMin());
+			std::cout << enemy->getAttributeComp()->hp << "\n";			
 		}
 	}
 }
@@ -341,7 +352,7 @@ void GameState::update(const float& dt)
 		this->playerGUI->update(dt);
 
 		//Update all enemies
-		this->updateEnemies(dt);
+		this->updateCombatAndEnemies(dt);
 	}
 	else //Paused update
 	{		
@@ -370,9 +381,9 @@ void GameState::render(sf::RenderTarget* target)
 	);
 
 	//Render Enemies
-	for (auto* i : this->activeEnemies)
+	for (auto* enemy : this->activeEnemies)
 	{
-		i->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
+		enemy->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
 	}
 
 	this->player->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);

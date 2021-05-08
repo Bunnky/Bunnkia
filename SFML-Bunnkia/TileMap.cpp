@@ -87,10 +87,14 @@ TileMap::TileMap(const std::string file_name)
 
 	this->loadFromFile(file_name);
 
-	this->collisionBox.setSize(sf::Vector2f(this->gridSizeF, this->gridSizeF));
+	///////////////////////////////////////////
+	//THIS WAS SHOWING RED BOXES AROUND ENEMIES
+	///////////////////////////////////////////
+	/*this->collisionBox.setSize(sf::Vector2f(this->gridSizeF, this->gridSizeF));
 	this->collisionBox.setFillColor(sf::Color(255, 0, 0, 50));
 	this->collisionBox.setOutlineColor(sf::Color::Red);
-	this->collisionBox.setOutlineThickness(-1.f);
+	this->collisionBox.setOutlineThickness(-1.f);*/
+
 }
 
 TileMap::~TileMap()
