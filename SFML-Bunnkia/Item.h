@@ -9,6 +9,9 @@ private:
 public:
 	Item();
 	virtual ~Item();
+
+	//Functions
+	virtual Item* clone() = 0;
 };
 
 
