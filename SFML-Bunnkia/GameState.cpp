@@ -1,7 +1,14 @@
 #include "stdafx.h"
 #include "GameState.h"
 
-
+//========================================================
+// 
+//Initializer Functions
+// 
+//========================================================
+//----------------------
+//Initialize Deferred Render
+//----------------------
 void GameState::initDeferredRender()
 {
 	this->renderTexture.create(
@@ -19,12 +26,6 @@ void GameState::initDeferredRender()
 		)
 	);
 }
-
-//========================================================
-// 
-//Initializer Functions
-// 
-//========================================================
 
 //----------------------
 //Initialize View
@@ -129,6 +130,9 @@ void GameState::initPlayerGUI()
 	this -> playerGUI = new PlayerGUI(this->player, this->stateData->gfxSettings->resolution);
 }
 
+//----------------------
+//Initialize EnemySystem
+//----------------------
 void GameState::initEnemySystem()
 {
 	this->enemySystem = new EnemySystem(this->activeEnemies, this -> textures);
@@ -152,20 +156,31 @@ void GameState::initTileMap()
 GameState::GameState(StateData* state_data)
 	: State(state_data)
 {
+	std::cout << green << "Initializing Deferred Render" << "\n" << white;
 	this->initDeferredRender();
+	std::cout << green << "Initializing View" << "\n" << white;
 	this->initView();
+	std::cout << green << "Initializing Keybinds" << "\n" << white;
 	this->initKeybinds();
+	std::cout << green << "Initializing Fonts" << "\n" << white;
 	this->initFonts();
+	std::cout << green << "Initializing Textures" << "\n" << white;
 	this->initTextures();
+	std::cout << green << "Initializing Pause Menu" << "\n" << white;
 	this->initPauseMenu();
+	std::cout << green << "Initializing Shaders" << "\n" << white;
 	this->initShaders();
 
+	std::cout << green << "Initializing Players" << "\n" << white;
 	this->initPlayers();
+	std::cout << green << "Initializing Player GUI" << "\n" << white;
 	this->initPlayerGUI();
+	std::cout << green << "Initializing Enemy System" << "\n" << white;
 	this->initEnemySystem();
+	std::cout << green << "Initializing Tile Map" << "\n" << white;
 	this->initTileMap();
 
-
+	std::cout << blue << "Initializing complete!" <<  "\n" << white;
 }
 
 GameState::~GameState()

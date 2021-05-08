@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Player.h"
 
 
@@ -8,6 +9,7 @@
 void Player::initVariables()
 {
 	this->attacking = false;
+	this->sword = new Sword(20);
 }
 
 void Player::initComponents()
@@ -33,6 +35,11 @@ void Player::initAnimations()
 	//this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 1, 3, 1, 32, 32);
 }
 
+void Player::initInventory()
+{
+
+}
+
 
 //========================================================
 //Constructors/Destructors
@@ -50,11 +57,14 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 
 	this->setPosition(x, y);
 	this->initAnimations();
+
+	this->initInventory();
 }
 
 Player::~Player()
 {
-
+	delete this->inventory;
+	delete this->sword;
 }
 //========================================================
 //Accessors
@@ -135,7 +145,7 @@ void Player::update(const float& dt, sf::Vector2f& mouse_pos_view)
 
 	this->hitboxComponent->update();
 
-	this->sword.update(mouse_pos_view, this->getCenter());
+	this->sword->update(mouse_pos_view, this->getCenter());
 }
 
 void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
@@ -148,12 +158,12 @@ void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vect
 
 		shader->setUniform("hasTexture", true);
 		shader->setUniform("lightPos", light_position);
-		this->sword.render(target, shader);
+		this->sword->render(target, shader);
 	}
 	else
 	{
 		target.draw(this->sprite);
-		this->sword.render(target);
+		this->sword->render(target);
 	}
 
 	if (show_hitbox)

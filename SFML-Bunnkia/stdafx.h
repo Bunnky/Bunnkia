@@ -8,6 +8,8 @@
 #include"SFML\Audio.hpp"
 #include"SFML\Network.hpp"
 
+#include "ConsoleColor.h"
+
 //Core
 #include <Windows.h>
 #include <algorithm>

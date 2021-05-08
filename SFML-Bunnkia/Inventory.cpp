@@ -71,7 +71,7 @@ const bool Inventory::empty() const
 	return this->nrOfItems == 0;
 }
 
-const bool Inventory::add(Item* item)
+const bool Inventory::add(Item * item)
 {
 
 	if (this->nrOfItems < this->capacity)
@@ -94,6 +94,7 @@ const bool Inventory::remove(const unsigned index)
 
 		delete this->itemArray[index];
 		this->itemArray[index] = nullptr;
+		--this->nrOfItems;
 
 		return true;
 	}
