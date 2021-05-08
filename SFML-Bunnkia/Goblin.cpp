@@ -31,6 +31,7 @@ Goblin::Goblin(float x, float y, sf::Texture& texture_sheet)
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
 	this->createMovementComponent(50.f, 1600.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
+	this->createAttributeComponent(1);
 
 	this->setPosition(x, y);
 	this->initAnimations();
@@ -39,6 +40,11 @@ Goblin::Goblin(float x, float y, sf::Texture& texture_sheet)
 Goblin::~Goblin()
 {
 
+}
+
+void Goblin::takeDamage(const int damage)
+{
+	this->attributeComponent->loseHP(damage);
 }
 
 void Goblin::updateAnimation(const float& dt)

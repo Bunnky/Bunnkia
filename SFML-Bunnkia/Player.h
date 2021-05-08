@@ -35,6 +35,7 @@ public:
     // Accessors //
     //===========//
     AttributeComponent* getAttributeComponent();
+    const Weapon* getWeapon() const;
 
     //===========//
     // Functions //

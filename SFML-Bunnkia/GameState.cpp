@@ -302,7 +302,24 @@ void GameState::updatePlayer(const float& dt)
 
 void GameState::updateEnemies(const float& dt)
 {
-	//this->activeEnemies.push_back(new Goblin(200.f, 100.f, this->textures["GOBLIN_SHEET"]));
+	//Update all enemies
+	for (auto* i : this->activeEnemies)
+	{
+		i->update(dt, this->mousePosView);
+		this->updateCombat(i, dt);
+	}
+}
+
+void GameState::updateCombat(Enemy* enemy, const float& dt)
+{	
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (enemy->getGlobalBounds().contains(this->mousePosView) && enemy->getDistance(*this->player) < 30.f)
+		{
+			//Get to this!!
+			std::cout << "Hit!" << rand()%29 << "\n";			
+		}
+	}
 }
 
 void GameState::update(const float& dt)
@@ -323,11 +340,8 @@ void GameState::update(const float& dt)
 
 		this->playerGUI->update(dt);
 
-		for (auto* i : this->activeEnemies)
-		{
-			i->update(dt, this->mousePosView);
-		}
-
+		//Update all enemies
+		this->updateEnemies(dt);
 	}
 	else //Paused update
 	{		
