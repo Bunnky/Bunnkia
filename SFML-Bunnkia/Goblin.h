@@ -16,7 +16,7 @@ private:
     sf::RectangleShape hpBar;
 
 public:
-    Goblin(float x, float y, sf::Texture& texture_sheet);
+    Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile);
     virtual ~Goblin();
 
     //Functions

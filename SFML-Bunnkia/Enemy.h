@@ -4,15 +4,12 @@
 #include "Entity.h"
 #include "EnemySpawnerTile.h"
 
-class Entity;
-class EnemySpawnerTile;
-
 class Enemy :
     public Entity
 {
 private:
     //Variables
-    //EnemySpawner& enemySpawner;
+    EnemySpawnerTile& enemySpawnerTile;
     unsigned gainExp;
 
     //Initializer functions
@@ -20,13 +17,16 @@ private:
     virtual void initAnimations();
 
 public:
-    Enemy();
+    Enemy(EnemySpawnerTile& enemy_spawner_tile);
     virtual ~Enemy();
 
     //Accessors
     const unsigned& getGainExp() const;
+    EnemySpawnerTile& getEnemySpawnerTile();
 
     //Functions
+    virtual void generateAttributes(const unsigned level);
+
     virtual void loseHP(const int hp);
     virtual const bool isDead() const;
 

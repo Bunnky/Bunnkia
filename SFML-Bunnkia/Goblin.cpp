@@ -29,8 +29,8 @@ void Goblin::initGUI()
 //========================================================
 //Constructors/Destructors
 //========================================================
-Goblin::Goblin(float x, float y, sf::Texture& texture_sheet)
-	: Enemy()
+Goblin::Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile)
+	: Enemy(enemy_spawner_tile)
 {
 	this->initVariables();
 	this->initGUI();
@@ -40,6 +40,8 @@ Goblin::Goblin(float x, float y, sf::Texture& texture_sheet)
 	this->createMovementComponent(50.f, 1600.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 	this->createAttributeComponent(1);
+
+	this->generateAttributes(this->attributeComponent->level);
 
 	this->setPosition(x, y);
 	this->initAnimations();

@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Sword.h"
 
-Sword::Sword(unsigned value, std::string texture_file)
-	: MeleeWeapon(value, texture_file)
+Sword::Sword(unsigned level, unsigned damageMin, unsigned damageMax, unsigned range,
+	unsigned value, std::string texture_file)
+	: MeleeWeapon(level, damageMin, damageMax, range, value, texture_file)
 {
 	//Visual Weapon
 	this->weapon_sprite.setOrigin(
@@ -32,7 +33,14 @@ void Sword::update(const sf::Vector2f mouse_pos_view, const sf::Vector2f center)
 	const float PI = 3.14159265f;
 	float deg = atan2(dY, dX) * 180.f / PI;
 
-	this->weapon_sprite.setRotation(deg + 90.f);
+	if (this->attackTimer.getElapsedTime().asMilliseconds() < this->attackTimerMax)
+	{
+		this->weapon_sprite.rotate(30.f);
+	}
+	else
+	{
+		this->weapon_sprite.setRotation(deg + 90.f);
+	}
 }
 
 void Sword::render(sf::RenderTarget& target, sf::Shader* shader)

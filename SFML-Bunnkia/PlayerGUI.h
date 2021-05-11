@@ -1,9 +1,6 @@
 #pragma once
 
-#include"Player.h"
-#include"Gui.h"
-
-class Player;
+#include"PlayerGUITabs.h"
 
 class PlayerGUI
 {
@@ -24,11 +21,14 @@ private:
 	//HP Bar
 	gui::ProgressBar* hpBar;
 
+	//Player GUI Tabs
+	PlayerGUITabs* playerTabs;
 
 	void initFont();
 	void initLevelBar();
 	void initEXPBar();
 	void initHPBar();
+	void initPlayerTabs(sf::VideoMode &vm, sf::Font& font, Player& player);
 
 public:
 	PlayerGUI(Player* player, sf::VideoMode& vm);
@@ -38,6 +38,7 @@ public:
 	void updateLevelBar();
 	void updateEXPBar();
 	void updateHPBar();
+
 	void update(const float& dt);
 
 	void renderLevelBar(sf::RenderTarget& target);

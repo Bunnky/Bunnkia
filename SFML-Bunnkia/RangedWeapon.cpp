@@ -2,13 +2,18 @@
 
 #include "RangedWeapon.h"
 
-RangedWeapon::RangedWeapon(unsigned value, std::string texture_file)
-	: Weapon(value, texture_file)
+RangedWeapon::RangedWeapon(unsigned level, unsigned value, std::string texture_file)
+	: Weapon(level, value, texture_file)
 {
 	this->type = ItemTypes::IT_RANGEDWEAPON;
 }
 
 RangedWeapon::~RangedWeapon()
+{
+
+}
+
+void RangedWeapon::generate(const unsigned levelMin, const unsigned levelMax)
 {
 
 }
