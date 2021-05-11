@@ -19,6 +19,13 @@ void Goblin::initAnimations()
 	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 0, 3, 0, 32, 32);
 }
 
+void Goblin::initGUI()
+{
+	this->hpBar.setFillColor(sf::Color::Red);
+	this->hpBar.setSize(sf::Vector2f(60.f, 10.f));
+	this->hpBar.setPosition(this->sprite.getPosition());
+}
+
 //========================================================
 //Constructors/Destructors
 //========================================================
@@ -26,6 +33,7 @@ Goblin::Goblin(float x, float y, sf::Texture& texture_sheet)
 	: Enemy()
 {
 	this->initVariables();
+	this->initGUI();
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
@@ -70,6 +78,10 @@ void Goblin::update(const float& dt, sf::Vector2f& mouse_pos_view)
 {
 	this->movementComponent->update(dt);
 
+	//Update GUI REMOVE THIS!!!
+	this->hpBar.setSize(sf::Vector2f(60.f * (static_cast<float>(this->attributeComponent->hp) / this->attributeComponent->hpMax), 10.f));
+	this->hpBar.setPosition(this->sprite.getPosition());
+
 	//this->updateAttack();
 
 	this->updateAnimation(dt);
@@ -89,6 +101,7 @@ void Goblin::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vect
 	{
 		target.draw(this->sprite);
 	}
+	target.draw(this->hpBar);
 
 	if (show_hitbox)
 		this->hitboxComponent->render(target);

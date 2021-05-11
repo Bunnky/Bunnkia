@@ -11,6 +11,9 @@ class Goblin :
 private:
     void initVariables();
     void initAnimations();
+    void initGUI();
+
+    sf::RectangleShape hpBar;
 
 public:
     Goblin(float x, float y, sf::Texture& texture_sheet);
