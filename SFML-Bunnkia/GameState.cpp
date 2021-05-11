@@ -324,9 +324,12 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 {	
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		if (enemy->getGlobalBounds().contains(this->mousePosView) && enemy->getDistance(*this->player) < 30.f)
+		if (this->player->getWeapon()->getAttackTimer()
+			&& enemy->getGlobalBounds().contains(this->mousePosView)
+			&& enemy->getDistance(*this->player) < 30.f)
 		{
 			//Get to this!!
+			std::cout << "Attacked!" << "\n";
 			enemy->loseHP(this->player->getWeapon()->getDamageMin());
 			std::cout << enemy->getAttributeComp()->hp << "\n";			
 		}
