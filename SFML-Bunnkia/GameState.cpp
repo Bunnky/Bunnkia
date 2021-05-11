@@ -148,6 +148,11 @@ void GameState::initTileMap()
 	this->tileMap = new TileMap("test.slmp");
 }
 
+void GameState::initSystems()
+{
+	this->tts = new TextTagSystem("Fonts/Retro Gaming.ttf");
+}
+
 //========================================================
 // 
 //Constructors/Destructors
@@ -179,6 +184,8 @@ GameState::GameState(StateData* state_data)
 	this->initEnemySystem();
 	std::cout << green << "Initializing Tile Map" << "\n" << white;
 	this->initTileMap();
+	std::cout << green << "Initializing Systems" << "\n" << white;
+	this->initSystems();
 
 	std::cout << blue << "Initializing complete!" <<  "\n" << white;
 }
@@ -190,6 +197,7 @@ GameState::~GameState()
 	delete this->playerGUI;
 	delete this->enemySystem;
 	delete this->tileMap;
+	delete this->tts;
 
 	for (size_t i = 0; i < this->activeEnemies.size(); i++)
 	{
@@ -266,8 +274,7 @@ void GameState::updatePlayerInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
-		//if (this->getKeytime())
-		//	this->player->loseEXP(10);
+		this->tts->addTextTag(DEFAULT_TAG);
 	}
 			
 }
@@ -356,6 +363,9 @@ void GameState::update(const float& dt)
 
 		//Update all enemies
 		this->updateCombatAndEnemies(dt);
+
+		//UpdateSystems
+		this->tts->update(dt);
 	}
 	else //Paused update
 	{		
@@ -393,6 +403,8 @@ void GameState::render(sf::RenderTarget* target)
 
 	//Deferred Rendering
 	this->tileMap->renderDeferred(this->renderTexture, &this->core_shader, this->player->getCenter());
+
+	this->tts->render(this->renderTexture);
 
 	//Render GUI
 	this->renderTexture.setView(this->renderTexture.getDefaultView());

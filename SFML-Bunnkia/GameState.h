@@ -1,12 +1,13 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include "State.h"
-#include "PauseMenu.h"
-#include "TileMap.h"
-#include "PlayerGUI.h"
-#include "Sword.h"
-#include "Bow.h"
+#include"State.h"
+#include"PauseMenu.h"
+#include"TileMap.h"
+#include"PlayerGUI.h"
+#include"Sword.h"
+#include"Bow.h"
+#include"TextTagSystem.h"
 
 class GameState :
     public State
@@ -31,6 +32,9 @@ private:
 
     TileMap* tileMap;
 
+    //Systems
+    TextTagSystem* tts;
+
 
     //===========//
     // Functions //
@@ -46,6 +50,7 @@ private:
     void initPlayerGUI();
     void initEnemySystem();
     void initTileMap();
+    void initSystems();
 
 public:
     GameState(StateData* state_data);
