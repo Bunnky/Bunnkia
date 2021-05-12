@@ -42,6 +42,7 @@ public:
 	void createAnimationComponent(sf::Texture& texture_sheet);
 	void createAttributeComponent(const unsigned level);
 	void createSkillComponent();
+	void createAIComponent();
 
 
 	//===========//

@@ -113,6 +113,12 @@ void GameState::initShaders()
 	}
 }
 
+void GameState::initKeyTime()
+{
+	this->keyTimeMax = 0.2f;
+	this->keyTimer.restart();
+}
+
 //----------------------
 //Initialize Players
 //----------------------
@@ -135,7 +141,7 @@ void GameState::initPlayerGUI()
 //----------------------
 void GameState::initEnemySystem()
 {
-	this->enemySystem = new EnemySystem(this->activeEnemies, this -> textures);
+	this->enemySystem = new EnemySystem(this->activeEnemies, this->textures, *this->player);
 }
 
 //----------------------
@@ -175,7 +181,8 @@ GameState::GameState(StateData* state_data)
 	this->initPauseMenu();
 	std::cout << green << "Initializing Shaders" << "\n" << white;
 	this->initShaders();
-
+	std::cout << green << "Initializing Key Time" << "\n" << white;
+	this->initKeyTime();
 	std::cout << green << "Initializing Players" << "\n" << white;
 	this->initPlayers();
 	std::cout << green << "Initializing Player GUI" << "\n" << white;
@@ -205,6 +212,17 @@ GameState::~GameState()
 	}
 }
 
+const bool GameState::getKeyTime()
+{
+	if (this->keyTimer.getElapsedTime().asSeconds() >= this->keyTimeMax)
+	{
+		this->keyTimer.restart();
+		return true;
+	}
+	
+	return false;
+}
+
 //========================================================
 // 
 //Functions
@@ -213,7 +231,7 @@ GameState::~GameState()
 void GameState::updateView(const float& dt)
 {
 	this->view.setCenter(
-		std::floor(this->player->getPosition().x + (static_cast<float>(this->mousePosWindow.x) - static_cast<float>(this->stateData->gfxSettings->resolution.width / 2)) / 10.f), 
+		std::floor(this->player->getPosition().x + (static_cast<float>(this->mousePosWindow.x) - static_cast<float>(this->stateData->gfxSettings->resolution.width / 2)) / 10.f),
 		std::floor(this->player->getPosition().y + (static_cast<float>(this->mousePosWindow.y) - static_cast<float>(this->stateData->gfxSettings->resolution.height / 2)) / 10.f)
 	);
 
@@ -259,7 +277,6 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatePlayerInput(const float& dt)
 {
-
 	//Update player input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
 		this->player->move(-1.f, 0.f, dt);
@@ -270,18 +287,22 @@ void GameState::updatePlayerInput(const float& dt)
 		this->player->move(0.f, -1.f, dt);
 		//if (this->getKeytime())
 		//	this->player->gainEXP(10);
-	}		
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
 
-	}
-			
+	}				
 }
 
 void GameState::updatePlayerGUI(const float& dt)
 {
 	this->playerGUI->update(dt);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_PLAYER_TAB_CHARACTER"))) && this->getKeyTime())
+	{
+		this->playerGUI->toggleCharacterTab();
+	}
 }
 
 void GameState::updatePauseMenuButtons()
@@ -299,6 +320,7 @@ void GameState::updateTileMap(const float& dt)
 
 void GameState::updatePlayer(const float& dt)
 {
+	this->player->update(dt, this->mousePosView);
 }
 
 void GameState::updateCombatAndEnemies(const float& dt)
@@ -322,8 +344,6 @@ void GameState::updateCombatAndEnemies(const float& dt)
 			this->enemySystem->removeEnemy(index);
 			--index;
 		}
-
-
 		++index;
 	}
 }
@@ -360,9 +380,9 @@ void GameState::update(const float& dt)
 
 		this->updateTileMap(dt);
 
-		this->player->update(dt, this->mousePosView);
+		this->updatePlayer(dt);
 
-		this->playerGUI->update(dt);
+		this->updatePlayerGUI(dt);
 
 		//Update all enemies
 		this->updateCombatAndEnemies(dt);

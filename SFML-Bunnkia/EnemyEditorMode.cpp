@@ -56,6 +56,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		{
 			this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
 				this->type, this->amount, this->timeToSpawn, this->maxDistance);
+			std::cout << "Added Monster Spawner" << "\n";
 		}
 	}
 	//Remove a tile from the tilemap

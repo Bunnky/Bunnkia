@@ -80,6 +80,18 @@ Weapon* Player::getWeapon() const
 	return this->sword;
 }
 
+const std::string Player::toStringCharacterTab() const
+{
+	std::stringstream ss;
+	AttributeComponent* ac = this->attributeComponent;
+
+	ss << "Level: " << ac->level << "\n"
+		<< "Experience: " << ac->exp << "\n"
+		<< "Next Level: " << ac->expNext << "\n";
+
+	return ss.str();
+}
+
 //========================================================
 //Functions
 //========================================================

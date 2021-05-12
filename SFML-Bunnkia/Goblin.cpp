@@ -19,6 +19,11 @@ void Goblin::initAnimations()
 	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 0, 3, 0, 32, 32);
 }
 
+void Goblin::initAI()
+{
+	
+}
+
 void Goblin::initGUI()
 {
 	this->hpBar.setFillColor(sf::Color::Red);
@@ -29,7 +34,7 @@ void Goblin::initGUI()
 //========================================================
 //Constructors/Destructors
 //========================================================
-Goblin::Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile)
+Goblin::Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile, Entity& player)
 	: Enemy(enemy_spawner_tile)
 {
 	this->initVariables();
@@ -45,11 +50,13 @@ Goblin::Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& e
 
 	this->setPosition(x, y);
 	this->initAnimations();
+
+	this->follow = new AIFollow(*this, player);
 }
 
 Goblin::~Goblin()
 {
-
+	delete this->follow;
 }
 
 void Goblin::updateAnimation(const float& dt)
@@ -89,6 +96,7 @@ void Goblin::update(const float& dt, sf::Vector2f& mouse_pos_view)
 	this->updateAnimation(dt);
 
 	this->hitboxComponent->update();
+	this->follow->update(dt);
 }
 
 void Goblin::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)

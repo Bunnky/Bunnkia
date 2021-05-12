@@ -8,10 +8,12 @@ private:
 	sf::RectangleShape back;
 	sf::Text infoText;
 
+	void initText();
+
 public:
 	CharacterTab(sf::VideoMode& vm, sf::Font font, Player& player);
 	virtual ~CharacterTab();
 
 	void update();
-	void render(sf::RenderTarget* target);
+	void render(sf::RenderTarget& target);
 };

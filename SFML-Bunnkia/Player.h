@@ -37,6 +37,8 @@ public:
     AttributeComponent* getAttributeComponent();
     Weapon* getWeapon() const;
 
+    const std::string toStringCharacterTab() const;
+
     //===========//
     // Functions //
     //===========//

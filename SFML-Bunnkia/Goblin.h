@@ -2,7 +2,7 @@
 #define GOBLIN_H
 
 #include "Enemy.h"
-
+#include"AIFollow.h"
 
 
 class Goblin :
@@ -11,12 +11,15 @@ class Goblin :
 private:
     void initVariables();
     void initAnimations();
+    void initAI();
     void initGUI();
 
     sf::RectangleShape hpBar;
 
+    AIFollow* follow;
+
 public:
-    Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile);
+    Goblin(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& enemy_spawner_tile, Entity& player);
     virtual ~Goblin();
 
     //Functions
