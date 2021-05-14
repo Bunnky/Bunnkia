@@ -34,8 +34,8 @@ void GameState::initView()
 {
 	//View Zoom
 	this->view.setSize(sf::Vector2f(
-			static_cast<float>(this->stateData->gfxSettings->resolution.width ),
-			static_cast<float>(this->stateData->gfxSettings->resolution.height ))
+			static_cast<float>(this->stateData->gfxSettings->resolution.width / 2),
+			static_cast<float>(this->stateData->gfxSettings->resolution.height / 2))
 	);
 
 	this->view.setCenter(sf::Vector2f(
@@ -114,10 +114,24 @@ void GameState::initShaders()
 	}
 }
 
+//----------------------
+//Initialize KeyTime
+//----------------------
 void GameState::initKeyTime()
 {
 	this->keyTimeMax = 0.2f;
 	this->keyTimer.restart();
+}
+
+//----------------------
+//Initialize DebugText
+//----------------------
+void GameState::initDebugText()
+{
+	this->debugText.setFont(this->font);
+	this->debugText.setFillColor(sf::Color::Red);
+	this->debugText.setCharacterSize(8);
+	this->debugText.setPosition(15.f, this->window->getSize().y / 2.f);
 }
 
 //----------------------
@@ -155,6 +169,9 @@ void GameState::initTileMap()
 	this->tileMap = new TileMap("test.slmp");
 }
 
+//----------------------
+//Initialize Systems
+//----------------------
 void GameState::initSystems()
 {
 	//Damage numbers Font
@@ -185,6 +202,8 @@ GameState::GameState(StateData* state_data)
 	this->initShaders();
 	std::cout << green << "Initializing Key Time" << "\n" << white;
 	this->initKeyTime();
+	std::cout << yellow << "Initializing Debug Text" << "\n" << white;
+	this->initDebugText();
 	std::cout << green << "Initializing Players" << "\n" << white;
 	this->initPlayers();
 	std::cout << green << "Initializing Player GUI" << "\n" << white;
@@ -214,6 +233,11 @@ GameState::~GameState()
 	}
 }
 
+//========================================================
+// 
+//Functions
+// 
+//========================================================
 const bool GameState::getKeyTime()
 {
 	if (this->keyTimer.getElapsedTime().asSeconds() >= this->keyTimeMax)
@@ -225,11 +249,6 @@ const bool GameState::getKeyTime()
 	return false;
 }
 
-//========================================================
-// 
-//Functions
-// 
-//========================================================
 void GameState::updateView(const float& dt)
 {
 	this->view.setCenter(
@@ -364,7 +383,7 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 {	
 	if (this->player->getInitAttack()
 		&& enemy->getGlobalBounds().contains(this->mousePosView)
-		&& enemy->getDistance(*this->player) < this->player->getWeapon()->getRange()
+		&& enemy->getSpriteDistance(*this->player) < this->player->getWeapon()->getRange()
 		&& enemy->getDamageTimerDone())
 	{
 		//Get to this!!
@@ -383,11 +402,23 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 	}
 }
 
+void GameState::updateDebugText(const float& dt)
+{
+	std::stringstream ss;
+
+	ss << "Mouse Pos View: " << this->mousePosView.x << " " << this->mousePosView.y << "\n"
+		<< "Active Enemies: " << this->activeEnemies.size() << "\n";
+
+	this->debugText.setString(ss.str());
+}
+
 void GameState::update(const float& dt)
 {
 	this->updateMousePositions(&this->view);
 	this->updateKeytime(dt);
 	this->updateInput(dt);
+
+	this->updateDebugText(dt);
 
 	if (!this->paused) //Unpaused update
 	{
@@ -455,6 +486,8 @@ void GameState::render(sf::RenderTarget* target)
 		//this->renderTexture.setView(this->renderTexture.getDefaultView());
 		this->pmenu->render(this->renderTexture);
 	}
+	//Debug Text
+	this->renderTexture.draw(this->debugText);
 
 	//FINAL RENDER
 	this->renderTexture.display();

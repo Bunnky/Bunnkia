@@ -70,6 +70,26 @@ void Entity::createAIComponent()
 
 }
 
+MovementComponent* Entity::getMovementComponent()
+{
+	return this->movementComponent;
+}
+
+AnimationComponent* Entity::getAnimationComponent()
+{
+	return this->animationComponent;
+}
+
+AttributeComponent* Entity::getAttributeComponent()
+{
+	return this->attributeComponent;
+}
+
+SkillComponent* Entity::getSkillComponent()
+{
+	return this->skillComponent;
+}
+
 //========================================================
 //Accessors
 //========================================================
@@ -78,6 +98,11 @@ const sf::Vector2f& Entity::getPosition() const
 	if (this->hitboxComponent)
 		return this->hitboxComponent->getPosition();
 
+	return this->sprite.getPosition();
+}
+
+const sf::Vector2f& Entity::getSpritePosition() const
+{
 	return this->sprite.getPosition();
 }
 
@@ -91,6 +116,16 @@ const sf::Vector2f Entity::getCenter() const
 			this->hitboxComponent->getGlobalBounds().height / 2.f
 		);
 
+	return this->sprite.getPosition() +
+		sf::Vector2f
+		(
+			this->sprite.getGlobalBounds().width / 2.f,
+			this->sprite.getGlobalBounds().height / 2.f
+		);
+}
+
+const sf::Vector2f Entity::getSpriteCenter() const
+{
 	return this->sprite.getPosition() +
 		sf::Vector2f
 		(
@@ -174,4 +209,9 @@ void Entity::stopVelocityY()
 const float Entity::getDistance(const Entity& entity) const
 {
 	return sqrt(pow(this->getCenter().x - entity.getCenter().x, 2) + pow(this->getCenter().y - entity.getCenter().y, 2));
+}
+
+const float Entity::getSpriteDistance(const Entity& entity) const
+{
+	return sqrt(pow(this->getSpriteCenter().x - entity.getSpriteCenter().x, 2) + pow(this->getSpriteCenter().y - entity.getSpriteCenter().y, 2));
 }

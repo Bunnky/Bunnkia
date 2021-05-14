@@ -1,32 +1,4 @@
-/.vs
-/Client/.vs
-/Server/.vs
-/Tools/.vs
-/Image Converter/.vs
 /SFML-Bunnkia/.vs
-
-/Aseprite
-
-/Client/project-files
-/Image Converter/project-files
-/Server/project-files
-/Tools/project-files
-
-/Server/GM personal logs
-/Server/logs
-/Server/debug.txt
-/Server/abusers.txt
-/Server/temppijee.txt
-/Server/ipbans.txt
-
-/Client/WORKING
-/Client/Screenshots
-/Client/levelit.txt
-/Client/stderr.txt
-/Client/stdout.txt
-
-/Image Converter/Graphics
-
 /SFML-Bunnkia/Debug/
 /SFML-Bunnkia/packages/
 /SFML-Bunnkia/packages.config
