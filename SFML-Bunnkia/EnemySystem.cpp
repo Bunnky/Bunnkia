@@ -30,6 +30,7 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 
 void EnemySystem::removeEnemy(const int index)
 {
+	std::cout << "Enemy Despawned" << "\n";
 	this->activeEnemies[index]->getEnemySpawnerTile().decreaseEnemyCounter();
 	delete this->activeEnemies[index];
 	this->activeEnemies.erase(this->activeEnemies.begin() + index);

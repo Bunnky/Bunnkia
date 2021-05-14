@@ -32,9 +32,10 @@ void GameState::initDeferredRender()
 //----------------------
 void GameState::initView()
 {
+	//View Zoom
 	this->view.setSize(sf::Vector2f(
-			static_cast<float>(this->stateData->gfxSettings->resolution.width),
-			static_cast<float>(this->stateData->gfxSettings->resolution.height))
+			static_cast<float>(this->stateData->gfxSettings->resolution.width ),
+			static_cast<float>(this->stateData->gfxSettings->resolution.height ))
 	);
 
 	this->view.setCenter(sf::Vector2f(
@@ -156,7 +157,8 @@ void GameState::initTileMap()
 
 void GameState::initSystems()
 {
-	this->tts = new TextTagSystem("Fonts/Retro Gaming.ttf");
+	//Damage numbers Font
+	this->tts = new TextTagSystem("Fonts/lucon.ttf");
 }
 
 //========================================================
@@ -320,15 +322,18 @@ void GameState::updateTileMap(const float& dt)
 
 void GameState::updatePlayer(const float& dt)
 {
-	this->player->update(dt, this->mousePosView);
+	this->player->update(dt, this->mousePosView, this->view);
 }
 
 void GameState::updateCombatAndEnemies(const float& dt)
 {
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->player->getWeapon()->getAttackTimer())
+		this->player->setInitAttack(true);
+
 	unsigned index = 0;
 	for (auto* enemy : this->activeEnemies)
 	{
-		enemy->update(dt, this->mousePosView);
+		enemy->update(dt, this->mousePosView, this->view);
 
 		this->tileMap->updateWorldBoundsCollision(enemy, dt);
 		this->tileMap->updateTileCollision(enemy, dt);
@@ -339,30 +344,42 @@ void GameState::updateCombatAndEnemies(const float& dt)
 		if (enemy->isDead())
 		{
 			this->player->gainEXP(enemy->getGainExp());
-			this->tts->addTextTag(EXPERIENCE_TAG, this->player->getCenter().x, this->player->getCenter().y, static_cast<int>(enemy->getGainExp()), "", "+xp");
+			this->tts->addTextTag(EXPERIENCE_TAG, this->player->getPosition().x - 40.f, this->player->getPosition().y - 30.f, static_cast<int>(enemy->getGainExp()), "+", "xp");
 
 			this->enemySystem->removeEnemy(index);
-			--index;
+			continue;
+		}
+		else if (enemy->getDespawnTimerDone())
+		{
+			this->enemySystem->removeEnemy(index);
+			continue;
 		}
 		++index;
 	}
+
+	this->player->setInitAttack(false);
 }
 
 void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 {	
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) 
+	if (this->player->getInitAttack()
 		&& enemy->getGlobalBounds().contains(this->mousePosView)
-		&& enemy->getDistance(*this->player) < this->player->getWeapon()->getRange())
+		&& enemy->getDistance(*this->player) < this->player->getWeapon()->getRange()
+		&& enemy->getDamageTimerDone())
 	{
-		if (this->player->getWeapon()->getAttackTimer())
-		{
-			//Get to this!!
-			int dmg = static_cast<int>(this->player->getWeapon()->getDamage());
-			enemy->loseHP(dmg);
-			this->tts->addTextTag(NEGATIVE_TAG, enemy->getCenter().x, enemy->getCenter().y, dmg, "", "-HP");
-		}
-		
+		//Get to this!!
+		int dmg = static_cast<int>(this->player->getDamage());
+		enemy->loseHP(dmg);
+		enemy->resetDamageTimer();
+		this->tts->addTextTag(DEFAULT_TAG, enemy->getPosition().x, enemy->getPosition().y, dmg, "", "");
+	}
 
+	//Check for enemy damage
+	if (enemy->getGlobalBounds().intersects(this->player->getGlobalBounds()) && player->getDamageTimer())
+	{
+		int dmg = enemy->getAttributeComp()->damageMax;
+		this->player->loseHP(dmg);
+		this->tts->addTextTag(NEGATIVE_TAG, player->getPosition().x - 30.f, player->getPosition().y, dmg, "-", "HP");
 	}
 }
 

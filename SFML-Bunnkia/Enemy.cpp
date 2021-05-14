@@ -7,6 +7,8 @@
 void Enemy::initVariables()
 {
 	this->gainExp = 10;
+	this->damageTimerMax = 1000;
+	this->despawnTimerMax = 1000;
 }
 
 void Enemy::initAnimations()
@@ -62,6 +64,21 @@ const unsigned& Enemy::getGainExp() const
 	return this->gainExp;
 }
 
+const bool Enemy::getDamageTimerDone() const
+{
+	return this->damageTimer.getElapsedTime().asMilliseconds() >= this->damageTimerMax;
+}
+
+void Enemy::resetDamageTimer()
+{
+	this->damageTimer.restart();
+}
+
+const bool Enemy::getDespawnTimerDone() const
+{
+	return this->despawnTimer.getElapsedTime().asMilliseconds() >= this->despawnTimerMax;
+}
+
 const AttributeComponent* Enemy::getAttributeComp() const
 {
 	if (this->attributeComponent)
@@ -72,4 +89,10 @@ const AttributeComponent* Enemy::getAttributeComp() const
 		return nullptr;
 	}
 		
+}
+
+void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+{
+	if (vectorDistance(this->getPosition(), view.getCenter()) < 1500.f)
+		this->despawnTimer.restart();
 }

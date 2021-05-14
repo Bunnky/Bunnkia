@@ -31,6 +31,7 @@
 /SFML-Bunnkia/packages/
 /SFML-Bunnkia/packages.config
 
+*.cache
 *.lnk
 *.exe
 *.sln
@@ -47,7 +48,6 @@
 *.png
 *.suo
 *.vsf
-*.ini
 *.obj
 *.tlog
 *.idb
@@ -60,3 +60,4 @@
 *.log
 *.pch
 SFML-Bunnkia/Debug/SFML-Bunnkia.pch
+/Client/settings.ini

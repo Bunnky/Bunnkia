@@ -33,9 +33,16 @@ void Sword::update(const sf::Vector2f mouse_pos_view, const sf::Vector2f center)
 	const float PI = 3.14159265f;
 	float deg = atan2(dY, dX) * 180.f / PI;
 
-	if (this->attackTimer.getElapsedTime().asMilliseconds() < this->attackTimerMax)
+	//Attack Animations
+	if (this->attackTimer.getElapsedTime().asMilliseconds() < this->attackTimerMax / 4)
 	{
-		this->weapon_sprite.rotate(30.f);
+		float len = std::sqrt(pow(dX, 2) + pow(dY, 2));
+		sf::Vector2f normVec(dX / len, dY / len);
+
+		this->weapon_sprite.setPosition(center.x + normVec.x * 10.f, center.y + normVec.y * 10.f);
+
+		//Old "whirlwind" shit
+		//this->weapon_sprite.rotate(30.f);
 	}
 	else
 	{

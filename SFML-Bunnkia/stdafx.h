@@ -29,5 +29,8 @@
 #include <cmath>
 #include <cstdlib>
 
+//Custom
+#include "ConsoleColor.h"
+#include "VectorMath.h"
 #endif
 

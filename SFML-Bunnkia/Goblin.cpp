@@ -26,8 +26,14 @@ void Goblin::initAI()
 
 void Goblin::initGUI()
 {
+	this->hpBarBack.setFillColor(sf::Color::Black);
+	this->hpBarBack.setSize(sf::Vector2f(64.f, 3.f));
+	this->hpBarBack.setPosition(this->sprite.getPosition());
+	this->hpBarBack.setOutlineColor(sf::Color(220, 220, 220, 250));
+	this->hpBarBack.setOutlineThickness(0.5f);
+
 	this->hpBar.setFillColor(sf::Color::Red);
-	this->hpBar.setSize(sf::Vector2f(60.f, 10.f));
+	this->hpBar.setSize(sf::Vector2f(64.f, 3.f));
 	this->hpBar.setPosition(this->sprite.getPosition());
 }
 
@@ -81,15 +87,27 @@ void Goblin::updateAnimation(const float& dt)
 	{
 		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
 	}
+
+	if (this->damageTimer.getElapsedTime().asMilliseconds() <= this->damageTimerMax)
+	{
+		this->sprite.setColor(sf::Color::Red);
+	}
+	else
+		this->sprite.setColor(sf::Color::White);
 }
 
-void Goblin::update(const float& dt, sf::Vector2f& mouse_pos_view)
+void Goblin::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
+	Enemy::update(dt, mouse_pos_view, view);
+
 	this->movementComponent->update(dt);
 
 	//Update GUI REMOVE THIS!!!
-	this->hpBar.setSize(sf::Vector2f(60.f * (static_cast<float>(this->attributeComponent->hp) / this->attributeComponent->hpMax), 10.f));
-	this->hpBar.setPosition(this->sprite.getPosition());
+	this->hpBar.setSize(sf::Vector2f(32.f * (static_cast<float>(this->attributeComponent->hp) / this->attributeComponent->hpMax), 3.f));
+	this->hpBar.setPosition(this->sprite.getPosition().x, this->sprite.getPosition().y + 32.f);
+
+	this->hpBarBack.setSize(sf::Vector2f(32.f, 3.f));
+	this->hpBarBack.setPosition(this->sprite.getPosition().x, this->sprite.getPosition().y + 32.f);
 
 	//this->updateAttack();
 
@@ -111,6 +129,7 @@ void Goblin::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vect
 	{
 		target.draw(this->sprite);
 	}
+	target.draw(this->hpBarBack);
 	target.draw(this->hpBar);
 
 	if (show_hitbox)

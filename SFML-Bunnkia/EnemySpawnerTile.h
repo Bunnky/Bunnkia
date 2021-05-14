@@ -15,7 +15,7 @@ private:
 	sf::Clock enemySpawnTimer;
 	sf::Int32 enemyTimeToSpawn;
 	float enemyMaxDistance;
-	bool spawned;
+	bool firstSpawn;
 
 
 public:
@@ -26,15 +26,11 @@ public:
 
 	//Accessors
 	virtual const std::string getAsString() const;
-	const bool& getSpawned() const;
 	const int& getEnemyAmount() const;
 	const int& getEnemyCounter() const;
+	const bool getSpawnTimer();
 
-	//Modifiers
-	void setSpawned(const bool spawned);
 
-	//Functions
-	const bool canSpawn() const;
 	void increaseEnemyCounter();
 	void decreaseEnemyCounter();
 

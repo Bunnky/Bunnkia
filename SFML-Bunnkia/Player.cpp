@@ -8,9 +8,12 @@
 //========================================================
 void Player::initVariables()
 {
+	this->initAttack = false;
 	this->attacking = false;
-	this->sword = new Sword(1, 2, 5, 60, 20, "Resources/Images/Sprites/Player/sword4.png");
-	this->sword->generate(1, 3);
+	this->weapon = new Sword(1, 2, 5, 60, 20, "Resources/Images/Sprites/Player/sword4.png");
+	this->weapon->generate(1, 3);
+
+	this->damageTimerMax = 500;
 }
 
 void Player::initComponents()
@@ -51,6 +54,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
+	//Player Movement speed
 	this->createMovementComponent(500.f, 2000.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 	this->createAttributeComponent(1);
@@ -65,7 +69,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 Player::~Player()
 {
 	delete this->inventory;
-	delete this->sword;
+	delete this->weapon;
 }
 //========================================================
 //Accessors
@@ -77,19 +81,56 @@ AttributeComponent* Player::getAttributeComponent()
 
 Weapon* Player::getWeapon() const
 {
-	return this->sword;
+	return this->weapon;
 }
 
 const std::string Player::toStringCharacterTab() const
 {
 	std::stringstream ss;
-	AttributeComponent* ac = this->attributeComponent;
+	const AttributeComponent* ac = this->attributeComponent;
+	const Weapon* w = this->weapon;
 
 	ss << "Level: " << ac->level << "\n"
 		<< "Experience: " << ac->exp << "\n"
-		<< "Next Level: " << ac->expNext << "\n";
+		<< "Next Level: " << ac->expNext << "\n"
+
+		<< "Weapon Level: " << w->getLevel() << "\n"
+		<< "Weapon Type: " << w->getType() << "\n"
+		<< "Weapon Value: " << w->getValue() << "\n"
+		<< "Weapon Range: " << w->getRange() << "\n"
+		<< "Weapon DamageMin: " << w->getDamageMin() + this->attributeComponent->damageMin << " (" << this->attributeComponent->damageMin << ")" << "\n"
+		<< "Weapon DamageMax: " << w->getDamageMax() + this->attributeComponent->damageMax << " (" << this->attributeComponent->damageMax << ")" << "\n";
 
 	return ss.str();
+}
+
+const bool& Player::getInitAttack() const
+{
+	return this->initAttack;
+}
+
+const bool Player::getDamageTimer()
+{
+	if (this->damageTimer.getElapsedTime().asMilliseconds() >= damageTimerMax)
+	{
+		this->damageTimer.restart();
+		return true;
+	}
+
+	return false;
+}
+
+const unsigned Player::getDamage() const
+{
+	return rand() % (
+		(this->attributeComponent->damageMax + this->weapon->getDamageMax())
+		- (this->attributeComponent->damageMin + this->weapon->getDamageMin()) + 1)
+		+ (this->attributeComponent->damageMin + this->weapon->getDamageMin());
+}
+
+void Player::setInitAttack(const bool initAttack)
+{
+	this->initAttack = initAttack;
 }
 
 //========================================================
@@ -143,7 +184,7 @@ void Player::updateAnimation(const float& dt)
 	}
 }
 
-void Player::update(const float& dt, sf::Vector2f& mouse_pos_view)
+void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
 	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	//	this->attributeComponent->gainExp(20);
@@ -154,7 +195,7 @@ void Player::update(const float& dt, sf::Vector2f& mouse_pos_view)
 
 	this->hitboxComponent->update();
 
-	this->sword->update(mouse_pos_view, this->getCenter());
+	this->weapon->update(mouse_pos_view, this->getCenter());
 }
 
 void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
@@ -167,12 +208,12 @@ void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vect
 
 		shader->setUniform("hasTexture", true);
 		shader->setUniform("lightPos", light_position);
-		this->sword->render(target, shader);
+		this->weapon->render(target, shader);
 	}
 	else
 	{
 		target.draw(this->sprite);
-		this->sword->render(target);
+		this->weapon->render(target);
 	}
 
 	if (show_hitbox)
