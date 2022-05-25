@@ -35,6 +35,9 @@ private:
     sf::Font font;    
     PauseMenu* pmenu;
 
+    sf::RenderTexture renderTexture;
+    sf::Text helpText;
+
     std::map<std::string, gui::Button*> buttons;
 
     TileMap* tileMap;
@@ -55,6 +58,7 @@ private:
     void initTileMap();
     void initGui();
     void initModes();
+    void initHelpText();
 
 public:
     EditorState(StateData* state_data);
@@ -69,7 +73,10 @@ public:
     void updateGui(const float& dt);
     void updatePauseMenuButtons();
     void updateModes(const float& dt);
+    void updateHelpText(const float& dt);
     void update(const float& dt);
+
+
     void renderButtons(sf::RenderTarget& target);
     void renderGui(sf::RenderTarget& target);
     void renderModes(sf::RenderTarget& target);

@@ -22,3 +22,4 @@ const bool EditorMode::getKeytime()
 
 	return false;
 }
+

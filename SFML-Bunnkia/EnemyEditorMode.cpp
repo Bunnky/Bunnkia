@@ -52,12 +52,16 @@ void EnemyEditorMode::updateInput(const float& dt)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime()
 		)
 	{
-		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
+		if (!this->textureSelector->getActive())
 		{
-			this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
-				this->type, this->amount, this->timeToSpawn, this->maxDistance);
-			std::cout << "Added Monster Spawner" << "\n";
+			if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
+			{
+				this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
+					this->type, this->amount, this->timeToSpawn, this->maxDistance);
+				std::cout << "Added Monster Spawner" << "\n";
+			}
 		}
+		
 	}
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime()
@@ -125,9 +129,11 @@ void EnemyEditorMode::updateGui(const float& dt)
 	this->selectorRect.setPosition(this->editorStateData->mousePosGrid->x * this->stateData->gridSize, this->editorStateData->mousePosGrid->y * this->stateData->gridSize);
 
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 50.f, this->editorStateData->mousePosView->y);
+	this->cursorText.setFillColor(sf::Color::Red);
 
 	std::stringstream ss;
 	ss <<
+		"\n" << "Spawner Mode"<<
 		"\n" << "Enemy Type: " << this->type <<
 		"\n" << "Enemy Amount: " << this->amount <<
 		"\n" << "Time to spawn: " << this->timeToSpawn <<

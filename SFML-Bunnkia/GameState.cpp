@@ -74,6 +74,7 @@ void GameState::initFonts()
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
+
 }
 
 //----------------------

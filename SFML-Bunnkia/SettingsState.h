@@ -24,6 +24,8 @@ private:
 
     std::vector<sf::VideoMode> modes;
 
+    sf::RectangleShape btnBackground;
+
 
     //===========//
     // Functions //

@@ -19,6 +19,7 @@ private:
     sf::RectangleShape selectorRect;
     gui::TextureSelector* textureSelector;
     sf::IntRect textureRect;
+
     bool collision;
     short type;    
     int layer;

@@ -31,7 +31,6 @@ void SettingsState::initKeybinds()
 			this->keybinds[key] = this->supportedKeys->at(key2);
 		}
 	}
-
 	ifs.close();
 }
 
@@ -40,23 +39,27 @@ void SettingsState::initGui()
 	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
 
 	//Background
-	this->background.setSize(
-		sf::Vector2f(
-			static_cast<float>(vm.width),
-			static_cast<float>(vm.height)
-		)
-	);
-
+	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
 	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.bmp"))
 	{
 		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
 	}
-
 	this->background.setTexture(&this->backgroundTexture);
+
+	//Button Background
+	this->btnBackground.setSize(
+		sf::Vector2f(
+			static_cast<float>(vm.width / 4),
+			static_cast<float>(vm.height - gui::p2pY(50.f, vm))
+		)
+	);
+
+	this->btnBackground.setPosition(gui::p2pX(38.1f, vm), gui::p2pY(25.f, vm));
+	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 150));
 
 	//Buttons
 	this->buttons["BACK"] = new gui::Button(
-		gui::p2pX(28.7f, vm), gui::p2pY(82.5f, vm),
+		gui::p2pX(34.3f, vm), gui::p2pY(82.5f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(6.6f, vm),
 		&this->font, "Back", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
@@ -69,30 +72,42 @@ void SettingsState::initGui()
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
+	this->buttons["FULLSCREEN"] = new gui::Button(
+		gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
+		gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
+		&this->font, "Fullscreen", gui::calcCharSize(vm, 60),
+		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
+
+
 	//Modes
-	std::vector<std::string> modes_str;
-	for (auto& i : this->modes)
-	{
-		modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
-	}
+	//std::vector<std::string> modes_str;
+	//for (auto& i : this->modes)
+	//{
+	//	modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
+	//}
+
+
 
 	//Dropdown Lists
-	this->dropDownLists["RESOLUTION"] = new gui::DropDownList(
-		gui::p2pX(37.5f, vm), gui::p2pY(31.7f, vm),
-		gui::p2pX(20.f, vm), gui::p2pY(5.3f, vm),
-		font, modes_str.data(), modes_str.size()
-	);
+	//this->dropDownLists["RESOLUTION"] = new gui::DropDownList(
+	//	gui::p2pX(37.5f, vm), gui::p2pY(31.7f, vm),
+	//	gui::p2pX(20.f, vm), gui::p2pY(5.3f, vm),
+	//	font, modes_str.data(), modes_str.size()
+	//);
+
 
 	//Text init
 	this->optionsText.setFont(this->font);
-	this->optionsText.setPosition(sf::Vector2f(gui::p2pX(6.2f, vm), gui::p2pY(6.2f, vm)));
+	this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
 	this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
 	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
 
 
-	this->optionsText.setString(
-		"Resolution \n\nFullscreen \n\nVsync \n\nAntialiasing \n "
-	);
+	//this->optionsText.setString(
+	//	"Fullscreen \n\nVsync \n\nAntialiasing \n "
+	//);
 
 }
 
@@ -182,19 +197,43 @@ void SettingsState::updateGui(const float& dt)
 	if (this->buttons["APPLY"]->isPressed())
 	{
 		//TEST REMOVE LATER!
-		this->stateData->gfxSettings->resolution = this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()];
-		this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
+		//this->stateData->gfxSettings->resolution = this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()];
+		//this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
 
-		this->resetGui();
+		//this->resetGui();
 	}
 
 	//Dropdown lists
-	for (auto& it : this->dropDownLists)
-	{
-		it.second->update(this->mousePosWindow, dt);
-	}
+	//for (auto& it : this->dropDownLists)
+	//{
+	//	it.second->update(this->mousePosWindow, dt);
+	//}
+	
 
-	//Dropdown lists functionality
+
+
+
+	//
+	//Options
+	//
+	
+	
+	//Fullscreen Toggle
+	if (this->buttons["FULLSCREEN"]->isPressed())
+	{
+
+		if (this->stateData->gfxSettings->fullscreen == 0)
+		{
+			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Fullscreen);
+
+		}			
+		else
+		{
+			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
+		}
+
+		this->resetGui();
+	}
 }
 
 void SettingsState::update(const float& dt)
@@ -224,6 +263,8 @@ void SettingsState::render(sf::RenderTarget* target)
 		target = this->window;
 
 	target->draw(this->background);
+
+	target->draw(this->btnBackground);
 
 	this->renderGui(*target);
 

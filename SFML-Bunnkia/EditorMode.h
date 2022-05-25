@@ -17,11 +17,12 @@ public:
 
     //Variables
     sf::View* view;
-
     sf::Font* font;
 
     float* keytime;
     float* keytimeMax;
+
+    int* mode;
 
     std::map<std::string, int>* keybinds;
 
@@ -48,6 +49,7 @@ public:
     // Functions //
     //===========//
     const bool getKeytime();
+
 
     virtual void updateInput(const float& dt) = 0;
     virtual void updateGui(const float& dt) = 0;

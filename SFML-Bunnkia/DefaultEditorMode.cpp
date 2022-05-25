@@ -7,7 +7,7 @@ void DefaultEditorMode::initVariables()
 	this->collision = false;
 	this->type = TileTypes::DEFAULT;
 	this->layer = 0;
-	this->tileAddLock = false;
+	this->tileAddLock = true;
 }
 
 void DefaultEditorMode::initGui()
@@ -60,12 +60,7 @@ DefaultEditorMode::~DefaultEditorMode()
 void DefaultEditorMode::updateInput(const float& dt)
 {
 	//Add a tile to the tilemap
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
-		//---------------------------------------------------------//
-		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW		  //
-		//--------------------------------------------------------//
-		//&& this->getKeytime()
-		)
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)	&& this->getKeytime())
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 		{
@@ -92,12 +87,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 
 	}
 	//Remove a tile from the tilemap
-	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)
-		//---------------------------------------------------------//
-		//I REMOVED THIS BECAUSE PLACING TILES WAS TOO SLOW		  //
-		//--------------------------------------------------------//
-		&& this->getKeytime()
-		)
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime())
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 		{
@@ -153,6 +143,7 @@ void DefaultEditorMode::updateGui(const float& dt)
 	ss << this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y <<
 		"\n" << this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y <<
 		"\n" << this->textureRect.left << " " << this->textureRect.top <<
+		"\n" << "Tile Mode" <<
 		"\n" << "Collision: " << this->collision <<
 		"\n" << "Type: " << this->type <<
 		"\n" << "Tiles: " << this->tileMap->getLayerSize(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, this->layer) <<

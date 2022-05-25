@@ -93,6 +93,6 @@ const AttributeComponent* Enemy::getAttributeComp() const
 
 void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
-	if (vectorDistance(this->getPosition(), view.getCenter()) < 1500.f)
+	if (vectorDistance(this->getPosition(), view.getCenter()) < 1000.f)
 		this->despawnTimer.restart();
 }

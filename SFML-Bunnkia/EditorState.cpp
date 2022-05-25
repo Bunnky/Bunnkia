@@ -50,9 +50,10 @@ void EditorState::initView()
 //----------------------
 void EditorState::initFonts()
 {
+
 	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
 	{
-		throw("ERROR::EDITORSTATE::COULD NOT LOAD FONT");
+		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
 }
 
@@ -126,6 +127,14 @@ void EditorState::initModes()
 	this->activeMode = EditorModes::DEFAULT_EDITOR_MODE;
 }
 
+void EditorState::initHelpText()
+{
+	this->helpText.setFont(this->font);
+	this->helpText.setFillColor(sf::Color(255, 255, 255, 50));
+	this->helpText.setCharacterSize(7);
+	this->helpText.setPosition(this->window->getSize().x - 200.f, this->window->getSize().y / 32.f);
+}
+
 //========================================================
 //Constructors/Destructors
 //========================================================
@@ -137,6 +146,8 @@ EditorState::EditorState(StateData* state_data)
 	this->initView();
 	this->initFonts();
 	this->initKeybinds();
+	this->initHelpText();
+	std::cout << yellow << "Initializing Debug Text" << "\n" << white;
 	this->initPauseMenu();
 	this->initButtons();
 	this->initTileMap();
@@ -195,8 +206,9 @@ void EditorState::updateEditorInput(const float& dt)
 		this->view.move(this->cameraSpeed * dt, 0.f);
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_UP"))))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_UP"))) && this->getKeytime())
 	{
+
 		if (this->activeMode < this->modes.size() - 1)
 		{
 			this->activeMode++;
@@ -206,7 +218,7 @@ void EditorState::updateEditorInput(const float& dt)
 			std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE UP!" << "\n";
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_DOWN"))))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_DOWN"))) && this->getKeytime())
 	{
 		if (this->activeMode > 0)
 		{
@@ -259,11 +271,26 @@ void EditorState::updateModes(const float& dt)
 	this->modes[this->activeMode]->update(dt);
 }
 
+void EditorState::updateHelpText(const float& dt)
+{
+	std::stringstream ss;
+
+	ss
+		<< "Switch Mode: PgUp\PgDwn" << "\n"
+		<< "Lock Tile Placing: L" << "\n"
+		<< "Test Line 3: " << "\n"
+		<< "Test Line 4: " << "\n";
+
+	this->helpText.setString(ss.str());
+}
+
 void EditorState::update(const float& dt)
 {
 	this->updateMousePositions(&this->view);
 	this->updateKeytime(dt);
 	this->updateInput(dt);
+
+	this->updateHelpText(dt);
 
 	if (!this->paused) //Unpaused
 	{		
@@ -276,10 +303,14 @@ void EditorState::update(const float& dt)
 	{
 		this->pmenu->update(this->mousePosWindow);
 		this->updatePauseMenuButtons();
-	}
-
-	
+	}	
 }
+
+
+
+//========================================================
+//Rendering
+//========================================================
 
 void EditorState::renderButtons(sf::RenderTarget& target)
 {
@@ -304,15 +335,15 @@ void EditorState::render(sf::RenderTarget* target)
 	if (!target)
 		target = this->window;
 
+
+
 	target->setView(this->view);
 	this->tileMap->render(*target, this->mousePosGrid, NULL, sf::Vector2f(), true);
 	this->tileMap->renderDeferred(*target);
-
 	target->setView(this->window->getDefaultView());
 	this->renderButtons(*target);
-
 	this->renderGui(*target);
-
+	target->draw(this->helpText);
 	this->renderModes(*target);
 
 	if (this->paused) //Pause menu render

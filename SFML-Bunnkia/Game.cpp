@@ -12,6 +12,7 @@ void Game::initVariables()
 {
     this->window = NULL;
 
+    //Delta time variable
     this->dt = 0.f;
 
     //GRIDSIZE HERE
@@ -22,6 +23,12 @@ void Game::initGraphicsSettings()
 {
     this->gfxSettings.loadFromFile("Config/graphics.ini");
 
+    //  Title
+    //  Resolution
+    //  Fullscreen Bool
+    //  VSync Bool
+    //  FPS Limit
+    //  Context Settings
 
 }
 

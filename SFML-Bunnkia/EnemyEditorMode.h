@@ -20,11 +20,14 @@ private:
     sf::RectangleShape sidebar;
     sf::RectangleShape selectorRect;
     sf::IntRect textureRect;
+    gui::TextureSelector* textureSelector;
 
     int type;
     int amount;
     int timeToSpawn;
     float maxDistance;
+
+   
 
     void initVariables();
     void initGui();
