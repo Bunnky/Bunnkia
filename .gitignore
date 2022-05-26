@@ -6,6 +6,7 @@
 
 *.sln
 *.csproj.user
+*.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 *.dll
