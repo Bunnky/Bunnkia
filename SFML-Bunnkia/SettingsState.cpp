@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SettingsState.h"
+#include "GraphicsSettings.h"
 
 //========================================================
 //Initializer Functions
@@ -57,7 +58,7 @@ void SettingsState::initGui()
 	this->btnBackground.setPosition(gui::p2pX(38.1f, vm), gui::p2pY(25.f, vm));
 	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 150));
 
-	//Buttons
+	//Basic Buttons
 	this->buttons["BACK"] = new gui::Button(
 		gui::p2pX(34.3f, vm), gui::p2pY(82.5f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(6.6f, vm),
@@ -72,43 +73,72 @@ void SettingsState::initGui()
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
-	this->buttons["FULLSCREEN"] = new gui::Button(
-		gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
-		gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
-		&this->font, "Fullscreen", gui::calcCharSize(vm, 60),
-		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+	//Settings Buttons
+	if (!this->stateData->gfxSettings->fullscreen)
+	{
+		this->buttons["FULLSCREEN"] = new gui::Button(
+			gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
+			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
+			&this->font, "Fullscreen", gui::calcCharSize(vm, 60),
+			sf::Color(200, 0, 0, 200), sf::Color(250, 0, 0, 250), sf::Color(20, 0, 0, 50),
+			sf::Color(100, 0, 0, 0), sf::Color(150, 0, 0, 0), sf::Color(20, 0, 0, 0));
+	}
+	else
+	{
+		this->buttons["FULLSCREEN"] = new gui::Button(
+			gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
+			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
+			&this->font, "Fullscreen", gui::calcCharSize(vm, 60),
+			sf::Color(0, 200, 0, 200), sf::Color(0, 250, 0, 250), sf::Color(0, 20, 0, 50),
+			sf::Color(0, 100, 0, 0), sf::Color(0, 150, 0, 0), sf::Color(0, 20, 0, 0));
+	}
+
+	if (!this->stateData->gfxSettings->contextSettings.antialiasingLevel)
+	{
+		this->buttons["AA"] = new gui::Button(
+			gui::p2pX(41.2f, vm), gui::p2pY(38.3f, vm),
+			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
+			&this->font, "Anti-alias", gui::calcCharSize(vm, 63),
+			sf::Color(200, 0, 0, 200), sf::Color(250, 0, 0, 250), sf::Color(20, 0, 0, 50),
+			sf::Color(100, 0, 0, 0), sf::Color(150, 0, 0, 0), sf::Color(20, 0, 0, 0));
+	}
+	else
+	{
+		this->buttons["AA"] = new gui::Button(
+			gui::p2pX(41.2f, vm), gui::p2pY(38.3f, vm),
+			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
+			&this->font, "Anti-alias", gui::calcCharSize(vm, 63),
+			sf::Color(0, 200, 0, 200), sf::Color(0, 250, 0, 250), sf::Color(0, 20, 0, 50),
+			sf::Color(0, 100, 0, 0), sf::Color(0, 150, 0, 0), sf::Color(0, 20, 0, 0));
+	}
 
 
-
+	//Old Dropdown list for resolutions.Maybe let players do this later ?
+	/*	
 	//Modes
-	//std::vector<std::string> modes_str;
-	//for (auto& i : this->modes)
-	//{
-	//	modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
-	//}
-
-
+	std::vector<std::string> modes_str;
+	for (auto& i : this->modes)
+	{
+		modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
+	}
 
 	//Dropdown Lists
-	//this->dropDownLists["RESOLUTION"] = new gui::DropDownList(
-	//	gui::p2pX(37.5f, vm), gui::p2pY(31.7f, vm),
-	//	gui::p2pX(20.f, vm), gui::p2pY(5.3f, vm),
-	//	font, modes_str.data(), modes_str.size()
-	//);
+	this->dropDownLists["RESOLUTION"] = new gui::DropDownList(
+		gui::p2pX(37.5f, vm), gui::p2pY(31.7f, vm),
+		gui::p2pX(20.f, vm), gui::p2pY(5.3f, vm),
+		font, modes_str.data(), modes_str.size()
+	);
 
 
 	//Text init
-	//this->optionsText.setFont(this->font);
-	//this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
-	//this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
-	//this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
+	this->optionsText.setFont(this->font);
+	this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
+	this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
+	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
 
 
-	//this->optionsText.setString(
-	//	"Fullscreen \n\nVsync \n\nAntialiasing \n "
-	//);
-
+	this->optionsText.setString("Fullscreen \n\nVsync \n\nAntialiasing \n ");
+	*/
 }
 
 void SettingsState::resetGui()
@@ -179,14 +209,13 @@ void SettingsState::updateInput(const float& dt)
 
 void SettingsState::updateGui(const float& dt)
 {
-	/*Updates all the gui elements in the state and handles their functionality*/
 	//Buttons 
 	for (auto& it : this->buttons)
 	{
 		it.second->update(this->mousePosWindow);
 	}
 
-	//Button functionality
+	
 	//Quit the game
 	if (this->buttons["BACK"]->isPressed())
 	{
@@ -196,11 +225,10 @@ void SettingsState::updateGui(const float& dt)
 	//Apply selected settings
 	if (this->buttons["APPLY"]->isPressed())
 	{
+		this->stateData->gfxSettings->saveToFile("Config/graphics.ini");
 		//TEST REMOVE LATER!
 		//this->stateData->gfxSettings->resolution = this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()];
 		//this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
-
-		//this->resetGui();
 	}
 
 	//Dropdown lists
@@ -208,20 +236,11 @@ void SettingsState::updateGui(const float& dt)
 	//{
 	//	it.second->update(this->mousePosWindow, dt);
 	//}
-	
-
-
-
-
-	//
-	//Options
-	//
-	
+		
 	
 	//Fullscreen Toggle
 	if (this->buttons["FULLSCREEN"]->isPressed())
 	{
-
 		if (!this->stateData->gfxSettings->fullscreen)
 		{
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Fullscreen);
@@ -232,8 +251,26 @@ void SettingsState::updateGui(const float& dt)
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
 			this->stateData->gfxSettings->fullscreen = false;
 		}
-
 		this->resetGui();
+		Sleep(100);
+
+	}
+
+	//Antialiasing Toggle
+	if (this->buttons["AA"]->isPressed())
+	{
+		if (!this->stateData->gfxSettings->contextSettings.antialiasingLevel)
+		{
+			this->stateData->gfxSettings->contextSettings.antialiasingLevel = 1;
+			std::cout << "AA On!" << "\n";
+		}
+		else if (this->stateData->gfxSettings->contextSettings.antialiasingLevel)
+		{
+			this->stateData->gfxSettings->contextSettings.antialiasingLevel = 0;
+			std::cout << "AA Off!" << "\n";
+		}
+		this->resetGui();
+		Sleep(100);
 	}
 }
 

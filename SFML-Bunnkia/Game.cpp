@@ -127,6 +127,7 @@ Game::~Game()
 //========================================================
 void Game::endApplication()
 {
+    this->gfxSettings.saveToFile("Config/graphics.ini");
     std::cout << "Ending Application" << "\n";
 }
 

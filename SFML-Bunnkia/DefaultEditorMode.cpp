@@ -36,10 +36,11 @@ void DefaultEditorMode::initGui()
 
 	// Texture Selector
 	this->textureSelector = new gui::TextureSelector(
-		65.f, 0.f, 1024.f, static_cast<float>(this->stateData->gfxSettings->resolution.height),
+		66.1f, 6.f, 1024.f, static_cast<float>(this->stateData->gfxSettings->resolution.height),
 		this->stateData->gridSize, this->tileMap->getTileSheet(),
 		*this->editorStateData->font, "T"
 	);
+
 }
 
 DefaultEditorMode::DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data)
@@ -54,11 +55,13 @@ DefaultEditorMode::~DefaultEditorMode()
 	delete this->textureSelector;
 }
 
-//Function
+
 void DefaultEditorMode::updateInput(const float& dt)
 {
+
+
 	//Add a tile to the tilemap
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)	&& this->getKeytime())
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime())
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 		{
@@ -75,15 +78,15 @@ void DefaultEditorMode::updateInput(const float& dt)
 				{
 					this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect, this->collision, this->type);
 				}
-
 			}
 			else
 			{
 				this->textureRect = this->textureSelector->getTextureRect();
 			}
 		}
-
 	}
+
+
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime())
 	{
@@ -114,6 +117,8 @@ void DefaultEditorMode::updateInput(const float& dt)
 		if (this->type > 0)
 			--this->type;
 	}
+
+
 
 	//Set lock on/off
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TOGGLE_TILE_LOCK"))) && this->getKeytime())

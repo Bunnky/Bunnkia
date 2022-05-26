@@ -118,7 +118,7 @@ void GameState::initShaders()
 //----------------------
 //Initialize KeyTime
 //----------------------
-void GameState::initKeyTime()
+void GameState::initKeytime()
 {
 	this->keyTimeMax = 0.2f;
 	this->keyTimer.restart();
@@ -202,7 +202,7 @@ GameState::GameState(StateData* state_data)
 	std::cout << green << "Initializing Shaders" << "\n" << white;
 	this->initShaders();
 	std::cout << green << "Initializing Key Time" << "\n" << white;
-	this->initKeyTime();
+	this->initKeytime();
 	std::cout << yellow << "Initializing Debug Text" << "\n" << white;
 	this->initDebugText();
 	std::cout << green << "Initializing Players" << "\n" << white;
@@ -239,7 +239,7 @@ GameState::~GameState()
 //Functions
 // 
 //========================================================
-const bool GameState::getKeyTime()
+const bool GameState::getKeytime()
 {
 	if (this->keyTimer.getElapsedTime().asSeconds() >= this->keyTimeMax)
 	{
@@ -321,7 +321,7 @@ void GameState::updatePlayerGUI(const float& dt)
 {
 	this->playerGUI->update(dt);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_PLAYER_TAB_CHARACTER"))) && this->getKeyTime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_PLAYER_TAB_CHARACTER"))) && this->getKeytime())
 	{
 		this->playerGUI->toggleCharacterTab();
 	}

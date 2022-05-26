@@ -51,7 +51,7 @@ private:
     void initTextures();
     void initPauseMenu();
     void initShaders();
-    void initKeyTime();
+    void initKeytime();
     void initDebugText();
     void initPlayers();
     void initPlayerGUI();
@@ -64,7 +64,7 @@ public:
     virtual ~GameState();
 
     //Accessors
-    const bool getKeyTime();
+    const bool getKeytime();
  
 
 

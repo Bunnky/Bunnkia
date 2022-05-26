@@ -21,13 +21,13 @@ private:
 
 	//Private Functions
 	void initTabs();
-	void initKeyTime();
+	void initKeytime();
 
 public:
 	PlayerGUITabs(sf::VideoMode& vm, sf::Font font, Player& player);
 	virtual ~PlayerGUITabs();
 
-	const bool getKeyTime();
+	const bool getKeytime();
 	const bool tabsOpen();
 
 	void toggleTab(const int tab_index);

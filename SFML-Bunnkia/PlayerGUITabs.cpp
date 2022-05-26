@@ -6,7 +6,7 @@ void PlayerGUITabs::initTabs()
 	this->tabs.push_back(new CharacterTab(vm, font, player));
 }
 
-void PlayerGUITabs::initKeyTime()
+void PlayerGUITabs::initKeytime()
 {
 	this->keyTimeMax = 0.2f;
 	this->keyTimer.restart();
@@ -16,7 +16,7 @@ PlayerGUITabs::PlayerGUITabs(sf::VideoMode& vm, sf::Font font, Player& player)
 	: vm(vm), font(font), player(player)
 {
 	this->initTabs();
-	this->initKeyTime();
+	this->initKeytime();
 }
 
 PlayerGUITabs::~PlayerGUITabs()
@@ -24,7 +24,7 @@ PlayerGUITabs::~PlayerGUITabs()
 
 }
 
-const bool PlayerGUITabs::getKeyTime()
+const bool PlayerGUITabs::getKeytime()
 {
 	if (this->keyTimer.getElapsedTime().asSeconds() >= this->keyTimeMax)
 	{

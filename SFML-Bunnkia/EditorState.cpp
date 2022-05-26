@@ -287,7 +287,7 @@ void EditorState::updateHelpText(const float& dt)
 	std::stringstream ss;
 
 	ss
-		<< "Switch Mode: PgUp\PgDwn" << "\n"
+		<< "Switch Mode: Page Up+Dwn" << "\n"
 		<< "Lock Tile Placing: L" << "\n"
 		<< "Test Line 3: " << "\n"
 		<< "Test Line 4: " << "\n";

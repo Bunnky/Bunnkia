@@ -240,7 +240,7 @@ gui::DropDownList::~DropDownList()
 //========================================================
 //Accessors
 //========================================================
-const bool gui::DropDownList::getKeyTime()
+const bool gui::DropDownList::getKeytime()
 {
 	if (this->keytime >= this->keytimeMax)
 	{
@@ -271,7 +271,7 @@ void gui::DropDownList::update(const sf::Vector2i& mousePosWindow, const float& 
 	this->activeElement->update(mousePosWindow);
 
 	//Show and hide the list
-	if (this->activeElement->isPressed() && this->getKeyTime())
+	if (this->activeElement->isPressed() && this->getKeytime())
 	{
 		if (this->showList)
 			this->showList = false;
@@ -285,7 +285,7 @@ void gui::DropDownList::update(const sf::Vector2i& mousePosWindow, const float& 
 		{
 			i->update(mousePosWindow);
 
-			if (i->isPressed() && this->getKeyTime())
+			if (i->isPressed() && this->getKeytime())
 			{
 				this->showList = false;
 				this->activeElement->setText(i->getText());
@@ -353,11 +353,14 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 	this->textureRect.width = static_cast<int>(gridSize);
 	this->textureRect.height = static_cast<int>(gridSize);
 
+
+	//Toggle Texture selector button
 	this->hide_btn = new gui::Button(
 		x - 60.f, y, 50.f, 50.f,
 		&font, text, 16,
 		sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 50),
-		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50)
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 50)
 	);
 
 }
@@ -379,7 +382,7 @@ const sf::IntRect& gui::TextureSelector::getTextureRect() const
 	return this->textureRect;
 }
 
-const bool gui::TextureSelector::getKeyTime()
+const bool gui::TextureSelector::getKeytime()
 {
 	if (this->keytime >= this->keytimeMax)
 	{
@@ -401,7 +404,7 @@ void gui::TextureSelector::update(const sf::Vector2i& mousePosWindow, const floa
 	this->updateKeyTime(dt);
 	this->hide_btn->update(mousePosWindow);
 
-	if (this->hide_btn->isPressed() && this->getKeyTime())
+	if (this->hide_btn->isPressed() && this->getKeytime())
 	{
 		if (this->hidden)
 			this->hidden = false;

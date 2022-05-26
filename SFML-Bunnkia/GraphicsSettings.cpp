@@ -6,8 +6,8 @@ GraphicsSettings::GraphicsSettings()
 	this->title = "DEFAULT";
 	this->resolution = sf::VideoMode::getDesktopMode();
 	this->fullscreen = false;
-	this->verticalSync = false;
 	this->frameRateLimit = 120;
+	this->verticalSync = false;
 	this->contextSettings.antialiasingLevel = 0;
 	this->videoModes = sf::VideoMode::getFullscreenModes();
 }
@@ -20,12 +20,12 @@ void GraphicsSettings::saveToFile(const std::string path)
 
 	if (ofs.is_open())
 	{
-		ofs << this->title;
-		ofs << this->resolution.width << " " << this->resolution.height;
-		ofs << this->fullscreen;
-		ofs << this->frameRateLimit;
-		ofs << this->verticalSync;
-		ofs << this->contextSettings.antialiasingLevel;
+		ofs << this->title << "\n";
+		ofs << this->resolution.width << " " << this->resolution.height << "\n";
+		ofs << this->fullscreen << "\n";
+		ofs << this->frameRateLimit << "\n";
+		ofs << this->verticalSync << "\n";
+		ofs << this->contextSettings.antialiasingLevel << "\n";
 	}
 
 	ofs.close();
