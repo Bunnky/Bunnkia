@@ -12,7 +12,7 @@ void DefaultEditorMode::initVariables()
 
 void DefaultEditorMode::initGui()
 {
-	// Text
+	// Cursor Text
 	this->cursorText.setFont(*this->editorStateData->font);
 	this->cursorText.setFillColor(sf::Color::White);
 	this->cursorText.setOutlineColor(sf::Color::Black);
@@ -20,28 +20,26 @@ void DefaultEditorMode::initGui()
 	this->cursorText.setCharacterSize(10);
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x, this->editorStateData->mousePosView->y);
 
-	// General GUI
+	// Texture Selector Background
 	this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->stateData->gfxSettings->resolution.height)));
 	this->sidebar.setFillColor(sf::Color(50, 50, 50, 100));
 	this->sidebar.setOutlineColor(sf::Color(200, 200, 200, 150));
 	this->sidebar.setOutlineThickness(1.f);
 
+	// Selected Rect
 	this->selectorRect.setSize(sf::Vector2f(this->stateData->gridSize, this->stateData->gridSize));
-
 	this->selectorRect.setFillColor(sf::Color(255, 255, 255, 150));
 	this->selectorRect.setOutlineThickness(1.f);
 	this->selectorRect.setOutlineColor(sf::Color::Green);
-
 	this->selectorRect.setTexture(this->tileMap->getTileSheet());
 	this->selectorRect.setTextureRect(this->textureRect);
 
+	// Texture Selector
 	this->textureSelector = new gui::TextureSelector(
-		65.f, 0.f, 160.f, static_cast<float>(this->stateData->gfxSettings->resolution.height),
+		65.f, 0.f, 1024.f, static_cast<float>(this->stateData->gfxSettings->resolution.height),
 		this->stateData->gridSize, this->tileMap->getTileSheet(),
-		*this->editorStateData->font, "TS"
+		*this->editorStateData->font, "T"
 	);
-
-	//Buttons
 }
 
 DefaultEditorMode::DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data)

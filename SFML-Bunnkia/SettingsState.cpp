@@ -99,10 +99,10 @@ void SettingsState::initGui()
 
 
 	//Text init
-	this->optionsText.setFont(this->font);
-	this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
-	this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
-	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
+	//this->optionsText.setFont(this->font);
+	//this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
+	//this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
+	//this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
 
 
 	//this->optionsText.setString(
@@ -222,14 +222,15 @@ void SettingsState::updateGui(const float& dt)
 	if (this->buttons["FULLSCREEN"]->isPressed())
 	{
 
-		if (this->stateData->gfxSettings->fullscreen == 0)
+		if (!this->stateData->gfxSettings->fullscreen)
 		{
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Fullscreen);
-
+			this->stateData->gfxSettings->fullscreen = true;
 		}			
-		else
+		else if (this->stateData->gfxSettings->fullscreen)
 		{
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
+			this->stateData->gfxSettings->fullscreen = false;
 		}
 
 		this->resetGui();

@@ -105,7 +105,8 @@ void EditorState::initButtons()
 //----------------------
 void EditorState::initGui()
 {
-
+	//Automatically Load Map
+	//this->tileMap->loadFromFile("test.slmp");
 }
 
 //----------------------
@@ -142,17 +143,27 @@ EditorState::EditorState(StateData* state_data)
 	: State(state_data)
 {
 	this->initVariables();
+	std::cout << yellow << "Initialized Variables" << "\n" << white;
 	this->initEditorStateData();
+	std::cout << yellow << "Initialized Editor State Data" << "\n" << white;
 	this->initView();
+	std::cout << yellow << "Initialized View" << "\n" << white;
 	this->initFonts();
+	std::cout << yellow << "Initialized Fonts" << "\n" << white;
 	this->initKeybinds();
+	std::cout << yellow << "Initialized Keybinds" << "\n" << white;
 	this->initHelpText();
-	std::cout << yellow << "Initializing Debug Text" << "\n" << white;
+	std::cout << yellow << "Initialized Help Text" << "\n" << white;
 	this->initPauseMenu();
+	std::cout << yellow << "Initialized Pause Menu" << "\n" << white;
 	this->initButtons();
+	std::cout << yellow << "Initialized Buttons" << "\n" << white;
 	this->initTileMap();
+	std::cout << yellow << "Initialized Tilemap" << "\n" << white;
 	this->initGui();
+	std::cout << yellow << "Initialized Gui" << "\n" << white;
 	this->initModes();
+	std::cout << yellow << "Initialized Modes" << "\n" << white;
 }
 
 EditorState::~EditorState()

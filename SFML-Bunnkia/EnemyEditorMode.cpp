@@ -52,16 +52,12 @@ void EnemyEditorMode::updateInput(const float& dt)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime()
 		)
 	{
-		if (!this->textureSelector->getActive())
-		{
 			if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 			{
 				this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
 					this->type, this->amount, this->timeToSpawn, this->maxDistance);
 				std::cout << "Added Monster Spawner" << "\n";
-			}
-		}
-		
+			}		
 	}
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime()

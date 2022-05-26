@@ -322,17 +322,17 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 {
 	this->gridSize = gridSize;
 	this->active = false;
-	this->hidden = false;
+	this->hidden = true;
 	float offset = gridSize;
 
 	this->bounds.setSize(sf::Vector2f(width, height));
-	this->bounds.setPosition(x + offset, y);
+	this->bounds.setPosition(x, y);
 	this->bounds.setFillColor(sf::Color(50, 50, 50, 100));
 	this->bounds.setOutlineThickness(1.f);
 	this->bounds.setOutlineColor(sf::Color(255, 255, 255, 200));
 
 	this->sheet.setTexture(*texture_sheet);
-	this->sheet.setPosition(x + offset, y);
+	this->sheet.setPosition(x, y);
 
 	if (this->sheet.getGlobalBounds().width > this->bounds.getGlobalBounds().width)
 	{
@@ -344,7 +344,7 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 		this->sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(this->sheet.getGlobalBounds().width), static_cast<int>(this->sheet.getGlobalBounds().height)));
 	}
 
-	this->selector.setPosition(x + offset, y);
+	this->selector.setPosition(x, y);
 	this->selector.setSize(sf::Vector2f(gridSize, gridSize));
 	this->selector.setFillColor(sf::Color::Transparent);
 	this->selector.setOutlineThickness(1.f);
@@ -433,8 +433,7 @@ void gui::TextureSelector::update(const sf::Vector2i& mousePosWindow, const floa
 }
 
 void gui::TextureSelector::render(sf::RenderTarget& target)
-{
-	
+{	
 
 	if (!this->hidden)
 	{
