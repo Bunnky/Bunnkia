@@ -3,7 +3,7 @@
 
 void DefaultEditorMode::initFont()
 {
-	this->font.loadFromFile("Fonts/Consolas.ttf");
+	this->font.loadFromFile("Fonts/ShareTechMono-Regular.ttf");
 }
 
 void DefaultEditorMode::initVariables()
@@ -20,9 +20,15 @@ void DefaultEditorMode::initGui()
 	// Cursor Text
 	this->cursorText.setFont(this->font);
 	this->cursorText.setFillColor(sf::Color::Yellow);
-	this->cursorText.setOutlineThickness(1);
 	this->cursorText.setCharacterSize(12);
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x, this->editorStateData->mousePosView->y);
+	//this->cursorText.setStyle(1);	//Bold Style
+
+	// Cursor Values Text
+	this->cursorTextValues.setFont(this->font);
+	this->cursorTextValues.setFillColor(sf::Color::Green);
+	this->cursorTextValues.setCharacterSize(12);
+	this->cursorTextValues.setPosition(this->editorStateData->mousePosView->x, this->editorStateData->mousePosView->y);
 
 	// Texture Selector Background
 	this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->stateData->gfxSettings->resolution.height)));
@@ -143,20 +149,38 @@ void DefaultEditorMode::updateGui(const float& dt)
 		this->selectorRect.setPosition(this->editorStateData->mousePosGrid->x * this->stateData->gridSize, this->editorStateData->mousePosGrid->y * this->stateData->gridSize);
 	}
 
-	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 50.f, this->editorStateData->mousePosView->y);
+	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 32.f, this->editorStateData->mousePosView->y);
+	this->cursorTextValues.setPosition(this->cursorText.getPosition().x + 66.f, this->editorStateData->mousePosView->y);
+
+
+
+
+
 
 	std::stringstream ss;
 	ss
-		<< "MouseXY: " << this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y <<
-		"\n" << "GridPos: " << this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y <<
+		<< "Tile Mode" << "\n"
+		<< "MouseXY" << "\n"
+		<< "GridPos" << "\n"
 		//"\n" << this->textureRect.left << " " << this->textureRect.top <<		// Coords based on spritesheet location
-		"\n" << "Tile Mode" <<
-		"\n" << "Collision: " << this->collision <<
-		"\n" << "Type: " << this->type <<
-		"\n" << "Tiles: " << this->tileMap->getLayerSize(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, this->layer) <<
-		"\n" << "Tile lock: " << this->tileAddLock;
+		<< "Collision" << "\n"
+		<< "Tile Type" << "\n"
+		<< "Tiles #" << "\n"
+		<< "Lock";
+
+	std::stringstream ssv;
+	ssv
+		<< "\n"
+		<< this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y << "\n"
+		<< this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y << "\n"
+		//"\n" << this->textureRect.left << " " << this->textureRect.top <<		// Coords based on spritesheet location
+		<< std::boolalpha <<  this->collision << "\n"
+		<< this->type <<  "\n"
+		<< this->tileMap->getLayerSize(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, this->layer) <<  "\n"
+		<< std::boolalpha << this->tileAddLock;
 
 	this->cursorText.setString(ss.str());
+	this->cursorTextValues.setString(ssv.str());
 }
 
 void DefaultEditorMode::update(const float& dt)
@@ -180,6 +204,7 @@ void DefaultEditorMode::renderGui(sf::RenderTarget& target)
 	//DEBUG MOUSE POS
 	target.setView(*this->editorStateData->view);
 	target.draw(this->cursorText);
+	target.draw(this->cursorTextValues);
 }
 
 void DefaultEditorMode::render(sf::RenderTarget& target)

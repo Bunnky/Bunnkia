@@ -15,6 +15,7 @@ class DefaultEditorMode :
 private:
 
     sf::Text cursorText;
+    sf::Text cursorTextValues;
     sf::RectangleShape sidebar;
     sf::RectangleShape selectorRect;
     gui::TextureSelector* textureSelector;
