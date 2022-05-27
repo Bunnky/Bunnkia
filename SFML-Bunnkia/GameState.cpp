@@ -149,7 +149,7 @@ void GameState::initPlayers()
 //----------------------
 void GameState::initPlayerGUI()
 {
-	this -> playerGUI = new PlayerGUI(this->player, this->stateData->gfxSettings->resolution);
+	this->playerGUI = new PlayerGUI(this->player, this->stateData->gfxSettings->resolution);
 }
 
 //----------------------
@@ -166,8 +166,8 @@ void GameState::initEnemySystem()
 void GameState::initTileMap()
 {
 	//this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
-	//this->tileMap->loadFromFile("test.slmp");
-	this->tileMap = new TileMap("test.slmp");
+	//this->tileMap->loadFromFile("level.slmp");
+	this->tileMap = new TileMap("level.slmp");
 }
 
 //----------------------
@@ -313,8 +313,7 @@ void GameState::updatePlayerInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
-
-	}				
+	}					
 }
 
 void GameState::updatePlayerGUI(const float& dt)
