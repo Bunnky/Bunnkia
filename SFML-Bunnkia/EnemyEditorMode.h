@@ -21,6 +21,7 @@ private:
     sf::RectangleShape selectorRect;
     sf::IntRect textureRect;
     gui::TextureSelector* textureSelector;
+    sf::Font font;
 
     int type;
     int amount;
@@ -29,6 +30,7 @@ private:
 
    
 
+    void initFont();
     void initVariables();
     void initGui();
 

@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "EnemyEditorMode.h"
 
+void EnemyEditorMode::initFont()
+{
+	this->font.loadFromFile("Fonts/Consolas.ttf");
+}
+
 void EnemyEditorMode::initVariables()
 {
 	type = 0;
@@ -12,12 +17,13 @@ void EnemyEditorMode::initVariables()
 //Initialize Gui
 void EnemyEditorMode::initGui()
 {
+	
 	// Text
-	this->cursorText.setFont(*this->editorStateData->font);
+	this->cursorText.setFont(this->font);
 	this->cursorText.setFillColor(sf::Color::White);
 	this->cursorText.setOutlineColor(sf::Color::Black);
 	this->cursorText.setOutlineThickness(1);
-	this->cursorText.setCharacterSize(10);
+	this->cursorText.setCharacterSize(12);
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x, this->editorStateData->mousePosView->y);
 
 	// General GUI
@@ -31,11 +37,19 @@ void EnemyEditorMode::initGui()
 	this->selectorRect.setFillColor(sf::Color(255, 255, 255, 150));
 	this->selectorRect.setOutlineThickness(1.f);
 	this->selectorRect.setOutlineColor(sf::Color::Green);
+
+	// Texture Selector
+	this->textureSelector = new gui::TextureSelector(
+		66.1f, 6.f, 1024.f, static_cast<float>(this->stateData->gfxSettings->resolution.height),
+		this->stateData->gridSize, this->tileMap->getTileSheet(),
+		*this->editorStateData->font, "T"
+	);
 }
 
 EnemyEditorMode::EnemyEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data)
 	: EditorMode(state_data, tile_map, editor_state_data)
 {
+	this->initFont();
 	this->initVariables();
 	this->initGui();
 }
@@ -59,6 +73,8 @@ void EnemyEditorMode::updateInput(const float& dt)
 				std::cout << "Added Monster Spawner" << "\n";
 			}		
 	}
+
+
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime()
 		)
@@ -68,6 +84,8 @@ void EnemyEditorMode::updateInput(const float& dt)
 			this->tileMap->removeTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, TileTypes::ENEMYSPAWNER);
 		}
 	}
+
+
 
 	//Toggle collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_UP"))) && this->getKeytime())
@@ -122,6 +140,14 @@ void EnemyEditorMode::updateInput(const float& dt)
 
 void EnemyEditorMode::updateGui(const float& dt)
 {
+	this->textureSelector->update(*this->editorStateData->mousePosWindow, dt);
+
+	if (!this->textureSelector->getActive())
+	{
+		this->selectorRect.setTextureRect(this->textureRect);
+		this->selectorRect.setPosition(this->editorStateData->mousePosGrid->x * this->stateData->gridSize, this->editorStateData->mousePosGrid->y * this->stateData->gridSize);
+	}
+
 	this->selectorRect.setPosition(this->editorStateData->mousePosGrid->x * this->stateData->gridSize, this->editorStateData->mousePosGrid->y * this->stateData->gridSize);
 
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 50.f, this->editorStateData->mousePosView->y);
@@ -146,12 +172,18 @@ void EnemyEditorMode::update(const float& dt)
 
 void EnemyEditorMode::renderGui(sf::RenderTarget& target)
 {
-	target.setView(*this->editorStateData->view);
-	target.draw(this->selectorRect);
-	target.draw(this->cursorText);
+	if (!this->textureSelector->getActive())
+	{
+		target.setView(*this->editorStateData->view);
+		target.draw(this->selectorRect);
+	}
 
 	target.setView(target.getDefaultView());
+	this->textureSelector->render(target);
 	target.draw(this->sidebar);
+
+	target.setView(*this->editorStateData->view);
+	target.draw(this->cursorText);
 }
 
 void EnemyEditorMode::render(sf::RenderTarget& target)

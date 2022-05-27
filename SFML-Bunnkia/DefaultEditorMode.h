@@ -19,12 +19,14 @@ private:
     sf::RectangleShape selectorRect;
     gui::TextureSelector* textureSelector;
     sf::IntRect textureRect;
+    sf::Font font;
 
     bool collision;
     short type;    
     int layer;
     bool tileAddLock;
 
+    void initFont();
     void initVariables();
     void initGui();
 

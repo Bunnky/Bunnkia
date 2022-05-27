@@ -131,9 +131,9 @@ void EditorState::initModes()
 void EditorState::initHelpText()
 {
 	this->helpText.setFont(this->font);
-	this->helpText.setFillColor(sf::Color(255, 255, 255, 50));
-	this->helpText.setCharacterSize(7);
-	this->helpText.setPosition(this->window->getSize().x - 200.f, this->window->getSize().y / 32.f);
+	this->helpText.setFillColor(sf::Color(255, 255, 255, 255));
+	this->helpText.setCharacterSize(9);
+	this->helpText.setPosition(this->window->getSize().x - 180.f, this->window->getSize().y / 32.f);
 }
 
 //========================================================

@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "DefaultEditorMode.h"
 
+void DefaultEditorMode::initFont()
+{
+	this->font.loadFromFile("Fonts/Consolas.ttf");
+}
+
 void DefaultEditorMode::initVariables()
 {
 	this->textureRect = sf::IntRect(0, 0, static_cast<int>(this->stateData->gridSize), static_cast<int>(this->stateData->gridSize));
@@ -13,11 +18,10 @@ void DefaultEditorMode::initVariables()
 void DefaultEditorMode::initGui()
 {
 	// Cursor Text
-	this->cursorText.setFont(*this->editorStateData->font);
-	this->cursorText.setFillColor(sf::Color::White);
-	this->cursorText.setOutlineColor(sf::Color::Black);
+	this->cursorText.setFont(this->font);
+	this->cursorText.setFillColor(sf::Color::Yellow);
 	this->cursorText.setOutlineThickness(1);
-	this->cursorText.setCharacterSize(10);
+	this->cursorText.setCharacterSize(12);
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x, this->editorStateData->mousePosView->y);
 
 	// Texture Selector Background
@@ -46,6 +50,7 @@ void DefaultEditorMode::initGui()
 DefaultEditorMode::DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data)
 	: EditorMode(state_data, tile_map, editor_state_data)
 {
+	this->initFont();
 	this->initVariables();
 	this->initGui();
 }
@@ -58,8 +63,6 @@ DefaultEditorMode::~DefaultEditorMode()
 
 void DefaultEditorMode::updateInput(const float& dt)
 {
-
-
 	//Add a tile to the tilemap
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime())
 	{
@@ -143,9 +146,10 @@ void DefaultEditorMode::updateGui(const float& dt)
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 50.f, this->editorStateData->mousePosView->y);
 
 	std::stringstream ss;
-	ss << this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y <<
-		"\n" << this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y <<
-		"\n" << this->textureRect.left << " " << this->textureRect.top <<
+	ss
+		<< "MouseXY: " << this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y <<
+		"\n" << "GridPos: " << this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y <<
+		//"\n" << this->textureRect.left << " " << this->textureRect.top <<		// Coords based on spritesheet location
 		"\n" << "Tile Mode" <<
 		"\n" << "Collision: " << this->collision <<
 		"\n" << "Type: " << this->type <<
