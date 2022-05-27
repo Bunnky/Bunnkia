@@ -106,7 +106,7 @@ void EditorState::initButtons()
 void EditorState::initGui()
 {
 	//Automatically Load Map
-	//this->tileMap->loadFromFile("test.slmp");
+	//this->tileMap->loadFromFile("level.slmp");
 }
 
 //----------------------
@@ -265,13 +265,13 @@ void EditorState::updatePauseMenuButtons()
 
 	if (this->pmenu->isButtonPressed("SAVE"))
 	{
-		this->tileMap->saveToFile("test.slmp");
+		this->tileMap->saveToFile("level.slmp");
 		this->paused = false;
 	}		
 
 	if (this->pmenu->isButtonPressed("LOAD"))
 	{
-		this->tileMap->loadFromFile("test.slmp");
+		this->tileMap->loadFromFile("level.slmp");
 		this->paused = false;
 	}
 		
