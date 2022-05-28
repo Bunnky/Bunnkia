@@ -51,7 +51,7 @@ void EditorState::initView()
 void EditorState::initFonts()
 {
 
-	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
@@ -106,7 +106,7 @@ void EditorState::initButtons()
 void EditorState::initGui()
 {
 	//Automatically Load Map
-	//this->tileMap->loadFromFile("level.slmp");
+	//this->tileMap->loadFromFile("gamedata/level.slmp");
 }
 
 //----------------------
@@ -271,7 +271,7 @@ void EditorState::updatePauseMenuButtons()
 
 	if (this->pmenu->isButtonPressed("LOAD"))
 	{
-		this->tileMap->loadFromFile("level.slmp");
+		this->tileMap->loadFromFile("gamedata/level.slmp");
 		this->paused = false;
 	}
 		

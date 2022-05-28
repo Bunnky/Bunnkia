@@ -70,7 +70,7 @@ void GameState::initKeybinds()
 //----------------------
 void GameState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
@@ -82,12 +82,12 @@ void GameState::initFonts()
 //----------------------
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/NEW.png"))
+	if (!this->textures["PLAYER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/NEW.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
 
-	if (!this->textures["GOBLIN_SHEET"].loadFromFile("Resources/Images/Sprites/Enemy/goblin.png"))
+	if (!this->textures["GOBLIN_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/goblin.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_GOBLIN_TEXTURE";
 	}
@@ -109,7 +109,7 @@ void GameState::initPauseMenu()
 //----------------------
 void GameState::initShaders()
 {
-	if (!this->core_shader.loadFromFile("vertex_shader.vert", "fragment_shader.frag"))
+	if (!this->core_shader.loadFromFile("gamedata/vertex_shader.vert", "gamedata/fragment_shader.frag"))
 	{
 		std::cout << "ERROR::GAMESTATE::COULD NOT LOAD SHADER." << "\n";
 	}
@@ -166,8 +166,8 @@ void GameState::initEnemySystem()
 void GameState::initTileMap()
 {
 	//this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
-	//this->tileMap->loadFromFile("level.slmp");
-	this->tileMap = new TileMap("level.slmp");
+	//this->tileMap->loadFromFile("gamedata/level.slmp");
+	this->tileMap = new TileMap("gamedata/level.slmp");
 }
 
 //----------------------

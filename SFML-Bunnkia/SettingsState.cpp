@@ -12,7 +12,7 @@ void SettingsState::initVariables()
 
 void SettingsState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/The Impostor.ttf"))
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{ throw("ERROR::SettingsState::COULD NOT LOAD FONT"); }
 }
 
@@ -38,7 +38,7 @@ void SettingsState::initGui()
 	//Window Background
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
 
-	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.bmp"))
+	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))
 	{ throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE"; }
 	this->background.setTexture(&this->backgroundTexture);
 

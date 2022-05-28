@@ -3,7 +3,7 @@
 
 void PlayerGUI::initFont()
 {
-	this->font.loadFromFile("Fonts/Consolas.ttf");
+	this->font.loadFromFile("gamedata/Fonts/Consolas.ttf");
 }
 
 void PlayerGUI::initLevelBar()

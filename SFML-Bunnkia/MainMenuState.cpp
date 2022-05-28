@@ -11,7 +11,7 @@ void MainMenuState::initVariables()
 
 void MainMenuState::initFonts()
 {
-	if(!this->font.loadFromFile("Fonts/The Impostor.ttf"))
+	if(!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
@@ -48,7 +48,7 @@ void MainMenuState::initGui()
 		)
 	);
 
-	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.bmp"))
+	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))
 	{
 		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
 	}

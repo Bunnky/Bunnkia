@@ -21,7 +21,7 @@ void Game::initVariables()
 
 void Game::initGraphicsSettings()
 {
-    this->gfxSettings.loadFromFile("Config/graphics.ini");
+    this->gfxSettings.loadFromFile("gamedata/Config/graphics.ini");
 
     //  Title
     //  Resolution

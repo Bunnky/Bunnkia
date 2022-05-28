@@ -3,7 +3,7 @@
 
 void DefaultEditorMode::initFont()
 {
-	this->font.loadFromFile("Fonts/ShareTechMono-Regular.ttf");
+	this->font.loadFromFile("gamedata/Fonts/ShareTechMono-Regular.ttf");
 }
 
 void DefaultEditorMode::initVariables()
