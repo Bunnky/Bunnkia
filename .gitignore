@@ -1,4 +1,5 @@
 /.vs
+/Bunnkia
 /SFML-Bunnkia/.vs
 /SFML-Bunnkia/SFML/
 /SFML-Bunnkia/Debug/
@@ -12,5 +13,4 @@
 *.vcxproj.filters
 *.vcxproj.user
 *.dll
-/Bunnkia
-/SFML-Bunnkia/SFML-Bunnkia.aps
+*.aps
