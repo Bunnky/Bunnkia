@@ -169,6 +169,7 @@
     <ClCompile Include="EnemyEditorMode.cpp" />
     <ClCompile Include="EnemySpawnerTile.cpp" />
     <ClCompile Include="EnemySystem.cpp" />
+    <ClCompile Include="fps.h" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="GraphicsSettings.cpp" />
     <ClCompile Include="Gui.cpp" />
