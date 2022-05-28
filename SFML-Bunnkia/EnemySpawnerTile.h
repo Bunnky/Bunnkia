@@ -17,7 +17,6 @@ private:
 	float enemyMaxDistance;
 	bool firstSpawn;
 
-
 public:
 	EnemySpawnerTile(int grid_x, int grid_y, float gridSizeF,
 		const sf::Texture& texture, const sf::IntRect& texture_rect,
@@ -30,13 +29,11 @@ public:
 	const int& getEnemyCounter() const;
 	const bool getSpawnTimer();
 
-
 	void increaseEnemyCounter();
 	void decreaseEnemyCounter();
 
 	void update();
 	void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f player_position = sf::Vector2f());
-
 };
 
 #endif // !ENEMYSPAWNERTILE_H

@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "EditorState.h"
 
-
-
 //========================================================
 //Initializer Functions
 //========================================================
@@ -41,7 +39,7 @@ void EditorState::initView()
 
 	this->view.setCenter(
 		static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
-			static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f
+		static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f
 	);
 }
 
@@ -50,7 +48,6 @@ void EditorState::initView()
 //----------------------
 void EditorState::initFonts()
 {
-
 	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
@@ -97,7 +94,6 @@ void EditorState::initPauseMenu()
 //----------------------
 void EditorState::initButtons()
 {
-
 }
 
 //----------------------
@@ -219,7 +215,6 @@ void EditorState::updateEditorInput(const float& dt)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_UP"))) && this->getKeytime())
 	{
-
 		if (this->activeMode < this->modes.size() - 1)
 		{
 			this->activeMode++;
@@ -250,12 +245,10 @@ void EditorState::updateButtons()
 	{
 		it.second->update(this->mousePosWindow);
 	}
-
 }
 
 void EditorState::updateGui(const float& dt)
 {
-
 }
 
 void EditorState::updatePauseMenuButtons()
@@ -267,14 +260,13 @@ void EditorState::updatePauseMenuButtons()
 	{
 		this->tileMap->saveToFile("gamedata/level.slmp");
 		this->paused = false;
-	}		
+	}
 
 	if (this->pmenu->isButtonPressed("LOAD"))
 	{
 		this->tileMap->loadFromFile("gamedata/level.slmp");
 		this->paused = false;
 	}
-		
 }
 
 void EditorState::updateModes(const float& dt)
@@ -304,7 +296,7 @@ void EditorState::update(const float& dt)
 	this->updateHelpText(dt);
 
 	if (!this->paused) //Unpaused
-	{		
+	{
 		this->updateButtons();
 		this->updateGui(dt);
 		this->updateEditorInput(dt);
@@ -314,10 +306,8 @@ void EditorState::update(const float& dt)
 	{
 		this->pmenu->update(this->mousePosWindow);
 		this->updatePauseMenuButtons();
-	}	
+	}
 }
-
-
 
 //========================================================
 //Rendering
@@ -333,7 +323,6 @@ void EditorState::renderButtons(sf::RenderTarget& target)
 
 void EditorState::renderGui(sf::RenderTarget& target)
 {
-
 }
 
 void EditorState::renderModes(sf::RenderTarget& target)
@@ -345,8 +334,6 @@ void EditorState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = this->window;
-
-
 
 	target->setView(this->view);
 	this->tileMap->render(*target, this->mousePosGrid, NULL, sf::Vector2f(), true);
@@ -362,6 +349,4 @@ void EditorState::render(sf::RenderTarget* target)
 		target->setView(this->window->getDefaultView());
 		this->pmenu->render(*target);
 	}
-
 }
-

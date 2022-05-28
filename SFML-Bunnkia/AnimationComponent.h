@@ -22,7 +22,7 @@ private:
 		sf::IntRect endRect;
 
 		Animation(sf::Sprite& sprite, sf::Texture& texture_sheet,
-			float animation_timer, 
+			float animation_timer,
 			int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height)
 			: sprite(sprite), textureSheet(texture_sheet),
 			animationTimer(animation_timer), timer(0.f), done(false),
@@ -34,7 +34,6 @@ private:
 
 			this->sprite.setTexture(this->textureSheet, true);
 			this->sprite.setTextureRect(this->startRect);
-
 		}
 
 		//===========//
@@ -109,7 +108,6 @@ private:
 		{
 			this->timer = this->animationTimer;
 			this->currentRect = this->startRect;
-
 		}
 	};
 

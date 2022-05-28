@@ -67,7 +67,6 @@ void Entity::createSkillComponent()
 
 void Entity::createAIComponent()
 {
-
 }
 
 MovementComponent* Entity::getMovementComponent()
@@ -109,7 +108,7 @@ const sf::Vector2f& Entity::getSpritePosition() const
 const sf::Vector2f Entity::getCenter() const
 {
 	if (this->hitboxComponent)
-		return this->hitboxComponent->getPosition() + 
+		return this->hitboxComponent->getPosition() +
 		sf::Vector2f
 		(
 			this->hitboxComponent->getGlobalBounds().width / 2.f,
@@ -159,8 +158,8 @@ const sf::FloatRect Entity::getGlobalBounds() const
 const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
 {
 	if (this->hitboxComponent && this->movementComponent)
-		return this->hitboxComponent->getNextPosition(this->movementComponent->getVelocity()* dt);
-	
+		return this->hitboxComponent->getNextPosition(this->movementComponent->getVelocity() * dt);
+
 	return sf::FloatRect(-1.f, -1.f, -1.f, -1.f);
 }
 
@@ -185,7 +184,6 @@ void Entity::move(const float dir_x, const float dir_y, const float& dt)
 		this->skillComponent->gainExp(ENDURANCE, 1);
 		//std::cout << this->skillComponent->getSkill(ENDURANCE) << "\n";
 	}
-
 }
 
 void Entity::stopVelocity()

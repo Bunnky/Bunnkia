@@ -11,41 +11,37 @@ class TileMap;
 class Tile;
 class EnemySpawner;
 
-
 class EnemyEditorMode :
-    public EditorMode
+	public EditorMode
 {
 private:
-    sf::Text cursorText;
-    sf::RectangleShape sidebar;
-    sf::RectangleShape selectorRect;
-    sf::IntRect textureRect;
-    gui::TextureSelector* textureSelector;
-    sf::Font font;
+	sf::Text cursorText;
+	sf::RectangleShape sidebar;
+	sf::RectangleShape selectorRect;
+	sf::IntRect textureRect;
+	gui::TextureSelector* textureSelector;
+	sf::Font font;
 
-    int type;
-    int amount;
-    int timeToSpawn;
-    float maxDistance;
+	int type;
+	int amount;
+	int timeToSpawn;
+	float maxDistance;
 
-   
-
-    void initFont();
-    void initVariables();
-    void initGui();
+	void initFont();
+	void initVariables();
+	void initGui();
 
 public:
-    EnemyEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data);
-    virtual ~EnemyEditorMode();
+	EnemyEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data);
+	virtual ~EnemyEditorMode();
 
-    //Functions
-    void updateInput(const float& dt);
-    void updateGui(const float& dt);
-    void update(const float& dt);
+	//Functions
+	void updateInput(const float& dt);
+	void updateGui(const float& dt);
+	void update(const float& dt);
 
-    void renderGui(sf::RenderTarget& target);
-    void render(sf::RenderTarget& target);
+	void renderGui(sf::RenderTarget& target);
+	void render(sf::RenderTarget& target);
 };
-
 
 #endif // !ENEMYEDITORMODE_H

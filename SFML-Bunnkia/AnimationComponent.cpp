@@ -7,7 +7,6 @@
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet)
 	: sprite(sprite), textureSheet(texture_sheet), lastAnimation(NULL), priorityAnimation(NULL)
 {
-
 }
 
 AnimationComponent::~AnimationComponent()
@@ -44,7 +43,6 @@ void AnimationComponent::addAnimation(
 
 const bool& AnimationComponent::play(const std::string key, const float& dt, const bool priority)
 {
-
 	if (this->priorityAnimation) //If there is a priority animation
 	{
 		if (this->priorityAnimation == this->animations[key])
@@ -87,7 +85,7 @@ const bool& AnimationComponent::play(const std::string key, const float& dt, con
 		}
 
 		this->animations[key]->play(dt);
-	}	
+	}
 
 	return this->animations[key]->isDone();
 }

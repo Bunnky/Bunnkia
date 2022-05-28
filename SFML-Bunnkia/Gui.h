@@ -61,92 +61,90 @@ namespace gui
 		void render(sf::RenderTarget& target);
 	};
 
-		class DropDownList
-		{
-		private:
-			float keytime;
-			float keytimeMax;
-			sf::Font& font;
-			gui::Button* activeElement;
-			std::vector<gui::Button*> list;
-			bool showList;
+	class DropDownList
+	{
+	private:
+		float keytime;
+		float keytimeMax;
+		sf::Font& font;
+		gui::Button* activeElement;
+		std::vector<gui::Button*> list;
+		bool showList;
 
-		public:
-			DropDownList(float x, float y, float width, float height, sf::Font& font, std::string list[], unsigned nrOfElements, unsigned default_index = 0);
-			~DropDownList();
+	public:
+		DropDownList(float x, float y, float width, float height, sf::Font& font, std::string list[], unsigned nrOfElements, unsigned default_index = 0);
+		~DropDownList();
 
-			//===========//
-			// Accessors //
-			//===========//
-			const unsigned short& getActiveElementId() const;
+		//===========//
+		// Accessors //
+		//===========//
+		const unsigned short& getActiveElementId() const;
 
-			//===========//
-			// Functions //
-			//===========//
-			const bool getKeytime();
-			void updateKeyTime(const float& dt);
-			void update(const sf::Vector2i& mousePosWindow, const float& dt);
-			void render(sf::RenderTarget& target);
-		};
+		//===========//
+		// Functions //
+		//===========//
+		const bool getKeytime();
+		void updateKeyTime(const float& dt);
+		void update(const sf::Vector2i& mousePosWindow, const float& dt);
+		void render(sf::RenderTarget& target);
+	};
 
-		class TextureSelector
-		{
-		private:
-			float keytime;
-			const float keytimeMax;
-			float gridSize;
-			bool active;
-			bool hidden;
-			gui::Button* hide_btn;
-			sf::RectangleShape bounds;
-			sf::Sprite sheet;
-			sf::RectangleShape selector;
-			sf::Vector2u mousePosGrid;
-			sf::IntRect textureRect;
+	class TextureSelector
+	{
+	private:
+		float keytime;
+		const float keytimeMax;
+		float gridSize;
+		bool active;
+		bool hidden;
+		gui::Button* hide_btn;
+		sf::RectangleShape bounds;
+		sf::Sprite sheet;
+		sf::RectangleShape selector;
+		sf::Vector2u mousePosGrid;
+		sf::IntRect textureRect;
 
+	public:
+		TextureSelector(float x, float y, float width, float height,
+			float gridSize, const sf::Texture* texture_sheet,
+			sf::Font& font, std::string text);
+		~TextureSelector();
 
-		public:
-			TextureSelector(float x, float y, float width, float height,
-				float gridSize, const sf::Texture* texture_sheet,
-				sf::Font& font, std::string text);
-			~TextureSelector();
+		//Accessors
+		const bool& getActive() const;
+		const sf::IntRect& getTextureRect() const;
 
-			//Accessors
-			const bool& getActive() const;
-			const sf::IntRect& getTextureRect() const;
+		//Functions
+		const bool getKeytime();
+		void updateKeyTime(const float& dt);
+		void update(const sf::Vector2i& mousePosWindow, const float& dt);
+		void render(sf::RenderTarget& target);
+	};
 
-			//Functions
-			const bool getKeytime();
-			void updateKeyTime(const float& dt);
-			void update(const sf::Vector2i& mousePosWindow, const float& dt);
-			void render(sf::RenderTarget& target);
+	class ProgressBar
+	{
+	private:
+		std::string barString;
+		sf::Text text;
+		float maxWidth;
+		int maxValue;
+		sf::RectangleShape back;
+		sf::RectangleShape inner;
 
-		};
+	public:
+		ProgressBar(float x, float y, float width, float height, int max_value,
+			sf::Color inner_color, unsigned character_size,
+			sf::VideoMode& vm, sf::Font* font = NULL);
+		~ProgressBar();
 
-		class ProgressBar
-		{
-		private:
-			std::string barString;
-			sf::Text text;
-			float maxWidth;
-			int maxValue;
-			sf::RectangleShape back;
-			sf::RectangleShape inner;
+		//Accessors
 
-		public:
-			ProgressBar(float x, float y, float width, float height, int max_value, 
-				sf::Color inner_color, unsigned character_size,
-				sf::VideoMode& vm, sf::Font* font = NULL);
-			~ProgressBar();
+		//Modifiers
 
-			//Accessors
-
-			//Modifiers
-
-			//Functions
-			void update(const int current_value);
-			void render(sf::RenderTarget& target);
-		};
+		//Functions
+		void update(const int current_value);
+		void render(sf::RenderTarget& target);
+	};
 }
 
 #endif

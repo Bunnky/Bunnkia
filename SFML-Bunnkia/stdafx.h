@@ -33,4 +33,3 @@
 #include "ConsoleColor.h"
 #include "VectorMath.h"
 #endif
-

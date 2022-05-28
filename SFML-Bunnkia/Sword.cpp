@@ -14,10 +14,9 @@ Sword::Sword(unsigned level, unsigned damageMin, unsigned damageMax, unsigned ra
 
 Sword::~Sword()
 {
-
 }
 
-Sword * Sword::clone()
+Sword* Sword::clone()
 {
 	return new Sword(*this);
 }
@@ -57,5 +56,3 @@ void Sword::render(sf::RenderTarget& target, sf::Shader* shader)
 	else
 		target.draw(this->weapon_sprite);
 }
-
-

@@ -2,9 +2,9 @@
 #include "TileMap.h"
 #include "Tile.h"
 //========================================================
-// 
+//
 //Clear
-// 
+//
 //========================================================
 void TileMap::clear()
 {
@@ -27,15 +27,15 @@ void TileMap::clear()
 			}
 			this->map[x].clear();
 		}
-		this->map.clear();		
+		this->map.clear();
 	}
 	//std::cout << this->map.size() << "\n";
 }
 
 //========================================================
-// 
+//
 //Constructors/Destructors
-// 
+//
 //========================================================
 TileMap::TileMap(float gridSize, int width, int height, std::string texture_file)
 {
@@ -53,7 +53,7 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
 	this->fromY = 0;
 	this->toY = 0;
 	this->layer = 0;
-	
+
 	this->map.resize(this->maxSizeWorldGrid.x, std::vector< std::vector<std::vector<Tile*> > >());
 	for (int x = 0; x < this->maxSizeWorldGrid.x; x++)
 	{
@@ -65,7 +65,6 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
 				this->map[x][y].resize(this->layers, std::vector <Tile*>());
 			}
 		}
-	
 	}
 	if (!this->tileSheet.loadFromFile(texture_file))
 		std::cout << "ERROR::TILEMAP::FAILED TO LOAD TILETEXURESHEET::FILENAME:" << texture_file << "\n";
@@ -74,7 +73,6 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
 	this->collisionBox.setFillColor(sf::Color(255, 0, 0, 50));
 	this->collisionBox.setOutlineColor(sf::Color::Red);
 	this->collisionBox.setOutlineThickness(-1.f);
-
 }
 
 TileMap::TileMap(const std::string file_name)
@@ -94,7 +92,6 @@ TileMap::TileMap(const std::string file_name)
 	this->collisionBox.setFillColor(sf::Color(255, 0, 0, 50));
 	this->collisionBox.setOutlineColor(sf::Color::Red);
 	this->collisionBox.setOutlineThickness(-1.f);*/
-
 }
 
 TileMap::~TileMap()
@@ -103,9 +100,9 @@ TileMap::~TileMap()
 }
 
 //========================================================
-// 
+//
 //Accessors
-// 
+//
 //========================================================
 //----------------------
 //tileEmpty
@@ -152,7 +149,7 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
 //----------------------
 //getMaxSizeGrid
 //----------------------
-const sf::Vector2i & TileMap::getMaxSizeGrid() const
+const sf::Vector2i& TileMap::getMaxSizeGrid() const
 {
 	return this->maxSizeWorldGrid;
 }
@@ -160,15 +157,15 @@ const sf::Vector2i & TileMap::getMaxSizeGrid() const
 //----------------------
 //getMaxSizeF
 //----------------------
-const sf::Vector2f & TileMap::getMaxSizeF() const
+const sf::Vector2f& TileMap::getMaxSizeF() const
 {
 	return this->maxSizeWorldF;
 }
 
 //========================================================
-// 
+//
 //Functions
-// 
+//
 //========================================================
 //----------------------
 //addTile [REGULAR TILE]
@@ -236,7 +233,7 @@ void TileMap::removeTile(const int x, const int y, const int z, const int type)
 }
 
 //----------------------
-//SAVING 
+//SAVING
 //----------------------
 void TileMap::saveToFile(const std::string file_name)
 {
@@ -278,8 +275,8 @@ void TileMap::saveToFile(const std::string file_name)
 						for (size_t k = 0; k < this->map[x][y][z].size(); k++)
 						{
 							out_file << x << " " << y << " " << z << " " <<
-							this->map[x][y][z][k]->getAsString()
-							<< " ";
+								this->map[x][y][z][k]->getAsString()
+								<< " ";
 						}
 					}
 				}
@@ -290,13 +287,13 @@ void TileMap::saveToFile(const std::string file_name)
 	{
 		std::cout << "ERROR::TILEMAP::COULD_NOT_SAVE_TO_FILE::FILENAME: " << file_name << "\n";
 	}
-	
+
 	std::cout << "Saved as: " << file_name << "\n";
 	out_file.close();
 }
 
 //----------------------
-//LOADING 
+//LOADING
 //----------------------
 void TileMap::loadFromFile(const std::string file_name)
 {
@@ -321,7 +318,7 @@ void TileMap::loadFromFile(const std::string file_name)
 		//Basics
 		in_file >> size.x >> size.y >> gridSize >> layers >> texture_file;
 
-		//Tiles		
+		//Tiles
 		this->gridSizeF = static_cast<float>(gridSize);
 		this->gridSizeI = gridSize;
 		this->maxSizeWorldGrid.x = size.x;
@@ -345,7 +342,6 @@ void TileMap::loadFromFile(const std::string file_name)
 					this->map[x][y].resize(this->layers, std::vector<Tile*>());
 				}
 			}
-
 		}
 		if (!this->tileSheet.loadFromFile(texture_file))
 			std::cout << "ERROR::TILEMAP::FAILED TO LOAD TILETEXURESHEET::FILENAME:" << texture_file << "\n";
@@ -400,11 +396,10 @@ void TileMap::loadFromFile(const std::string file_name)
 
 	std::cout << "Loaded: " << file_name << "\n";
 	in_file.close();
-
 }
 
 //----------------------
-//checkType 
+//checkType
 //----------------------
 const bool TileMap::checkType(const int x, const int y, const int z, const int type) const
 {
@@ -424,7 +419,6 @@ void TileMap::updateWorldBoundsCollision(Entity* entity, const float& dt)
 		entity->setPosition(this->maxSizeWorldF.x - entity->getGlobalBounds().width, entity->getPosition().y);
 		entity->stopVelocityX();
 	}
-
 
 	if (entity->getPosition().y < 0.f)
 	{
@@ -466,9 +460,6 @@ void TileMap::updateTileCollision(Entity* entity, const float& dt)
 		this->toY = 0;
 	else if (this->toY > this->maxSizeWorldGrid.y)
 		this->toY = this->maxSizeWorldGrid.y;
-
-
-
 
 	for (int x = fromX; x < this->toX; x++)
 	{
@@ -562,9 +553,6 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 	else if (this->toY > this->maxSizeWorldGrid.y)
 		this->toY = this->maxSizeWorldGrid.y;
 
-
-
-
 	for (int x = fromX; x < this->toX; x++)
 	{
 		for (int y = fromY; y < this->toY; y++)
@@ -572,7 +560,7 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 			for (size_t k = 0; k < this->map[x][y][this->layer].size(); k++)
 			{
 				//Update the tile
-				this->map[x][y][this->layer][k]->update();				
+				this->map[x][y][this->layer][k]->update();
 
 				//Update tile types (specific)
 				if (this->map[x][y][this->layer][k]->getType() == TileTypes::ENEMYSPAWNER)
@@ -584,7 +572,7 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 						{
 							enemySystem.createEnemy(GOBLIN, x * this->gridSizeF, y * this->gridSizeF, *es);
 							std::cout << "Spawned!" << "\n";
-						}							
+						}
 					}
 				}
 			}
@@ -593,24 +581,22 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 }
 
 //----------------------
-//update 
+//update
 //----------------------
 void TileMap::update(Entity* entity, const float& dt)
 {
-
-
 }
 
 //----------------------
-//render 
+//render
 //----------------------
 //FOG OF WAR
 void TileMap::render
 (
-	sf::RenderTarget& target, 
-	const sf::Vector2i& gridPosition, 
-	sf::Shader* shader, 
-	const sf::Vector2f playerPosition, 
+	sf::RenderTarget& target,
+	const sf::Vector2i& gridPosition,
+	sf::Shader* shader,
+	const sf::Vector2f playerPosition,
 	const bool show_collision
 )
 {
@@ -652,7 +638,7 @@ void TileMap::render
 				}
 				else
 				{
-					if(shader)
+					if (shader)
 						this->map[x][y][this->layer][k]->render(target, shader, playerPosition);
 					else
 						this->map[x][y][this->layer][k]->render(target);
@@ -677,20 +663,17 @@ void TileMap::render
 }
 
 //----------------------
-//renderDeferred 
+//renderDeferred
 //----------------------
 void TileMap::renderDeferred(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f playerPosition)
 {
 	while (!this->deferredRenderStack.empty())
 	{
-		if (shader)		
-			deferredRenderStack.top()->render(target, shader, playerPosition);		
-		else		
+		if (shader)
+			deferredRenderStack.top()->render(target, shader, playerPosition);
+		else
 			deferredRenderStack.top()->render(target);
-		
-		deferredRenderStack.pop();
 
+		deferredRenderStack.pop();
 	}
 }
-
-

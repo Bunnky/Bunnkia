@@ -8,7 +8,6 @@ public:
 	int expNext;
 	int attributePoints;
 
-
 	//Attributes
 	int vitality;
 	int strength;
@@ -44,4 +43,3 @@ public:
 
 	void update();
 };
-

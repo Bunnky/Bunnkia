@@ -17,15 +17,13 @@ public:
 	float gridSize;
 	sf::RenderWindow* window;
 	GraphicsSettings* gfxSettings;
-	std::map < std::string, int > * supportedKeys;
+	std::map < std::string, int >* supportedKeys;
 	std::stack<State*>* states;
-
 };
 
 class State
 {
 private:
-
 
 protected:
 	StateData* stateData;
@@ -61,7 +59,6 @@ public:
 	//===========//
 	const bool& getQuit() const;
 	const bool getKeytime();
-
 
 	//===========//
 	// Functions //

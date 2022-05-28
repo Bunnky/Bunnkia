@@ -25,7 +25,6 @@ CharacterTab::CharacterTab(sf::VideoMode& vm, sf::Font font, Player& player)
 
 CharacterTab::~CharacterTab()
 {
-
 }
 
 void CharacterTab::update()
@@ -44,5 +43,4 @@ void CharacterTab::render(sf::RenderTarget& target)
 		target.draw(back);
 		target.draw(infoText);
 	}
-
 }

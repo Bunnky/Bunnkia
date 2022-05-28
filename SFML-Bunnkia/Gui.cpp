@@ -5,7 +5,7 @@ const float gui::p2pX(const float perc, const sf::VideoMode& vm)
 {
 	/*
 	* Converts a percentage value to pixels relative to the current resolution in the x-axis.
-	* 
+	*
 	* @param		float perc				The percentage value.
 	* @param		sf::VideoMode& vm		The current videomode of the window (resolution)
 	*
@@ -22,7 +22,7 @@ const float gui::p2pY(const float perc, const sf::VideoMode& vm)
 	*
 	* @param		float perc				The percentage value.
 	* @param		sf::VideoMode& vm		The current videomode of the window (resolution)
-	* 
+	*
 	* @return		float					The calculated pixel value
 	*
 	*/
@@ -33,7 +33,7 @@ const unsigned gui::calcCharSize(const sf::VideoMode& vm, const unsigned modifie
 {
 	/*
 	* Calculate the character size for text using the current resolution and a constant.
-	* 
+	*
 	*@param			sf::VideoMode& vm		The current videomode of the window (resolution)
 	*@param			unsigned modifier		Used to modify the character size in a more custom way.
 	*
@@ -87,12 +87,10 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->outlineIdleColor = outline_idle_color;
 	this->outlineHoverColor = outline_hover_color;
 	this->outlineActiveColor = outline_active_color;
-
 }
 
 gui::Button::~Button()
 {
-
 }
 //========================================================
 //Accessors
@@ -152,29 +150,29 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 
 	switch (this->buttonState)
 	{
-		case BTN_IDLE:
-			this->shape.setFillColor(this->idleColor);
-			this->text.setFillColor(this->textIdleColor);
-			this->shape.setOutlineColor(this->outlineIdleColor);
-			break;
+	case BTN_IDLE:
+		this->shape.setFillColor(this->idleColor);
+		this->text.setFillColor(this->textIdleColor);
+		this->shape.setOutlineColor(this->outlineIdleColor);
+		break;
 
-		case BTN_HOVER:
-			this->shape.setFillColor(this->hoverColor);
-			this->text.setFillColor(this->textHoverColor);
-			this->shape.setOutlineColor(this->outlineHoverColor);
-			break;
+	case BTN_HOVER:
+		this->shape.setFillColor(this->hoverColor);
+		this->text.setFillColor(this->textHoverColor);
+		this->shape.setOutlineColor(this->outlineHoverColor);
+		break;
 
-		case BTN_ACTIVE:
-			this->shape.setFillColor(this->activeColor);
-			this->text.setFillColor(this->textActiveColor);
-			this->shape.setOutlineColor(this->outlineActiveColor);
-			break;
+	case BTN_ACTIVE:
+		this->shape.setFillColor(this->activeColor);
+		this->text.setFillColor(this->textActiveColor);
+		this->shape.setOutlineColor(this->outlineActiveColor);
+		break;
 
-		default:
-			this->shape.setFillColor(sf::Color::Red);
-			this->text.setFillColor(sf::Color::Blue);
-			this->shape.setOutlineColor(sf::Color::Green);
-			break;
+	default:
+		this->shape.setFillColor(sf::Color::Red);
+		this->text.setFillColor(sf::Color::Blue);
+		this->shape.setOutlineColor(sf::Color::Green);
+		break;
 	}
 }
 
@@ -184,17 +182,13 @@ void gui::Button::render(sf::RenderTarget& target)
 	target.draw(this->text);
 }
 
-
-
-
-
 //========================================================
 //
 //Drop down list
 //
 //========================================================
-gui::DropDownList::DropDownList(float x, float y, float width, float height, 
-	sf::Font& font, std::string list[], 
+gui::DropDownList::DropDownList(float x, float y, float width, float height,
+	sf::Font& font, std::string list[],
 	unsigned nrOfElements, unsigned default_index)
 	: font(font), showList(false), keytimeMax(1.f), keytime(0.f)
 {
@@ -212,7 +206,7 @@ gui::DropDownList::DropDownList(float x, float y, float width, float height,
 	{
 		this->list.push_back(
 			new gui::Button(
-				x, y + ((i+1) * height), width, height,
+				x, y + ((i + 1) * height), width, height,
 				&this->font, list[i], 12,
 				sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
 				sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 200), sf::Color(20, 20, 20, 200),
@@ -221,8 +215,6 @@ gui::DropDownList::DropDownList(float x, float y, float width, float height,
 			)
 		);
 	}
-
-
 }
 
 gui::DropDownList::~DropDownList()
@@ -234,8 +226,6 @@ gui::DropDownList::~DropDownList()
 		delete this->list[i];
 	}
 }
-
-
 
 //========================================================
 //Accessors
@@ -314,7 +304,6 @@ void gui::DropDownList::render(sf::RenderTarget& target)
 //
 //========================================================
 
-
 gui::TextureSelector::TextureSelector(float x, float y, float width, float height,
 	float gridSize, const sf::Texture* texture_sheet,
 	sf::Font& font, std::string text)
@@ -353,7 +342,6 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 	this->textureRect.width = static_cast<int>(gridSize);
 	this->textureRect.height = static_cast<int>(gridSize);
 
-
 	//Toggle Texture selector button
 	this->hide_btn = new gui::Button(
 		x - 60.f, y, 50.f, 50.f,
@@ -362,14 +350,12 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 50)
 	);
-
 }
 
 gui::TextureSelector::~TextureSelector()
 {
 	delete this->hide_btn;
 }
-
 
 //Accesors
 const bool& gui::TextureSelector::getActive() const
@@ -431,13 +417,12 @@ void gui::TextureSelector::update(const sf::Vector2i& mousePosWindow, const floa
 			//Update texture rectangle
 			this->textureRect.left = static_cast<int>(this->selector.getPosition().x - this->bounds.getPosition().x);
 			this->textureRect.top = static_cast<int>(this->selector.getPosition().y - this->bounds.getPosition().y);
-		}		
-	}	
+		}
+	}
 }
 
 void gui::TextureSelector::render(sf::RenderTarget& target)
-{	
-
+{
 	if (!this->hidden)
 	{
 		target.draw(this->bounds);
@@ -448,16 +433,15 @@ void gui::TextureSelector::render(sf::RenderTarget& target)
 	}
 
 	this->hide_btn->render(target);
-
 }
 
 //========================================================
-// 
+//
 //PROGRESS BAR
-// 
+//
 //========================================================
 
-gui::ProgressBar::ProgressBar(float _x, float _y, float _width, float _height, int max_value, 
+gui::ProgressBar::ProgressBar(float _x, float _y, float _width, float _height, int max_value,
 	sf::Color inner_color, unsigned character_size,
 	sf::VideoMode& vm, sf::Font* font)
 {
@@ -486,31 +470,27 @@ gui::ProgressBar::ProgressBar(float _x, float _y, float _width, float _height, i
 			this->inner.getPosition().y + gui::p2pY(0.5f, vm)
 		);
 	}
-
 }
 
 gui::ProgressBar::~ProgressBar()
 {
-
 }
 
 //Functions
 void gui::ProgressBar::update(const int current_value)
 {
 	float percent = static_cast<float>(current_value) / static_cast<float>(this->maxValue);
-	
+
 	this->inner.setSize(
 		sf::Vector2f(
 			static_cast<float>(std::floor(this->maxWidth * percent)),
 			this->inner.getSize().y
 		)
 	);
-	
+
 	this->barString = std::to_string(current_value) + "/" + std::to_string(maxValue);
 	this->text.setString(this->barString);
-
 }
-
 
 void gui::ProgressBar::render(sf::RenderTarget& target)
 {

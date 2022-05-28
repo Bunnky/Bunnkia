@@ -6,12 +6,11 @@
 //========================================================
 void MainMenuState::initVariables()
 {
-
 }
 
 void MainMenuState::initFonts()
 {
-	if(!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
@@ -100,9 +99,9 @@ void MainMenuState::resetGui()
 {
 	/*
 	* Clears the GUI elemenats and re-initilizes the GUI
-	* 
-	* @return void 
-	* 
+	*
+	* @return void
+	*
 	*/
 	auto it = this->buttons.begin();
 	for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
@@ -148,7 +147,7 @@ void MainMenuState::updateButtons()
 {
 	/*Updates all the buttons the the state and handles their functionality*/
 
-	for (auto &it : this->buttons)
+	for (auto& it : this->buttons)
 	{
 		it.second->update(this->mousePosWindow);
 	}
@@ -187,7 +186,7 @@ void MainMenuState::update(const float& dt)
 	this->updateInput(dt);
 
 	this->updateButtons();
-}	
+}
 
 void MainMenuState::renderButtons(sf::RenderTarget& target)
 {
@@ -220,4 +219,3 @@ void MainMenuState::render(sf::RenderTarget* target)
 	//mouseText.setString(ss.str());
 	//target->draw(mouseText);
 }
-

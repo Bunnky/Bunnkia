@@ -11,7 +11,7 @@ private:
 	//===========//
 	GraphicsSettings gfxSettings;
 	StateData stateData;
-	sf::RenderWindow *window;
+	sf::RenderWindow* window;
 	sf::Event sfEvent;
 
 	sf::Clock dtClock;
@@ -66,7 +66,6 @@ public:
 	//  Core     //
 	//===========//
 	void run();
-
 };
 
 #endif

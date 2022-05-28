@@ -37,8 +37,8 @@ void PlayerGUI::initEXPBar()
 void PlayerGUI::initHPBar()
 {
 	this->hpBar = new gui::ProgressBar(
-		2.5f, 3.3f, 18.7f, 3.3f, 
-		this->player->getAttributeComponent()->hpMax, 
+		2.5f, 3.3f, 18.7f, 3.3f,
+		this->player->getAttributeComponent()->hpMax,
 		sf::Color::Red, 120,
 		this->vm, &this->font);
 }
@@ -47,7 +47,6 @@ void PlayerGUI::initPlayerTabs(sf::VideoMode& vm, sf::Font& font, Player& player
 {
 	this->playerTabs = new PlayerGUITabs(vm, font, player);
 }
-
 
 PlayerGUI::PlayerGUI(Player* player, sf::VideoMode& vm)
 	: vm(vm)

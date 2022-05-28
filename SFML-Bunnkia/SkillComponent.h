@@ -38,9 +38,9 @@ private:
 
 		//Functions
 		void gainExp(const int exp)
-		{ 
-			this->exp += exp; 
-			this->updateLevel(); 
+		{
+			this->exp += exp;
+			this->updateLevel();
 		}
 
 		void loseExp(const int exp)
@@ -51,9 +51,9 @@ private:
 		void updateLevel(const bool up = true)
 		{
 			/*
-			* Increases of decreases the level of the skill depending on if there is a deficit in the exp or not. 			
+			* Increases of decreases the level of the skill depending on if there is a deficit in the exp or not.
 			*/
-			
+
 			if (up)
 			{
 				if (this->level < this->levelCap)
@@ -84,15 +84,13 @@ private:
 			}
 		}
 
-	
 		void update()
 		{
-
 		}
 	};
 
 	std::vector<Skill> skills;
-	
+
 public:
 	SkillComponent();
 	virtual ~SkillComponent();

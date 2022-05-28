@@ -10,37 +10,37 @@ class TileMap;
 class Tile;
 
 class DefaultEditorMode :
-    public EditorMode
+	public EditorMode
 {
 private:
 
-    sf::Text cursorText;
-    sf::Text cursorTextValues;
-    sf::RectangleShape sidebar;
-    sf::RectangleShape selectorRect;
-    gui::TextureSelector* textureSelector;
-    sf::IntRect textureRect;
-    sf::Font font;
+	sf::Text cursorText;
+	sf::Text cursorTextValues;
+	sf::RectangleShape sidebar;
+	sf::RectangleShape selectorRect;
+	gui::TextureSelector* textureSelector;
+	sf::IntRect textureRect;
+	sf::Font font;
 
-    bool collision;
-    short type;    
-    int layer;
-    bool tileAddLock;
+	bool collision;
+	short type;
+	int layer;
+	bool tileAddLock;
 
-    void initFont();
-    void initVariables();
-    void initGui();
+	void initFont();
+	void initVariables();
+	void initGui();
 
 public:
-    DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data);
-    virtual ~DefaultEditorMode();
+	DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data);
+	virtual ~DefaultEditorMode();
 
-    void updateInput(const float& dt);
-    void updateGui(const float& dt);
-    void update(const float& dt);
+	void updateInput(const float& dt);
+	void updateGui(const float& dt);
+	void update(const float& dt);
 
-    void renderGui(sf::RenderTarget& target);
-    void render(sf::RenderTarget& target);
+	void renderGui(sf::RenderTarget& target);
+	void render(sf::RenderTarget& target);
 };
 
 #endif //DEFAULTMODE_H

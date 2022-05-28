@@ -6,23 +6,20 @@
 class MeleeWeapon;
 
 class Sword :
-    public MeleeWeapon
+	public MeleeWeapon
 {
 private:
 
 public:
 
-    Sword(unsigned level, unsigned damageMin, unsigned damageMax, unsigned range,
-        unsigned value, std::string texture_file);
-    virtual ~Sword();
+	Sword(unsigned level, unsigned damageMin, unsigned damageMax, unsigned range,
+		unsigned value, std::string texture_file);
+	virtual ~Sword();
 
-    virtual Sword* clone();
+	virtual Sword* clone();
 
-    virtual void update(const sf::Vector2f mouse_pos_view, const sf::Vector2f center);
-    virtual void render(sf::RenderTarget& target, sf::Shader* shader = NULL);
-
-    
-
+	virtual void update(const sf::Vector2f mouse_pos_view, const sf::Vector2f center);
+	virtual void render(sf::RenderTarget& target, sf::Shader* shader = NULL);
 };
 
 #endif //SWORD_H

@@ -44,7 +44,6 @@ public:
 	void createSkillComponent();
 	void createAIComponent();
 
-
 	//===========//
 	// Accessors //
 	//===========//

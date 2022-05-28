@@ -23,7 +23,6 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite,
 
 HitboxComponent::~HitboxComponent()
 {
-
 }
 
 //========================================================
@@ -64,7 +63,6 @@ void HitboxComponent::setPosition(const float x, const float y)
 //========================================================
 //Functions
 //========================================================
-
 
 bool HitboxComponent::intersects(const sf::FloatRect& frect)
 {

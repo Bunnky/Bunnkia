@@ -16,5 +16,4 @@ Item::Item(unsigned level, unsigned value)
 
 Item::~Item()
 {
-
 }

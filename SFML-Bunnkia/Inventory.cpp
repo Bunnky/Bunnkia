@@ -52,8 +52,8 @@ const unsigned& Inventory::maxSize() const
 	return this->capacity;
 }
 //Modifiers
-// 
-// 
+//
+//
 //Functions
 void Inventory::clear()
 {
@@ -71,22 +71,20 @@ const bool Inventory::empty() const
 	return this->nrOfItems == 0;
 }
 
-const bool Inventory::add(Item * item)
+const bool Inventory::add(Item* item)
 {
-
 	if (this->nrOfItems < this->capacity)
 	{
 		this->itemArray[this->nrOfItems++] = item->clone();
 
 		return true;
 	}
-	
+
 	return false;
 }
 
 const bool Inventory::remove(const unsigned index)
 {
-
 	if (this->nrOfItems > 0)
 	{
 		if (index < 0 || index >= this->capacity)

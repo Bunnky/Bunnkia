@@ -13,9 +13,7 @@ void Enemy::initVariables()
 
 void Enemy::initAnimations()
 {
-
 }
-
 
 //========================================================
 //Constructors/Destructors
@@ -88,7 +86,6 @@ const AttributeComponent* Enemy::getAttributeComp() const
 		std::cout << "ERROR::ENEMY::ATTRIBUTECOMPONENT IS NOT INITIALIZED" << "\n";
 		return nullptr;
 	}
-		
 }
 
 void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)

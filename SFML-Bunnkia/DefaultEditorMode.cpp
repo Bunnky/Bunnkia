@@ -50,7 +50,6 @@ void DefaultEditorMode::initGui()
 		this->stateData->gridSize, this->tileMap->getTileSheet(),
 		*this->editorStateData->font, "T"
 	);
-
 }
 
 DefaultEditorMode::DefaultEditorMode(StateData* state_data, TileMap* tile_map, EditorStateData* editor_state_data)
@@ -65,7 +64,6 @@ DefaultEditorMode::~DefaultEditorMode()
 {
 	delete this->textureSelector;
 }
-
 
 void DefaultEditorMode::updateInput(const float& dt)
 {
@@ -95,7 +93,6 @@ void DefaultEditorMode::updateInput(const float& dt)
 		}
 	}
 
-
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime())
 	{
@@ -104,9 +101,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 			if (!this->textureSelector->getActive())
 				this->tileMap->removeTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0);
 		}
-
 	}
-
 
 	//Toggle collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TOGGLE_COLLISION"))) && this->getKeytime())
@@ -126,8 +121,6 @@ void DefaultEditorMode::updateInput(const float& dt)
 		if (this->type > 0)
 			--this->type;
 	}
-
-
 
 	//Set lock on/off
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TOGGLE_TILE_LOCK"))) && this->getKeytime())
@@ -152,11 +145,6 @@ void DefaultEditorMode::updateGui(const float& dt)
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 32.f, this->editorStateData->mousePosView->y);
 	this->cursorTextValues.setPosition(this->cursorText.getPosition().x + 66.f, this->editorStateData->mousePosView->y);
 
-
-
-
-
-
 	std::stringstream ss;
 	ss
 		<< "Tile Mode" << "\n"
@@ -174,9 +162,9 @@ void DefaultEditorMode::updateGui(const float& dt)
 		<< this->editorStateData->mousePosView->x << " " << this->editorStateData->mousePosView->y << "\n"
 		<< this->editorStateData->mousePosGrid->x << " " << this->editorStateData->mousePosGrid->y << "\n"
 		//"\n" << this->textureRect.left << " " << this->textureRect.top <<		// Coords based on spritesheet location
-		<< std::boolalpha <<  this->collision << "\n"
-		<< this->type <<  "\n"
-		<< this->tileMap->getLayerSize(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, this->layer) <<  "\n"
+		<< std::boolalpha << this->collision << "\n"
+		<< this->type << "\n"
+		<< this->tileMap->getLayerSize(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, this->layer) << "\n"
 		<< std::boolalpha << this->tileAddLock;
 
 	this->cursorText.setString(ss.str());

@@ -28,7 +28,7 @@ private:
 	void initLevelBar();
 	void initEXPBar();
 	void initHPBar();
-	void initPlayerTabs(sf::VideoMode &vm, sf::Font& font, Player& player);
+	void initPlayerTabs(sf::VideoMode& vm, sf::Font& font, Player& player);
 
 public:
 	PlayerGUI(Player* player, sf::VideoMode& vm);
@@ -53,4 +53,3 @@ public:
 
 	void render(sf::RenderTarget& target);
 };
-

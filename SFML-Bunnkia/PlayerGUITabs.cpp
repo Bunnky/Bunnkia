@@ -21,7 +21,6 @@ PlayerGUITabs::PlayerGUITabs(sf::VideoMode& vm, sf::Font font, Player& player)
 
 PlayerGUITabs::~PlayerGUITabs()
 {
-
 }
 
 const bool PlayerGUITabs::getKeytime()
@@ -31,7 +30,7 @@ const bool PlayerGUITabs::getKeytime()
 		this->keyTimer.restart();
 		return true;
 	}
-		
+
 	return false;
 }
 
@@ -50,7 +49,7 @@ const bool PlayerGUITabs::tabsOpen()
 
 void PlayerGUITabs::toggleTab(const int tab_index)
 {
-	if(tab_index >= 0 || tab_index < this->tabs.size())
+	if (tab_index >= 0 || tab_index < this->tabs.size())
 		this->tabs[tab_index]->toggle();
 }
 
@@ -58,7 +57,7 @@ void PlayerGUITabs::update()
 {
 	for (size_t i = 0; i < this->tabs.size(); i++)
 	{
-		if(this->tabs[i]->getOpen())
+		if (this->tabs[i]->getOpen())
 			this->tabs[i]->update();
 	}
 }

@@ -18,71 +18,67 @@ class DefaultEditorMode;
 class EnemyEditorMode;
 class EditorStateData;
 
-
-enum EditorModes {DEFAULT_EDITOR_MODE = 0, ENEMY_EDITOR_MODE};
+enum EditorModes { DEFAULT_EDITOR_MODE = 0, ENEMY_EDITOR_MODE };
 
 class EditorState :
-    public State
+	public State
 {
 private:
-    //===========//
-    // Variables //
-    //===========//
-    EditorStateData editorStateData;
+	//===========//
+	// Variables //
+	//===========//
+	EditorStateData editorStateData;
 
-    sf::View view;
-    float cameraSpeed;
-    sf::Font font;    
-    PauseMenu* pmenu;
+	sf::View view;
+	float cameraSpeed;
+	sf::Font font;
+	PauseMenu* pmenu;
 
-    sf::RenderTexture renderTexture;
-    sf::Text helpText;
+	sf::RenderTexture renderTexture;
+	sf::Text helpText;
 
-    std::map<std::string, gui::Button*> buttons;
+	std::map<std::string, gui::Button*> buttons;
 
-    TileMap* tileMap;
+	TileMap* tileMap;
 
-    std::vector<EditorMode*> modes;
-    unsigned activeMode;
+	std::vector<EditorMode*> modes;
+	unsigned activeMode;
 
-    //===========//
-    // Functions //
-    //===========//
-    void initVariables();
-    void initEditorStateData();
-    void initView();
-    void initFonts();
-    void initKeybinds();
-    void initPauseMenu();
-    void initButtons();
-    void initTileMap();
-    void initGui();
-    void initModes();
-    void initHelpText();
+	//===========//
+	// Functions //
+	//===========//
+	void initVariables();
+	void initEditorStateData();
+	void initView();
+	void initFonts();
+	void initKeybinds();
+	void initPauseMenu();
+	void initButtons();
+	void initTileMap();
+	void initGui();
+	void initModes();
+	void initHelpText();
 
 public:
-    EditorState(StateData* state_data);
-    virtual ~EditorState();
+	EditorState(StateData* state_data);
+	virtual ~EditorState();
 
-    //===========//
-    // Functions //
-    //===========//
-    void updateInput(const float& dt);
-    void updateEditorInput(const float& dt);
-    void updateButtons();
-    void updateGui(const float& dt);
-    void updatePauseMenuButtons();
-    void updateModes(const float& dt);
-    void updateHelpText(const float& dt);
-    void update(const float& dt);
+	//===========//
+	// Functions //
+	//===========//
+	void updateInput(const float& dt);
+	void updateEditorInput(const float& dt);
+	void updateButtons();
+	void updateGui(const float& dt);
+	void updatePauseMenuButtons();
+	void updateModes(const float& dt);
+	void updateHelpText(const float& dt);
+	void update(const float& dt);
 
-
-    void renderButtons(sf::RenderTarget& target);
-    void renderGui(sf::RenderTarget& target);
-    void renderModes(sf::RenderTarget& target);
-    void render(sf::RenderTarget* target = NULL);
+	void renderButtons(sf::RenderTarget& target);
+	void renderGui(sf::RenderTarget& target);
+	void renderModes(sf::RenderTarget& target);
+	void render(sf::RenderTarget* target = NULL);
 };
 
-
 #endif
-

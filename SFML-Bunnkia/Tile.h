@@ -1,23 +1,23 @@
 #ifndef TILE_H
 #define TILE_H
 
-enum TileTypes {DEFAULT = 0, DAMAGING, DOODAD, ENEMYSPAWNER};
+enum TileTypes { DEFAULT = 0, DAMAGING, DOODAD, ENEMYSPAWNER };
 
 class Tile
 {
 private:
 
 protected:
-    //===========//
-    // Variables //
-    //===========//
+	//===========//
+	// Variables //
+	//===========//
 	sf::Sprite shape;
 	bool collision;
 	short type;
 
 public:
 	Tile();
-	Tile(short type, int grid_x, int grid_y, float gridSizeF, 
+	Tile(short type, int grid_x, int grid_y, float gridSizeF,
 		const sf::Texture& texture, const sf::IntRect& texture_rect,
 		const bool collision);
 	virtual ~Tile();
@@ -27,7 +27,6 @@ public:
 	//===========//
 	const short& getType() const;
 	virtual const bool& getCollision() const;
-
 
 	//===========//
 	// Functions //
@@ -42,4 +41,3 @@ public:
 };
 
 #endif
-

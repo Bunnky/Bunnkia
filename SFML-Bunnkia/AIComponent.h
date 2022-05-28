@@ -3,8 +3,6 @@
 #include"Entity.h"
 #include"AIFollow.h"
 
-
-
 class AIComponent
 {
 private:
@@ -16,4 +14,3 @@ public:
 
 	void update(const float& dt);
 };
-

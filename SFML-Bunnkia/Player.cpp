@@ -2,7 +2,6 @@
 
 #include "Player.h"
 
-
 //========================================================
 //Initializer Functions
 //========================================================
@@ -18,7 +17,6 @@ void Player::initVariables()
 
 void Player::initComponents()
 {
-
 }
 
 void Player::initAnimations()
@@ -41,16 +39,14 @@ void Player::initAnimations()
 
 void Player::initInventory()
 {
-
 }
-
 
 //========================================================
 //Constructors/Destructors
 //========================================================
 Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
-	this->initVariables();	
+	this->initVariables();
 
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
@@ -160,7 +156,6 @@ void Player::updateAnimation(const float& dt)
 {
 	if (this->attacking)
 	{
-
 	}
 	if (this->movementComponent->getState(IDLE))
 	{
@@ -191,7 +186,7 @@ void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::Vie
 
 	this->movementComponent->update(dt);
 
-	this->updateAnimation(dt);		
+	this->updateAnimation(dt);
 
 	this->hitboxComponent->update();
 

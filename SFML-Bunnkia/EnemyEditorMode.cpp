@@ -17,7 +17,6 @@ void EnemyEditorMode::initVariables()
 //Initialize Gui
 void EnemyEditorMode::initGui()
 {
-	
 	// Text
 	this->cursorText.setFont(this->font);
 	this->cursorText.setFillColor(sf::Color::White);
@@ -56,7 +55,6 @@ EnemyEditorMode::EnemyEditorMode(StateData* state_data, TileMap* tile_map, Edito
 
 EnemyEditorMode::~EnemyEditorMode()
 {
-
 }
 
 //Functions
@@ -66,14 +64,13 @@ void EnemyEditorMode::updateInput(const float& dt)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime()
 		)
 	{
-			if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
-			{
-				this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
-					this->type, this->amount, this->timeToSpawn, this->maxDistance);
-				std::cout << "Added Monster Spawner" << "\n";
-			}		
+		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
+		{
+			this->tileMap->addTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, this->textureRect,
+				this->type, this->amount, this->timeToSpawn, this->maxDistance);
+			std::cout << "Added Monster Spawner" << "\n";
+		}
 	}
-
 
 	//Remove a tile from the tilemap
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime()
@@ -84,8 +81,6 @@ void EnemyEditorMode::updateInput(const float& dt)
 			this->tileMap->removeTile(this->editorStateData->mousePosGrid->x, this->editorStateData->mousePosGrid->y, 0, TileTypes::ENEMYSPAWNER);
 		}
 	}
-
-
 
 	//Toggle collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_UP"))) && this->getKeytime())
@@ -155,7 +150,7 @@ void EnemyEditorMode::updateGui(const float& dt)
 
 	std::stringstream ss;
 	ss <<
-		"\n" << "Spawner Mode"<<
+		"\n" << "Spawner Mode" <<
 		"\n" << "Enemy Type: " << this->type <<
 		"\n" << "Enemy Amount: " << this->amount <<
 		"\n" << "Time to spawn: " << this->timeToSpawn <<

@@ -3,7 +3,6 @@
 
 #include"Item.h"
 
-
 class Inventory
 {
 private:
@@ -38,6 +37,3 @@ public:
 };
 
 #endif // !INVENTORY_H
-
-
-

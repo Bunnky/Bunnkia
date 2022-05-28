@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SkillComponent.h"
 
-
 SkillComponent::SkillComponent()
 {
 	this->skills.push_back(Skill(HEALTH));
@@ -12,7 +11,6 @@ SkillComponent::SkillComponent()
 
 SkillComponent::~SkillComponent()
 {
-
 }
 
 const int SkillComponent::getSkill(const int skill) const
@@ -32,5 +30,3 @@ const void SkillComponent::gainExp(const int skill, const int exp)
 		this->skills[skill].gainExp(exp);
 	}
 }
-
-

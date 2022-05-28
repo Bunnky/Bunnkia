@@ -4,7 +4,6 @@
 //Private Functions
 void TextTagSystem::initVariables()
 {
-
 }
 
 void TextTagSystem::initFonts(std::string font_file)
@@ -14,7 +13,7 @@ void TextTagSystem::initFonts(std::string font_file)
 }
 
 void TextTagSystem::initTagTemplates()
-{	
+{
 	this->tagTemplates[DEFAULT_TAG] = new TextTag(this->font, "", 100.f, 100.f, 0.f, -1.f, sf::Color::White, 12, 100.f, true, 100.f, 300.f, 2);
 	this->tagTemplates[NEGATIVE_TAG] = new TextTag(this->font, "", 100.f, 100.f, 0.f, 1.f, sf::Color::Red, 12, 100.f, true, 150.f, 100.f, 1);
 	this->tagTemplates[EXPERIENCE_TAG] = new TextTag(this->font, "", 100.f, 100.f, 0.f, -1.f, sf::Color::Green, 12, 200.f, true, 200.f, 400.f, 2);

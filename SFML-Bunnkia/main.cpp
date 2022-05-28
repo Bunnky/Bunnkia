@@ -4,15 +4,15 @@
 
 int main()
 {
-    Game game;
+	Game game;
 
-    //HWND hWnd = GetConsoleWindow();
-    //ShowWindow(hWnd, SW_HIDE);
+	//HWND hWnd = GetConsoleWindow();
+	//ShowWindow(hWnd, SW_HIDE);
 
-    game.run();
+	game.run();
 
-    //DEBUG
-    //system("pause");
+	//DEBUG
+	//system("pause");
 
-    return 0;
+	return 0;
 }

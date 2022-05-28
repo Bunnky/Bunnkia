@@ -7,7 +7,7 @@ Tile::Tile()
 	this->type = 0;
 }
 
-Tile::Tile(short type, int grid_x, int grid_y, float gridSizeF, 
+Tile::Tile(short type, int grid_x, int grid_y, float gridSizeF,
 	const sf::Texture& texture, const sf::IntRect& texture_rect,
 	const bool collision)
 {
@@ -25,7 +25,6 @@ Tile::Tile(short type, int grid_x, int grid_y, float gridSizeF,
 
 Tile::~Tile()
 {
-
 }
 
 //Accessors
@@ -54,4 +53,3 @@ const sf::FloatRect Tile::getGlobalBounds() const
 {
 	return this->shape.getGlobalBounds();
 }
-

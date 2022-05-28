@@ -1,7 +1,7 @@
 #ifndef MOVEMENTCOMPONENT_H
 #define MOVEMENTCOMPONENT_H
 
-enum movement_state {IDLE = 0, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN};
+enum movement_state { IDLE = 0, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN };
 
 class MovementComponent
 {
@@ -14,11 +14,9 @@ private:
 
 	sf::Vector2f velocity;
 
-
 	//===========//
 	// Initialize//
 	//===========//
-
 
 public:
 	MovementComponent(sf::Sprite& sprite,

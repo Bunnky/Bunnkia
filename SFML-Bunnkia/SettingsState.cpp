@@ -13,7 +13,9 @@ void SettingsState::initVariables()
 void SettingsState::initFonts()
 {
 	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
-	{ throw("ERROR::SettingsState::COULD NOT LOAD FONT"); }
+	{
+		throw("ERROR::SettingsState::COULD NOT LOAD FONT");
+	}
 }
 
 void SettingsState::initKeybinds()
@@ -26,7 +28,9 @@ void SettingsState::initKeybinds()
 		std::string key2 = "";
 
 		while (ifs >> key >> key2)
-		{ this->keybinds[key] = this->supportedKeys->at(key2); }
+		{
+			this->keybinds[key] = this->supportedKeys->at(key2);
+		}
 	}
 	ifs.close();
 }
@@ -39,7 +43,9 @@ void SettingsState::initGui()
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
 
 	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))
-	{ throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE"; }
+	{
+		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
+	}
 	this->background.setTexture(&this->backgroundTexture);
 
 	//Button Background
@@ -75,7 +81,8 @@ void SettingsState::initGui()
 			&this->font, "Fullscreen", gui::calcCharSize(vm, 60),
 			sf::Color(200, 0, 0, 200), sf::Color(250, 0, 0, 250), sf::Color(20, 0, 0, 50),
 			sf::Color(100, 0, 0, 0), sf::Color(150, 0, 0, 0), sf::Color(20, 0, 0, 0));
-	}	else	{
+	}
+	else {
 		this->buttons["FULLSCREEN"] = new gui::Button(
 			gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
 			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
@@ -93,7 +100,8 @@ void SettingsState::initGui()
 			&this->font, "Anti alias", gui::calcCharSize(vm, 63),
 			sf::Color(200, 0, 0, 200), sf::Color(250, 0, 0, 250), sf::Color(20, 0, 0, 50),
 			sf::Color(100, 0, 0, 0), sf::Color(150, 0, 0, 0), sf::Color(20, 0, 0, 0));
-	}	else	{
+	}
+	else {
 		this->buttons["AA"] = new gui::Button(
 			gui::p2pX(41.2f, vm), gui::p2pY(38.3f, vm),
 			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
@@ -111,7 +119,8 @@ void SettingsState::initGui()
 			&this->font, "VSync", gui::calcCharSize(vm, 60),
 			sf::Color(200, 0, 0, 200), sf::Color(250, 0, 0, 250), sf::Color(20, 0, 0, 50),
 			sf::Color(100, 0, 0, 0), sf::Color(150, 0, 0, 0), sf::Color(20, 0, 0, 0));
-	}	else	{
+	}
+	else {
 		this->buttons["VSYNC"] = new gui::Button(
 			gui::p2pX(41.2f, vm), gui::p2pY(48.3f, vm),
 			gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
@@ -121,7 +130,7 @@ void SettingsState::initGui()
 	}
 
 	//Old Dropdown list for resolutions.Maybe let players do this later ?
-	/*	
+	/*
 	//Modes
 	std::vector<std::string> modes_str;
 	for (auto& i : this->modes)
@@ -136,13 +145,11 @@ void SettingsState::initGui()
 		font, modes_str.data(), modes_str.size()
 	);
 
-
 	//Text init
 	this->optionsText.setFont(this->font);
 	this->optionsText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(30.f, vm)));
 	this->optionsText.setCharacterSize(gui::calcCharSize(vm, 60));
 	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
-
 
 	this->optionsText.setString("Fullscreen \n\nVsync \n\nAntialiasing \n ");
 	*/
@@ -154,12 +161,16 @@ void SettingsState::resetGui()
 	auto it = this->buttons.begin();
 
 	for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
-	{ delete it->second; }
+	{
+		delete it->second;
+	}
 	this->buttons.clear();
 
 	auto it2 = this->dropDownLists.begin();
 	for (it2 = this->dropDownLists.begin(); it2 != this->dropDownLists.end(); ++it2)
-	{ delete it2->second; }
+	{
+		delete it2->second;
+	}
 	this->dropDownLists.clear();
 
 	this->initGui();
@@ -196,7 +207,6 @@ SettingsState::~SettingsState()
 //Accessors
 //========================================================
 
-
 //========================================================
 //Functions
 //========================================================
@@ -207,13 +217,17 @@ void SettingsState::updateInput(const float& dt)
 
 void SettingsState::updateGui(const float& dt)
 {
-	//Buttons 
+	//Buttons
 	for (auto& it : this->buttons)
-	{ it.second->update(this->mousePosWindow); }
-	
+	{
+		it.second->update(this->mousePosWindow);
+	}
+
 	//Back to menu
 	if (this->buttons["BACK"]->isPressed())
-	{ this->endState(); }
+	{
+		this->endState();
+	}
 
 	//Apply selected settings
 	if (this->buttons["SAVE"]->isPressed())
@@ -231,8 +245,7 @@ void SettingsState::updateGui(const float& dt)
 	//{
 	//	it.second->update(this->mousePosWindow, dt);
 	//}
-		
-	
+
 	//Fullscreen Toggle
 	if (this->buttons["FULLSCREEN"]->isPressed())
 	{
@@ -240,7 +253,7 @@ void SettingsState::updateGui(const float& dt)
 		{
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Fullscreen);
 			this->stateData->gfxSettings->fullscreen = true;
-		}			
+		}
 		else if (this->stateData->gfxSettings->fullscreen)
 		{
 			this->window->create(this->stateData->gfxSettings->resolution, this->stateData->gfxSettings->title, sf::Style::Default);
@@ -248,7 +261,6 @@ void SettingsState::updateGui(const float& dt)
 		}
 		this->resetGui();
 		Sleep(100);
-
 	}
 
 	//Antialiasing Toggle
@@ -318,7 +330,7 @@ void SettingsState::render(sf::RenderTarget* target)
 
 	//DEBUG MOUSE POS
 	sf::Text mouseText;
-	mouseText.setPosition(this->mousePosView.x -20, this->mousePosView.y - 20);
+	mouseText.setPosition(this->mousePosView.x - 20, this->mousePosView.y - 20);
 	mouseText.setFont(this->font);
 	mouseText.setOutlineColor(sf::Color::Black);
 	mouseText.setOutlineThickness(1);

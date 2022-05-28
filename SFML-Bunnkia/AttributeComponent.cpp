@@ -14,14 +14,12 @@ AttributeComponent::AttributeComponent(int level)
 	this->agility = 1;
 	this->intelligence = 1;
 
-
 	this->updateLevel();
 	this->updateStats(true);
 }
 
 AttributeComponent::~AttributeComponent()
 {
-	
 }
 
 void AttributeComponent::loseHP(const int hp)
@@ -75,19 +73,17 @@ const bool AttributeComponent::isDead() const
 
 void AttributeComponent::updateStats(const bool reset)
 {
-	this->hpMax			= this->vitality * 5 + this->vitality + this->strength / 2 + this->intelligence / 5;
-	this->damageMin		= this->strength * 2 + this->strength / 4 + this->intelligence / 5;
-	this->damageMax		= this->strength * 2 + this->strength / 2 + this->intelligence / 5;
-	this->accuracy		= this->dexterity * 5 + this->dexterity / 2 + this->intelligence / 5;
-	this->defense		= this->agility * 2 + this->agility / 4 + this->intelligence / 5;
-	this->luck			= this->intelligence * 2 + this->intelligence / 5;
-
+	this->hpMax = this->vitality * 5 + this->vitality + this->strength / 2 + this->intelligence / 5;
+	this->damageMin = this->strength * 2 + this->strength / 4 + this->intelligence / 5;
+	this->damageMax = this->strength * 2 + this->strength / 2 + this->intelligence / 5;
+	this->accuracy = this->dexterity * 5 + this->dexterity / 2 + this->intelligence / 5;
+	this->defense = this->agility * 2 + this->agility / 4 + this->intelligence / 5;
+	this->luck = this->intelligence * 2 + this->intelligence / 5;
 
 	if (reset)
 	{
 		this->hp = this->hpMax;
 	}
-		
 }
 
 void AttributeComponent::updateLevel()

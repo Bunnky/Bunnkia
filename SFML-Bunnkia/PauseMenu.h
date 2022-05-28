@@ -20,7 +20,6 @@ private:
 	// Functions //
 	//===========//
 
-
 public:
 	PauseMenu(sf::VideoMode& vm, sf::Font& font);
 	virtual ~PauseMenu();

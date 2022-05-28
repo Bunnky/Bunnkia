@@ -6,7 +6,6 @@
 //========================================================
 void Goblin::initVariables()
 {
-
 }
 
 void Goblin::initAnimations()
@@ -21,7 +20,6 @@ void Goblin::initAnimations()
 
 void Goblin::initAI()
 {
-	
 }
 
 void Goblin::initGUI()

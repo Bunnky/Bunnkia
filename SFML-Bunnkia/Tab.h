@@ -22,7 +22,6 @@ public:
 	void toggle();
 
 	//Modifiers
-	
 
 	//Functions
 	void hide();

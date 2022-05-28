@@ -1,7 +1,7 @@
 #ifndef TEXTTAGSYSTEM_H
 #define TEXTTAGSYSTEM_H
 
-enum TAGTYPES { DEFAULT_TAG, NEGATIVE_TAG, POSITIVE_TAG, EXPERIENCE_TAG, ENVIRONMENTAL_TAG};
+enum TAGTYPES { DEFAULT_TAG, NEGATIVE_TAG, POSITIVE_TAG, EXPERIENCE_TAG, ENVIRONMENTAL_TAG };
 
 class TextTagSystem
 {
@@ -20,12 +20,12 @@ private:
 		bool reverse;
 
 	public:
-		TextTag(sf::Font& font, std::string text, 
-			float pos_x, float pos_y, 
+		TextTag(sf::Font& font, std::string text,
+			float pos_x, float pos_y,
 			float dir_x, float dir_y,
-			sf::Color color, 
-			unsigned char_size, 
-			float lifetime, bool reverse, float speed, 
+			sf::Color color,
+			unsigned char_size,
+			float lifetime, bool reverse, float speed,
 			float acceleration, int fade_value)
 		{
 			this->text.setFont(font);
@@ -47,7 +47,6 @@ private:
 				this->velocity.x = this->dirX * this->speed;
 				this->velocity.y = this->dirY * this->speed;
 			}
-			
 		}
 
 		TextTag(TextTag* tag, float pos_x, float pos_y, std::string str)
@@ -67,12 +66,10 @@ private:
 		}
 		~TextTag()
 		{
-
 		}
 
 		//Accessors
-		inline const bool isExpired() const{ return this->lifetime <= 0.f; }
-
+		inline const bool isExpired() const { return this->lifetime <= 0.f; }
 
 		//Functions
 		void update(const float& dt)
@@ -123,10 +120,10 @@ private:
 					this->text.setFillColor
 					(
 						sf::Color(
-						this->text.getFillColor().r,
-						this->text.getFillColor().g,
-						this->text.getFillColor().b,
-						this->text.getFillColor().a - this->fadeValue
+							this->text.getFillColor().r,
+							this->text.getFillColor().g,
+							this->text.getFillColor().b,
+							this->text.getFillColor().a - this->fadeValue
 						)
 					);
 				}
@@ -136,7 +133,6 @@ private:
 		{
 			target.draw(this->text);
 		}
-
 	};
 
 	sf::Font font;
@@ -161,7 +157,4 @@ public:
 	void render(sf::RenderTarget& target);
 };
 
-
 #endif // !TEXTTAGSYSTEM_H
-
-

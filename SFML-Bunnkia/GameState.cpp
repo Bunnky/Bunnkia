@@ -2,9 +2,9 @@
 #include "GameState.h"
 
 //========================================================
-// 
+//
 //Initializer Functions
-// 
+//
 //========================================================
 //----------------------
 //Initialize Deferred Render
@@ -19,7 +19,7 @@ void GameState::initDeferredRender()
 	this->renderSprite.setTexture(this->renderTexture.getTexture());
 	this->renderSprite.setTextureRect(
 		sf::IntRect(
-			0, 
+			0,
 			0,
 			this->stateData->gfxSettings->resolution.width,
 			this->stateData->gfxSettings->resolution.height
@@ -34,13 +34,13 @@ void GameState::initView()
 {
 	//View Zoom
 	this->view.setSize(sf::Vector2f(
-			static_cast<float>(this->stateData->gfxSettings->resolution.width / 2),
-			static_cast<float>(this->stateData->gfxSettings->resolution.height / 2))
+		static_cast<float>(this->stateData->gfxSettings->resolution.width / 2),
+		static_cast<float>(this->stateData->gfxSettings->resolution.height / 2))
 	);
 
 	this->view.setCenter(sf::Vector2f(
-			static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
-			static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f)
+		static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
+		static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f)
 	);
 }
 
@@ -74,7 +74,6 @@ void GameState::initFonts()
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
-
 }
 
 //----------------------
@@ -180,9 +179,9 @@ void GameState::initSystems()
 }
 
 //========================================================
-// 
+//
 //Constructors/Destructors
-// 
+//
 //========================================================
 GameState::GameState(StateData* state_data)
 	: State(state_data)
@@ -216,7 +215,7 @@ GameState::GameState(StateData* state_data)
 	std::cout << green << "Initializing Systems" << "\n" << white;
 	this->initSystems();
 
-	std::cout << blue << "Initializing complete!" <<  "\n" << white;
+	std::cout << blue << "Initializing complete!" << "\n" << white;
 }
 
 GameState::~GameState()
@@ -235,9 +234,9 @@ GameState::~GameState()
 }
 
 //========================================================
-// 
+//
 //Functions
-// 
+//
 //========================================================
 const bool GameState::getKeytime()
 {
@@ -246,7 +245,7 @@ const bool GameState::getKeytime()
 		this->keyTimer.restart();
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -281,7 +280,6 @@ void GameState::updateView(const float& dt)
 		}
 	}
 
-
 	this->viewGridPosition.x = static_cast<int>(this->view.getCenter().x) / static_cast<int>(this->stateData->gridSize);
 	this->viewGridPosition.y = static_cast<int>(this->view.getCenter().y) / static_cast<int>(this->stateData->gridSize);
 }
@@ -313,7 +311,7 @@ void GameState::updatePlayerInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
 	{
 		this->player->move(0.f, 1.f, dt);
-	}					
+	}
 }
 
 void GameState::updatePlayerGUI(const float& dt)
@@ -380,7 +378,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
 }
 
 void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
-{	
+{
 	if (this->player->getInitAttack()
 		&& enemy->getGlobalBounds().contains(this->mousePosView)
 		&& enemy->getSpriteDistance(*this->player) < this->player->getWeapon()->getRange()
@@ -439,11 +437,10 @@ void GameState::update(const float& dt)
 		this->tts->update(dt);
 	}
 	else //Paused update
-	{		
+	{
 		this->pmenu->update(this->mousePosWindow);
 		this->updatePauseMenuButtons();
 	}
-
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -457,7 +454,7 @@ void GameState::render(sf::RenderTarget* target)
 
 	this->tileMap->render
 	(
-		this->renderTexture, 
+		this->renderTexture,
 		this->viewGridPosition,
 		&this->core_shader,
 		this->player->getCenter(),
@@ -480,7 +477,7 @@ void GameState::render(sf::RenderTarget* target)
 	//Render GUI
 	this->renderTexture.setView(this->renderTexture.getDefaultView());
 	this->playerGUI->render(this->renderTexture);
-	
+
 	if (this->paused) //Pause menu render
 	{
 		//this->renderTexture.setView(this->renderTexture.getDefaultView());

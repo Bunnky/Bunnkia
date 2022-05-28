@@ -3,7 +3,7 @@
 #include "MeleeWeapon.h"
 
 MeleeWeapon::MeleeWeapon(unsigned level, unsigned damageMin, unsigned damageMax, unsigned range,
-	unsigned value, 
+	unsigned value,
 	std::string texture_file)
 	: Weapon(level, damageMin, damageMax, range, value, texture_file)
 {
@@ -12,7 +12,6 @@ MeleeWeapon::MeleeWeapon(unsigned level, unsigned damageMin, unsigned damageMax,
 
 MeleeWeapon::~MeleeWeapon()
 {
-
 }
 
 void MeleeWeapon::generate(const unsigned levelMin, const unsigned levelMax)
@@ -25,11 +24,11 @@ void MeleeWeapon::generate(const unsigned levelMin, const unsigned levelMax)
 	//Weapon Range
 	this->range = this->level + rand() % 10 + 100;
 
-	this->value = this->level + this->damageMin + this->damageMax + this->range + (rand()%level * 10);
+	this->value = this->level + this->damageMin + this->damageMax + this->range + (rand() % level * 10);
 
-	std::cout << "Level:" << this->level << " " 
-		<< "DamageMin:" << this->damageMin << " " 
-		<< "DamageMax:" << this->damageMax << " " 
-		<< "Range:" << this->range << " " 
+	std::cout << "Level:" << this->level << " "
+		<< "DamageMin:" << this->damageMin << " "
+		<< "DamageMax:" << this->damageMax << " "
+		<< "Range:" << this->range << " "
 		<< "Value:" << this->value << "\n";
 }

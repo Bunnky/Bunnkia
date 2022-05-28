@@ -18,7 +18,6 @@ public:
 	//Functions
 	void saveToFile(const std::string path);
 	void loadFromFile(const std::string path);
-
 };
 
 #endif

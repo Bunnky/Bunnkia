@@ -4,7 +4,7 @@
 #include"EnemySpawnerTile.h"
 #include"Goblin.h"
 
-enum EnemyTypes {GOBLIN = 0};
+enum EnemyTypes { GOBLIN = 0 };
 
 class EnemySystem
 {
@@ -14,7 +14,7 @@ private:
 	Entity& player;
 
 public:
-	EnemySystem(std::vector<Enemy*>& activeEnemies, 
+	EnemySystem(std::vector<Enemy*>& activeEnemies,
 		std::map<std::string, sf::Texture>& textures, Entity& player);
 	virtual ~EnemySystem();
 

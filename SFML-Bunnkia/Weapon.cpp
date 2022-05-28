@@ -40,7 +40,6 @@ Weapon::Weapon(unsigned level, unsigned damageMin, unsigned damageMax, unsigned 
 
 Weapon::~Weapon()
 {
-
 }
 
 //Accessors

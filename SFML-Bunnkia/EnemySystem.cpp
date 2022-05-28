@@ -11,7 +11,6 @@ EnemySystem::EnemySystem(std::vector<Enemy*>& activeEnemies,
 
 EnemySystem::~EnemySystem()
 {
-
 }
 
 void EnemySystem::createEnemy(const short type, const float xPos, const float yPos, EnemySpawnerTile& enemy_spawner_tile)
@@ -38,10 +37,8 @@ void EnemySystem::removeEnemy(const int index)
 
 void EnemySystem::update(const float& dt)
 {
-
 }
 
 void EnemySystem::render(sf::RenderTarget* target)
 {
-
 }

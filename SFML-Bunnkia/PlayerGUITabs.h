@@ -3,7 +3,7 @@
 
 #include"CharacterTab.h"
 
-enum PlayerTabs {CHARCTER_TAB = 0, INVENTORY_TAB };
+enum PlayerTabs { CHARCTER_TAB = 0, INVENTORY_TAB };
 
 class PlayerGUITabs
 {

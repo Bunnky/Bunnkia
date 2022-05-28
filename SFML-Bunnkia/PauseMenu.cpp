@@ -9,17 +9,17 @@ PauseMenu::PauseMenu(sf::VideoMode& vm, sf::Font& font)
 {
 	//Init background
 	this->background.setSize(sf::Vector2f(
-			static_cast<float>(vm.width),
-			static_cast<float>(vm.height)
-		)
+		static_cast<float>(vm.width),
+		static_cast<float>(vm.height)
+	)
 	);
 	this->background.setFillColor(sf::Color(20, 20, 20, 100));
 
 	//Init containter
 	this->container.setSize(sf::Vector2f(
-			static_cast<float>(vm.width) / 4.f,
-			static_cast<float>(vm.height)
-		)
+		static_cast<float>(vm.width) / 4.f,
+		static_cast<float>(vm.height)
+	)
 	);
 	this->container.setFillColor(sf::Color(20, 20, 20, 200));
 
@@ -80,7 +80,6 @@ void PauseMenu::addButton(
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 }
-
 
 void PauseMenu::update(const sf::Vector2i& mousePosWindow)
 {

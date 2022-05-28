@@ -10,10 +10,8 @@ RangedWeapon::RangedWeapon(unsigned level, unsigned value, std::string texture_f
 
 RangedWeapon::~RangedWeapon()
 {
-
 }
 
 void RangedWeapon::generate(const unsigned levelMin, const unsigned levelMax)
 {
-
 }
