@@ -8,11 +8,14 @@
 #include"Sword.h"
 #include"Bow.h"
 #include"TextTagSystem.h"
+#include "FPS.h"
 
 class GameState :
 	public State
 {
 private:
+	FPS fps;
+
 	sf::View view;
 	sf::Vector2i viewGridPosition;
 	sf::RenderTexture renderTexture;
@@ -25,6 +28,7 @@ private:
 
 	sf::Clock keyTimer;
 	float keyTimeMax;
+	
 
 	sf::Text debugText;
 

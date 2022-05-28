@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "fps.h"
 //========================================================
 //Static Functions
 //========================================================
@@ -177,16 +176,9 @@ void Game::render()
 
 void Game::run()
 {
-	FPS fps;
-
 	while (this->window->isOpen())
 	{
 		// game loop stuff;
-		fps.update();
-		std::ostringstream ss;
-		ss << fps.getFPS();
-
-		window->setTitle(ss.str());
 		this->updateDt();
 		this->update();
 		this->render();

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameState.h"
 
+
 //========================================================
 //
 //Initializer Functions
@@ -130,7 +131,7 @@ void GameState::initDebugText()
 {
 	this->debugText.setFont(this->font);
 	this->debugText.setFillColor(sf::Color::Red);
-	this->debugText.setCharacterSize(8);
+	this->debugText.setCharacterSize(12);
 	this->debugText.setPosition(15.f, this->window->getSize().y / 2.f);
 }
 
@@ -405,8 +406,10 @@ void GameState::updateDebugText(const float& dt)
 	std::stringstream ss;
 
 	ss << "Mouse Pos View: " << this->mousePosView.x << " " << this->mousePosView.y << "\n"
-		<< "Active Enemies: " << this->activeEnemies.size() << "\n";
+		<< "Active Enemies: " << this->activeEnemies.size() << "\n"
+		<< "FPS: " << fps.getFPS();
 
+	this->fps.update();
 	this->debugText.setString(ss.str());
 }
 
