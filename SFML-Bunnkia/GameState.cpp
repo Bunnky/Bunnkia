@@ -141,7 +141,7 @@ void GameState::initDebugText()
 void GameState::initPlayers()
 {
 	//Player Start Position
-	this->player = new Player(220, 220, this->textures["PLAYER_SHEET"]);
+	this->player = new Player(132, 161, this->textures["PLAYER_SHEET"]);
 }
 
 //----------------------

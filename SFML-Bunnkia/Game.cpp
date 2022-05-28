@@ -35,9 +35,6 @@ void Game::initGraphicsSettings()
 void Game::initWindow()
 {
     /*Creates a SFML window*/
-
-
-
     if(this->gfxSettings.fullscreen)
         this->window = new sf::RenderWindow(
             this->gfxSettings.resolution,
