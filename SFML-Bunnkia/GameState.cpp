@@ -49,7 +49,7 @@ void GameState::initView()
 //----------------------
 void GameState::initKeybinds()
 {
-	std::ifstream ifs("Config/gamestate_keybinds.ini");
+	std::ifstream ifs("gamedata/Config/gamestate_keybinds.ini");
 
 	if (ifs.is_open())
 	{
@@ -165,7 +165,7 @@ void GameState::initEnemySystem()
 //----------------------
 void GameState::initTileMap()
 {
-	//this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
+	//this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "gamedata/Resources/Images/Tiles/tileSheet.png");
 	//this->tileMap->loadFromFile("gamedata/level.slmp");
 	this->tileMap = new TileMap("gamedata/level.slmp");
 }
@@ -176,7 +176,7 @@ void GameState::initTileMap()
 void GameState::initSystems()
 {
 	//Damage numbers Font
-	this->tts = new TextTagSystem("Fonts/lucon.ttf");
+	this->tts = new TextTagSystem("gamedata/Fonts/lucon.ttf");
 }
 
 //========================================================

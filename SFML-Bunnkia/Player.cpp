@@ -10,7 +10,7 @@ void Player::initVariables()
 {
 	this->initAttack = false;
 	this->attacking = false;
-	this->weapon = new Sword(1, 2, 5, 60, 20, "Resources/Images/Sprites/Player/sword4.png");
+	this->weapon = new Sword(1, 2, 5, 60, 20, "gamedata/Resources/Images/Sprites/Player/sword4.png");
 	this->weapon->generate(1, 3);
 
 	this->damageTimerMax = 500;

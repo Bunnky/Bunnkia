@@ -18,7 +18,7 @@ void SettingsState::initFonts()
 
 void SettingsState::initKeybinds()
 {
-	std::ifstream ifs("Config/mainmenustate_keybinds.ini");
+	std::ifstream ifs("gamedata/Config/mainmenustate_keybinds.ini");
 
 	if (ifs.is_open())
 	{
@@ -218,7 +218,7 @@ void SettingsState::updateGui(const float& dt)
 	//Apply selected settings
 	if (this->buttons["SAVE"]->isPressed())
 	{
-		this->stateData->gfxSettings->saveToFile("Config/graphics.ini");
+		this->stateData->gfxSettings->saveToFile("gamedata/Config/graphics.ini");
 		std::cout << green << "Saved!" << "\n";
 		Sleep(100);
 		//TEST REMOVE LATER!

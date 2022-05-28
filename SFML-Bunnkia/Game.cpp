@@ -60,7 +60,7 @@ void Game::initStates()
 
 void Game::initKeys()
 {
-    std::ifstream ifs("Config/supported_keys.ini");
+    std::ifstream ifs("gamedata/Config/supported_keys.ini");
 
     if (ifs.is_open())
     {
@@ -124,7 +124,7 @@ Game::~Game()
 //========================================================
 void Game::endApplication()
 {
-    this->gfxSettings.saveToFile("Config/graphics.ini");
+    this->gfxSettings.saveToFile("gamedata/Config/graphics.ini");
     std::cout << "Ending Application" << "\n";
 }
 

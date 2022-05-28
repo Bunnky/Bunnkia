@@ -62,7 +62,7 @@ void EditorState::initFonts()
 //----------------------
 void EditorState::initKeybinds()
 {
-	std::ifstream ifs("Config/editorstate_keybinds.ini");
+	std::ifstream ifs("gamedata/Config/editorstate_keybinds.ini");
 
 	if (ifs.is_open())
 	{
@@ -114,7 +114,7 @@ void EditorState::initGui()
 //----------------------
 void EditorState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "Resources/Images/Tiles/tileSheet.png");
+	this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "gamedata/Resources/Images/Tiles/tileSheet.png");
 }
 
 //----------------------
@@ -265,7 +265,7 @@ void EditorState::updatePauseMenuButtons()
 
 	if (this->pmenu->isButtonPressed("SAVE"))
 	{
-		this->tileMap->saveToFile("level.slmp");
+		this->tileMap->saveToFile("gamedata/level.slmp");
 		this->paused = false;
 	}		
 

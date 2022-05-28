@@ -19,7 +19,7 @@ void MainMenuState::initFonts()
 
 void MainMenuState::initKeybinds()
 {
-	std::ifstream ifs("Config/mainmenustate_keybinds.ini");
+	std::ifstream ifs("gamedata/Config/mainmenustate_keybinds.ini");
 
 	if (ifs.is_open())
 	{
