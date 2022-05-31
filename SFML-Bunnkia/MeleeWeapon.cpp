@@ -26,9 +26,9 @@ void MeleeWeapon::generate(const unsigned levelMin, const unsigned levelMax)
 
 	this->value = this->level + this->damageMin + this->damageMax + this->range + (rand() % level * 10);
 
-	std::cout << "Level:" << this->level << " "
-		<< "DamageMin:" << this->damageMin << " "
-		<< "DamageMax:" << this->damageMax << " "
-		<< "Range:" << this->range << " "
-		<< "Value:" << this->value << "\n";
+	//std::cout << "Level:" << this->level << " "
+	//	<< "DamageMin:" << this->damageMin << " "
+	//	<< "DamageMax:" << this->damageMax << " "
+	//	<< "Range:" << this->range << " "
+	//	<< "Value:" << this->value << "\n";
 }
