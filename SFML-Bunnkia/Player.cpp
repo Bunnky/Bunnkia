@@ -51,7 +51,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	/*This is where we alter the hitbox*/
 	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
 	//Player Movement speed
-	this->createMovementComponent(500.f, 2000.f, 1000.f);
+	this->createMovementComponent(120.f, 700.f, 150.f);
 	this->createAnimationComponent(texture_sheet);
 	this->createAttributeComponent(1);
 	this->createSkillComponent();
