@@ -45,14 +45,14 @@ void Entity::createHitboxComponent(sf::Sprite& sprite,
 	this->hitboxComponent = new HitboxComponent(sprite, offset_x, offset_y, width, height);
 }
 
-void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
-{
-	this->movementComponent = new MovementComponent(this->sprite, maxVelocity, acceleration, deceleration);
-}
-
 void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 {
 	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
+}
+
+void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
+{
+	this->movementComponent = new MovementComponent(this->sprite, maxVelocity, acceleration, deceleration);
 }
 
 void Entity::createAttributeComponent(const unsigned level)
