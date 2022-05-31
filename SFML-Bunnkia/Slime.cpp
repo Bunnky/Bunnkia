@@ -43,14 +43,23 @@ Slime::Slime(float x, float y, sf::Texture& texture_sheet, EnemySpawnerTile& ene
 {
 	this->initVariables();
 	this->initGUI();
-
-	/*This is where we alter the hitbox*/
-	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
-	this->createMovementComponent(50.f, 1600.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(1);
+	this->createHitboxComponent(this->sprite, 0.f, 0.f, 32.f, 32.f);
 
+	this->createMovementComponent(50.f, 1600.f, 1000.f);
+	this->createAttributeComponent(3);
 	this->generateAttributes(this->attributeComponent->level);
+
+	std::cout << "=========NEW_SPAWN=========" << "\n";
+	std::cout << green << "Spawned Slime!" << "\n" << white;
+	std::cout << "Max Vel: " << this->getMovementComponent()->getMaxVelocity() << "\n";
+	std::cout << "Level: " << this->getAttributeComponent()->level << "\n";
+	std::cout << "Max HP: " << this->getAttributeComponent()->hpMax << "\n";
+	std::cout << "Vitality: " << this->getAttributeComponent()->vitality << "\n";
+	std::cout << "Strength: " << this->getAttributeComponent()->strength << "\n";
+	std::cout << "Dex: " << this->getAttributeComponent()->dexterity << "\n";
+	std::cout << "Agility: " << this->getAttributeComponent()->agility << "\n";
+	std::cout << "Intelligence: " << this->getAttributeComponent()->intelligence << "\n";
 
 	this->setPosition(x, y);
 	this->initAnimations();
@@ -66,30 +75,18 @@ Slime::~Slime()
 void Slime::updateAnimation(const float& dt)
 {
 	if (this->movementComponent->getState(IDLE))
-	{
 		this->animationComponent->play("IDLE", dt);
-	}
 	else if (this->movementComponent->getState(MOVING_LEFT))
-	{
 		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-	}
 	else if (this->movementComponent->getState(MOVING_RIGHT))
-	{
 		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-	}
 	else if (this->movementComponent->getState(MOVING_UP))
-	{
 		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-	}
 	else if (this->movementComponent->getState(MOVING_DOWN))
-	{
 		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-	}
 
 	if (this->damageTimer.getElapsedTime().asMilliseconds() <= this->damageTimerMax)
-	{
 		this->sprite.setColor(sf::Color::Red);
-	}
 	else
 		this->sprite.setColor(sf::Color::White);
 }

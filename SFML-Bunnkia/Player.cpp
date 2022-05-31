@@ -83,6 +83,8 @@ Weapon* Player::getWeapon() const
 const std::string Player::toStringCharacterTab() const
 {
 	std::stringstream ss;
+	
+	
 	const AttributeComponent* ac = this->attributeComponent;
 	const Weapon* w = this->weapon;
 
@@ -90,7 +92,15 @@ const std::string Player::toStringCharacterTab() const
 		<< "Experience: " << ac->exp << "\n"
 		<< "Next Level: " << ac->expNext << "\n"
 
-		<< "Weapon Level: " << w->getLevel() << "\n"
+		<< "\n" << "Accuracy: " << ac->accuracy << "\n"
+		<< "Agility: " << ac->agility << "\n"
+		<< "Defense: " << ac->defense << "\n"
+		<< "Dex: " << ac->dexterity << "\n"
+		<< "Luck: " << ac->luck << "\n"
+		<< "Strength: " << ac->strength << "\n"
+		<< "Vitality: " << ac->vitality << "\n"
+
+		<< "\n" << "Weapon Level: " << w->getLevel() << "\n"
 		<< "Weapon Type: " << w->getType() << "\n"
 		<< "Weapon Value: " << w->getValue() << "\n"
 		<< "Weapon Range: " << w->getRange() << "\n"
@@ -156,33 +166,24 @@ void Player::updateAnimation(const float& dt)
 {
 	if (this->attacking)
 	{
+
 	}
-	if (this->movementComponent->getState(IDLE))
-	{
-		this->animationComponent->play("IDLE", dt);
-	}
-	else if (this->movementComponent->getState(MOVING_LEFT))
-	{
-		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-	}
-	else if (this->movementComponent->getState(MOVING_RIGHT))
-	{
-		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-	}
-	else if (this->movementComponent->getState(MOVING_UP))
-	{
-		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-	}
-	else if (this->movementComponent->getState(MOVING_DOWN))
-	{
-		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-	}
+	if (this->movementComponent->getState(IDLE))	
+		this->animationComponent->play("IDLE", dt);	
+	else if (this->movementComponent->getState(MOVING_LEFT))	
+		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());	
+	else if (this->movementComponent->getState(MOVING_RIGHT))	
+		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());	
+	else if (this->movementComponent->getState(MOVING_UP))	
+		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());	
+	else if (this->movementComponent->getState(MOVING_DOWN))	
+		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());	
 }
 
 void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
-	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-	//	this->attributeComponent->gainExp(20);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		this->attributeComponent->gainExp(20);
 
 	this->movementComponent->update(dt);
 
