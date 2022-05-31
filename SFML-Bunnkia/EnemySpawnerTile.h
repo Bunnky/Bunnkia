@@ -27,6 +27,7 @@ public:
 	virtual const std::string getAsString() const;
 	const int& getEnemyAmount() const;
 	const int& getEnemyCounter() const;
+	const int& getEnemyType() const;
 	const bool getSpawnTimer();
 
 	void increaseEnemyCounter();

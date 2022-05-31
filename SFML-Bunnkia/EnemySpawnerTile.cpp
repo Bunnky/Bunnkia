@@ -52,6 +52,11 @@ const int& EnemySpawnerTile::getEnemyCounter() const
 	return this->enemyCounter;
 }
 
+const int& EnemySpawnerTile::getEnemyType() const
+{
+	return this->enemyType;
+}
+
 const bool EnemySpawnerTile::getSpawnTimer()
 {
 	if (this->enemySpawnTimer.getElapsedTime().asSeconds() >= this->enemyTimeToSpawn || this->firstSpawn)
