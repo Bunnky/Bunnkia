@@ -82,15 +82,21 @@ void GameState::initFonts()
 //----------------------
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/NEW.png"))
-	{
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
-	}
+	if (!this->textures["PLAYER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/NEW.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";	
 
-	if (!this->textures["GOBLIN_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/goblin.png"))
-	{
+	if (!this->textures["GOBLIN_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/goblin.png"))	
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_GOBLIN_TEXTURE";
-	}
+	
+	if (!this->textures["SKELETON_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/skeleton.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SKELETON_TEXTURE";
+	
+	if (!this->textures["SLIME_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/slime.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SLIME_TEXTURE";
+	
+	if (!this->textures["SPIDER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/spider.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SPIDER_TEXTURE";
+	
 }
 
 //----------------------

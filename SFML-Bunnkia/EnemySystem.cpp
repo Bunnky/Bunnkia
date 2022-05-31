@@ -21,6 +21,18 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 		this->activeEnemies.push_back(new Goblin(xPos, yPos, this->textures["GOBLIN_SHEET"], enemy_spawner_tile, this->player));
 		enemy_spawner_tile.increaseEnemyCounter();
 		break;
+	case EnemyTypes::SKELETON:
+		this->activeEnemies.push_back(new Skeleton(xPos, yPos, this->textures["SKELETON_SHEET"], enemy_spawner_tile, this->player));
+		enemy_spawner_tile.increaseEnemyCounter();
+		break;
+	case EnemyTypes::SLIME:
+		this->activeEnemies.push_back(new Goblin(xPos, yPos, this->textures["SLIME_SHEET"], enemy_spawner_tile, this->player));
+		enemy_spawner_tile.increaseEnemyCounter();
+		break;
+	case EnemyTypes::SPIDER:
+		this->activeEnemies.push_back(new Goblin(xPos, yPos, this->textures["SPIDER_SHEET"], enemy_spawner_tile, this->player));
+		enemy_spawner_tile.increaseEnemyCounter();
+		break;
 	default:
 		std::cout << "ERROR::ENEMYSYSTEM::CREATEENEMY::TYPE DOES NOT EXIST" << "\n";
 		break;

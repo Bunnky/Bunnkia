@@ -191,7 +191,10 @@
     <ClCompile Include="RangedWeapon.cpp" />
     <ClCompile Include="RegularTile.cpp" />
     <ClCompile Include="SettingsState.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkillComponent.cpp" />
+    <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Spider.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -243,7 +246,10 @@
     <ClInclude Include="RegularTile.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SettingsState.h" />
+    <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkillComponent.h" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="Spider.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />

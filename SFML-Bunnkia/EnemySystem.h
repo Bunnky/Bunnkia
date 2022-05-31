@@ -1,10 +1,13 @@
 #ifndef ENEMYSYSTEM_H
 #define ENEMYSYSTEM_H
 
-#include"EnemySpawnerTile.h"
-#include"Goblin.h"
+#include "EnemySpawnerTile.h"
+#include "Goblin.h"
+#include "Skeleton.h"
+#include "Slime.h"
+#include "Spider.h"
 
-enum EnemyTypes { GOBLIN = 0 };
+enum EnemyTypes { GOBLIN = 0, SKELETON, SLIME, SPIDER};
 
 class EnemySystem
 {

@@ -570,8 +570,28 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 					{
 						if (es->getSpawnTimer() && es->getEnemyCounter() < es->getEnemyAmount())
 						{
-							enemySystem.createEnemy(GOBLIN, x * this->gridSizeF, y * this->gridSizeF, *es);
-							std::cout << "Spawned!" << "\n";
+							switch (es->getEnemyType())
+							{
+							case 0:
+								enemySystem.createEnemy(GOBLIN, x * this->gridSizeF, y * this->gridSizeF, *es);
+								std::cout << "Spawned Goblin" << "\n";
+								break;
+							case 1:
+								enemySystem.createEnemy(SKELETON, x * this->gridSizeF, y * this->gridSizeF, *es);
+								std::cout << "Spawned Skeleton" << "\n";
+								break;
+							case 2:
+								enemySystem.createEnemy(SLIME, x * this->gridSizeF, y * this->gridSizeF, *es);
+								std::cout << "Spawned Slime" << "\n";
+								break;
+							case 3:
+								enemySystem.createEnemy(SPIDER, x * this->gridSizeF, y * this->gridSizeF, *es);
+								std::cout << "Spawned Spider" << "\n";
+								break;
+							default:
+								std::cout << "Spawned NULL" << "\n";
+								break;
+							}
 						}
 					}
 				}
