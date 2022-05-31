@@ -138,7 +138,7 @@ void GameState::initDebugText()
 	this->debugText.setFont(this->font);
 	this->debugText.setFillColor(sf::Color::Red);
 	this->debugText.setCharacterSize(12);
-	this->debugText.setPosition(15.f, this->window->getSize().y / 2.f);
+	this->debugText.setPosition(15.f, this->window->getSize().y - 250.f);
 }
 
 //----------------------
@@ -193,33 +193,46 @@ void GameState::initSystems()
 GameState::GameState(StateData* state_data)
 	: State(state_data)
 {
-	std::cout << green << "Initializing Deferred Render" << "\n" << white;
+	std::cout << green << "Initializing Deferred Render..." << "\n" << white;
 	this->initDeferredRender();
-	std::cout << green << "Initializing View" << "\n" << white;
+
+	std::cout << green << "Initializing View..." << "\n" << white;
 	this->initView();
-	std::cout << green << "Initializing Keybinds" << "\n" << white;
+
+	std::cout << green << "Initializing Keybinds..." << "\n" << white;
 	this->initKeybinds();
-	std::cout << green << "Initializing Fonts" << "\n" << white;
+
+	std::cout << green << "Initializing Fonts..." << "\n" << white;
 	this->initFonts();
-	std::cout << green << "Initializing Textures" << "\n" << white;
+
+	std::cout << green << "Initializing Textures..." << "\n" << white;
 	this->initTextures();
-	std::cout << green << "Initializing Pause Menu" << "\n" << white;
+
+	std::cout << green << "Initializing Pause Menu..." << "\n" << white;
 	this->initPauseMenu();
-	std::cout << green << "Initializing Shaders" << "\n" << white;
+
+	std::cout << green << "Initializing Shaders..." << "\n" << white;
 	this->initShaders();
-	std::cout << green << "Initializing Key Time" << "\n" << white;
+
+	std::cout << green << "Initializing Key Time..." << "\n" << white;
 	this->initKeytime();
-	std::cout << yellow << "Initializing Debug Text" << "\n" << white;
+
+	std::cout << yellow << "Initializing Debug Text..." << "\n" << white;
 	this->initDebugText();
-	std::cout << green << "Initializing Players" << "\n" << white;
+
+	std::cout << green << "Initializing Players..." << "\n" << white;
 	this->initPlayers();
-	std::cout << green << "Initializing Player GUI" << "\n" << white;
+
+	std::cout << green << "Initializing Player GUI..." << "\n" << white;
 	this->initPlayerGUI();
-	std::cout << green << "Initializing Enemy System" << "\n" << white;
+
+	std::cout << green << "Initializing Enemy System..." << "\n" << white;
 	this->initEnemySystem();
-	std::cout << green << "Initializing Tile Map" << "\n" << white;
+
+	std::cout << green << "Initializing Tile Map..." << "\n" << white;
 	this->initTileMap();
-	std::cout << green << "Initializing Systems" << "\n" << white;
+
+	std::cout << green << "Initializing Systems..." << "\n" << white;
 	this->initSystems();
 
 	std::cout << blue << "Initializing complete!" << "\n" << white;
@@ -471,10 +484,9 @@ void GameState::render(sf::RenderTarget* target)
 	);
 
 	//Render Enemies
-	for (auto* enemy : this->activeEnemies)
-	{
+	for (auto* enemy : this->activeEnemies)	
 		enemy->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
-	}
+	
 
 	this->player->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
 
