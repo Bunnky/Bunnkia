@@ -26,11 +26,11 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 		enemy_spawner_tile.increaseEnemyCounter();
 		break;
 	case EnemyTypes::SLIME:
-		this->activeEnemies.push_back(new Goblin(xPos, yPos, this->textures["SLIME_SHEET"], enemy_spawner_tile, this->player));
+		this->activeEnemies.push_back(new Slime(xPos, yPos, this->textures["SLIME_SHEET"], enemy_spawner_tile, this->player));
 		enemy_spawner_tile.increaseEnemyCounter();
 		break;
 	case EnemyTypes::SPIDER:
-		this->activeEnemies.push_back(new Goblin(xPos, yPos, this->textures["SPIDER_SHEET"], enemy_spawner_tile, this->player));
+		this->activeEnemies.push_back(new Spider(xPos, yPos, this->textures["SPIDER_SHEET"], enemy_spawner_tile, this->player));
 		enemy_spawner_tile.increaseEnemyCounter();
 		break;
 	default:
