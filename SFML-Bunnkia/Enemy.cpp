@@ -9,6 +9,8 @@ void Enemy::initVariables()
 	this->gainExp = 10;
 	this->damageTimerMax = 1000;
 	this->despawnTimerMax = 1000;
+
+
 }
 
 void Enemy::initAnimations()
@@ -32,14 +34,16 @@ Enemy::~Enemy()
 void Enemy::generateAttributes(const unsigned level)
 {
 	this->gainExp = level * (rand() % 5 + 1);
+
+	// This applies globally
+	//this->movementComponent = new MovementComponent(this->sprite, 10000.f, 1000.f, 100.f);
 }
 
 void Enemy::loseHP(const int hp)
 {
-	if (this->attributeComponent)
-	{
+	if (this->attributeComponent)	
 		this->attributeComponent->loseHP(hp);
-	}
+	
 }
 
 EnemySpawnerTile& Enemy::getEnemySpawnerTile()
@@ -49,10 +53,8 @@ EnemySpawnerTile& Enemy::getEnemySpawnerTile()
 
 const bool Enemy::isDead() const
 {
-	if (this->attributeComponent)
-	{
-		return this->attributeComponent->isDead();
-	}
+	if (this->attributeComponent)	
+		return this->attributeComponent->isDead();	
 
 	return false;
 }
@@ -92,4 +94,7 @@ void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View
 {
 	if (vectorDistance(this->getPosition(), view.getCenter()) < 1000.f)
 		this->despawnTimer.restart();
+
+
+
 }
