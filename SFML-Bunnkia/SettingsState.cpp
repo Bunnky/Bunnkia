@@ -12,10 +12,8 @@ void SettingsState::initVariables()
 
 void SettingsState::initFonts()
 {
-	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
-	{
-		throw("ERROR::SettingsState::COULD NOT LOAD FONT");
-	}
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))	
+		throw("ERROR::SettingsState::COULD NOT LOAD FONT");	
 }
 
 void SettingsState::initKeybinds()
@@ -41,11 +39,9 @@ void SettingsState::initGui()
 
 	//Window Background
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
-
-	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))
-	{
+	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))	
 		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
-	}
+	
 	this->background.setTexture(&this->backgroundTexture);
 
 	//Button Background
@@ -312,10 +308,10 @@ void SettingsState::renderGui(sf::RenderTarget& target)
 		it.second->render(target);
 	}
 
-	for (auto& it : this->dropDownLists)
-	{
-		it.second->render(target);
-	}
+	//for (auto& it : this->dropDownLists)
+	//{
+	//	it.second->render(target);
+	//}
 }
 
 void SettingsState::render(sf::RenderTarget* target)

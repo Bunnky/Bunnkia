@@ -10,10 +10,8 @@ void MainMenuState::initVariables()
 
 void MainMenuState::initFonts()
 {
-	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
-	{
-		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
-	}
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))	
+		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");	
 }
 
 void MainMenuState::initKeybinds()
@@ -66,7 +64,7 @@ void MainMenuState::initGui()
 	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 150));
 
 	//Buttons
-	this->buttons["GAME_STATE"] = new gui::Button(
+	this->buttons["NEW_GAME"] = new gui::Button(
 		gui::p2pX(41.2f, vm), gui::p2pY(28.3f, vm),
 		gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm),
 		&this->font, "New Game", gui::calcCharSize(vm),
@@ -153,9 +151,9 @@ void MainMenuState::updateButtons()
 	}
 
 	//New game
-	if (this->buttons["GAME_STATE"]->isPressed())
+	if (this->buttons["NEW_GAME"]->isPressed())
 	{
-		this->states->push(new GameState(this->stateData));
+		this->states->push(new CharacterSelectState(this->stateData));
 		Sleep(50);
 	}
 
