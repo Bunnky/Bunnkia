@@ -46,23 +46,22 @@ void AttributeComponent::loseEXP(const int exp)
 		this->exp = 0;
 }
 
-//Functions
-std::string AttributeComponent::debugPrint() const
-{
-	std::stringstream ss;
-
-	ss << "Level: " << this->level << "\n"
-		<< "Exp: " << this->exp << "\n"
-		<< "Exp Next: " << this->expNext << "\n"
-		<< "Attp: " << this->attributePoints << "\n";
-
-	return ss.str();
-}
+////Functions
+//std::string AttributeComponent::debugPrint() const
+//{
+//	std::stringstream ss;
+//
+//	ss << "Level: " << this->level << "\n"
+//		<< "Exp: " << this->exp << "\n"
+//		<< "Exp Next: " << this->expNext << "\n"
+//		<< "Attp: " << this->attributePoints << "\n";
+//
+//	return ss.str();
+//}
 
 void AttributeComponent::gainExp(const int exp)
 {
 	this->exp += exp;
-
 	this->updateLevel();
 }
 
@@ -80,10 +79,9 @@ void AttributeComponent::updateStats(const bool reset)
 	this->defense = this->agility * 2 + this->agility / 4 + this->intelligence / 5;
 	this->luck = this->intelligence * 2 + this->intelligence / 5;
 
-	if (reset)
-	{
+	if (reset)	
 		this->hp = this->hpMax;
-	}
+	
 }
 
 void AttributeComponent::updateLevel()
