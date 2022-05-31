@@ -22,6 +22,7 @@ private:
 	gui::TextureSelector* textureSelector;
 	sf::Font font;
 
+
 	int type;
 	int amount;
 	int timeToSpawn;

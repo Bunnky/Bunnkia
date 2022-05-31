@@ -82,7 +82,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		}
 	}
 
-	//Toggle collision
+	//Keybinds
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_UP"))) && this->getKeytime())
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
@@ -90,10 +90,11 @@ void EnemyEditorMode::updateInput(const float& dt)
 			if (this->type > 0)
 				this->type--;
 		}
-		else if (this->type < 1000)
+		else if (this->type < 3)
 			this->type++;
 		else
 			this->type = 0;
+		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("AMOUNT_UP"))) && this->getKeytime())
 	{
@@ -148,12 +149,23 @@ void EnemyEditorMode::updateGui(const float& dt)
 	this->cursorText.setPosition(this->editorStateData->mousePosView->x + 50.f, this->editorStateData->mousePosView->y);
 	this->cursorText.setFillColor(sf::Color::Red);
 
+
+	std::string mType;
+	if (type == 0)
+		mType = "Goblin";
+	else if (type == 1)
+		mType = "Skeleton";
+	else if (type == 2)
+		mType = "Slime";
+	else if (type == 3)
+		mType = "Spider";
+
 	std::stringstream ss;
 	ss <<
 		"\n" << "Spawner Mode" <<
-		"\n" << "Enemy Type: " << this->type <<
+		"\n" << "Enemy Type: " << mType <<
 		"\n" << "Enemy Amount: " << this->amount <<
-		"\n" << "Time to spawn: " << this->timeToSpawn <<
+		"\n" << "Time to spawn: " << this->timeToSpawn << " seconds" <<
 		"\n" << "Max distance: " << maxDistance;
 
 	this->cursorText.setString(ss.str());
