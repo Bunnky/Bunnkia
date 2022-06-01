@@ -19,6 +19,10 @@ private:
 	sf::RectangleShape btnBackground;
 	std::map<std::string, gui::Button*> buttons;
 
+	sf::Text titletext;
+	sf::Text charactertext;
+	
+
 	//===========//
 	// Functions //
 	//===========//

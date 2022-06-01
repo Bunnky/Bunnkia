@@ -39,8 +39,30 @@ void CharacterSelectState::initGui()
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
 	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))	
 		throw"ERROR::CHARACTER_SELECT_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
-
 	this->background.setTexture(&this->backgroundTexture);
+
+	//Character Background
+	this->btnBackground.setSize(
+		sf::Vector2f(
+			static_cast<float>(vm.width - gui::p2pX(20.f, vm)),
+			static_cast<float>(vm.height - gui::p2pY(35.f, vm))
+		)
+	);
+
+	this->btnBackground.setPosition(gui::p2pX(10.f, vm), gui::p2pY(12.f, vm));
+	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 200));
+	this->btnBackground.setOutlineColor(sf::Color(255, 255, 255, 150));
+	this->btnBackground.setOutlineThickness(2);
+
+	//Characters
+	this->buttons["WIZARD"] = new gui::Button(
+		gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		&this->font, "", 8,
+		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
 
 	//Basic Buttons
 	this->buttons["BACK"] = new gui::Button(
@@ -58,6 +80,16 @@ void CharacterSelectState::initGui()
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
+
+	//Text init
+	this->titletext.setFont(this->font);
+	this->titletext.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(4.f, vm)));
+	this->titletext.setCharacterSize(gui::calcCharSize(vm, 60));
+	this->titletext.setFillColor(sf::Color(255, 255, 255, 250));
+	this->titletext.setOutlineColor(sf::Color(0, 0, 0, 250));
+	this->titletext.setOutlineThickness(1);
+	this->titletext.setString("Choose a character ");
+
 }
 
 
@@ -74,6 +106,7 @@ CharacterSelectState::CharacterSelectState(StateData* state_data)
 
 CharacterSelectState::~CharacterSelectState()
 {
+
 	auto it = this->buttons.begin();
 	for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
 	{
@@ -100,6 +133,7 @@ void CharacterSelectState::updateGui(const float& dt)
 	// Start Game
 	if (this->buttons["START"]->isPressed())
 	{
+		this->states->pop();
 		this->states->push(new GameState(this->stateData));
 		Sleep(50);
 	}
@@ -129,6 +163,8 @@ void CharacterSelectState::render(sf::RenderTarget* target)
 	target->draw(this->background);
 	target->draw(this->btnBackground);
 	this->renderGui(*target);
+	target->draw(this->titletext);
+
 
 
 	//DEBUG MOUSE POS

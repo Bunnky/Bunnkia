@@ -52,7 +52,7 @@ void MainMenuState::initGui()
 
 	this->background.setTexture(&this->backgroundTexture);
 
-	//Button Background
+	//Menu Background
 	this->btnBackground.setSize(
 		sf::Vector2f(
 			static_cast<float>(vm.width / 4),
