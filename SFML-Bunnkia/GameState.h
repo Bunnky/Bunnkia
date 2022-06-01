@@ -14,35 +14,29 @@ class GameState :
 	public State
 {
 private:
+
 	FPS fps;
+	PauseMenu* pmenu;
+	Player* player;
+	PlayerGUI* playerGUI;
+	EnemySystem* enemySystem;
+	TileMap* tileMap;
+	TextTagSystem* tts;
+
+	float keyTimeMax;
 
 	sf::View view;
 	sf::Vector2i viewGridPosition;
 	sf::RenderTexture renderTexture;
 	sf::Sprite renderSprite;
-
 	sf::Font font;
-	PauseMenu* pmenu;
-
-	sf::Shader core_shader;
-
 	sf::Clock keyTimer;
-	float keyTimeMax;
-	
-
+	sf::Shader core_shader;
 	sf::Text debugText;
-
-	Player* player;
-	PlayerGUI* playerGUI;
 	sf::Texture texture;
 
 	std::vector<Enemy*> activeEnemies;
-	EnemySystem* enemySystem;
 
-	TileMap* tileMap;
-
-	//Systems
-	TextTagSystem* tts;
 
 	//===========//
 	// Functions //
