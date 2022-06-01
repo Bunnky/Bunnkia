@@ -9,8 +9,6 @@ void Enemy::initVariables()
 	this->gainExp = 10;
 	this->damageTimerMax = 1000;
 	this->despawnTimerMax = 1000;
-
-
 }
 
 void Enemy::initAnimations()
