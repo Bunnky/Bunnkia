@@ -7,7 +7,7 @@
 /SFML-Bunnkia/packages/
 /SFML-Bunnkia/packages.config
 
-/SFML-Bunnkia/Config/graphics.ini
+/SFML-Bunnkia/gamedata/graphics.ini
 
 *.sln
 *.csproj.user
