@@ -89,41 +89,27 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->outlineActiveColor = outline_active_color;
 }
 
+//Character Buttons
 gui::Button::Button(float x, float y, float width, float height,
-	sf::Font* font, std::string text, unsigned character_size,
-	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
+	std::string texture_file,
 	sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
-	sf::Texture spriteTexture,
 	sf::Color outline_idle_color, sf::Color outline_hover_color, sf::Color outline_active_color,
 	short unsigned id)
 {
+
+	this->animationComponent = NULL;
+
+	if (!this->spriteTexture.loadFromFile(texture_file))
+		std::cout << "ERROR::PLAYER::COULD NOT LOAD WEAPON TEXTURE:: " << texture_file << "\n";
+
 	this->buttonState = BTN_IDLE;
 	this->id = id;
-
-	this->spriteShape.setSize(sf::Vector2f(width, height));
-	this->spriteShape.setPosition(sf::Vector2f(x, y));
 
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
 	this->shape.setFillColor(idle_color);
 	this->shape.setOutlineThickness(1.f);
 	this->shape.setOutlineColor(outline_idle_color);
-
-	this->font = font;
-	this->text.setFont(*this->font);
-	this->text.setString(text);
-	this->text.setFillColor(text_idle_color);
-	this->text.setCharacterSize(character_size);
-	this->text.setOutlineColor(sf::Color::Black);
-	this->text.setOutlineThickness(1);
-	this->text.setPosition(
-		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
-		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f + 2
-	);
-
-	this->textIdleColor = text_idle_color;
-	this->textHoverColor = text_hover_color;
-	this->textActiveColor = text_active_color;
 
 	this->idleColor = idle_color;
 	this->hoverColor = hover_color;
@@ -132,6 +118,16 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->outlineIdleColor = outline_idle_color;
 	this->outlineHoverColor = outline_hover_color;
 	this->outlineActiveColor = outline_active_color;
+
+	this->sprite.setTexture(this->spriteTexture);
+	this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+	this->sprite.setScale(2.f, 2.f);
+	this->sprite.setPosition(
+		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
+
+	this->createAnimationComponent(spriteTexture);
+	this->initAnimations();
 
 }
 
@@ -172,6 +168,19 @@ void gui::Button::setID(const short unsigned id)
 	this->id = id;
 }
 
+void gui::Button::initAnimations()
+{
+	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
+	std::cout << "Animations Initialized";	
+}
+
+
+void gui::Button::updateAnimation(const float& dt)
+{
+	this->animationComponent->play("IDLE", dt);
+}
+
+
 //========================================================
 //Functions
 //========================================================
@@ -200,12 +209,20 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->shape.setFillColor(this->idleColor);
 		this->text.setFillColor(this->textIdleColor);
 		this->shape.setOutlineColor(this->outlineIdleColor);
+		this->sprite.setScale(1.5f, 1.5f);
+		this->sprite.setPosition(
+			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
 		break;
 
 	case BTN_HOVER:
 		this->shape.setFillColor(this->hoverColor);
 		this->text.setFillColor(this->textHoverColor);
 		this->shape.setOutlineColor(this->outlineHoverColor);
+		this->sprite.setScale(2.f, 2.f);
+		this->sprite.setPosition(
+			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
 		break;
 
 	case BTN_ACTIVE:
@@ -220,14 +237,26 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->shape.setOutlineColor(sf::Color::Green);
 		break;
 	}
+
 }
 
 void gui::Button::render(sf::RenderTarget& target)
 {
 	target.draw(this->shape);
 	target.draw(this->text);
+	target.draw(this->sprite);
 }
 
+
+void gui::Button::createAnimationComponent(sf::Texture& texture_file)
+{
+	this->animationComponent = new AnimationComponent(this->sprite, texture_file);
+}
+
+AnimationComponent* gui::Button::getAnimationComponent()
+{
+	return this->animationComponent;
+}
 //========================================================
 //
 //Drop down list

@@ -13,10 +13,6 @@ private:
 	//===========//
 	// Variables //
 	//===========//
-
-
-
-
 	sf::RectangleShape background;
 	sf::Texture backgroundTexture;
 	sf::Font font;
@@ -27,6 +23,9 @@ private:
 	sf::Text titletext;
 	sf::Text charactertext;
 
+	sf::Texture spritetexture;
+	sf::Sprite sprite;
+
 
 	//===========//
 	// Functions //
@@ -34,6 +33,7 @@ private:
 	void initVariables();
 	void initFonts();
 	void initKeybinds();
+	void initCharacters();
 
 	void initGui();
 

@@ -36,6 +36,7 @@ void CharacterSelectState::initKeybinds()
 
 void CharacterSelectState::initGui()
 {
+	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
 	/// 
 	/// Title text
 	/// 
@@ -51,46 +52,36 @@ void CharacterSelectState::initGui()
 	///
 	/// Background
 	///
-	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
+
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
+
 	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))	
 		throw"ERROR::CHARACTER_SELECT_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
+
 	this->background.setTexture(&this->backgroundTexture);
+
 	this->btnBackground.setSize(
 		sf::Vector2f(
 			static_cast<float>(vm.width - gui::p2pX(20.f, vm)),
 			static_cast<float>(vm.height - gui::p2pY(35.f, vm))
 		)
 	);
+
 	this->btnBackground.setPosition(gui::p2pX(10.f, vm), gui::p2pY(12.f, vm));
 	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 200));
 	this->btnBackground.setOutlineColor(sf::Color(255, 255, 255, 150));
 	this->btnBackground.setOutlineThickness(2);
 
-	////Characters
-	//this->buttons["WIZARD"] = new gui::Button(
-	//	gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
-	//	gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
-	//	&this->font, "", 8,
-	//	sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-	//	sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0),
-	//	sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
-
 	/// 
 	/// Character Buttons
 	/// 
-	this->buttons["WIZARD"] = new gui::Button(
+
+	this->buttons["ROGUE"] = new gui::Button(
 		gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
-		&this->font, "", 8,
-		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0),
-		this->spriteTexture,
+		"gamedata/Resources/Images/Sprites/Player/rogue.png",
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
-
-	this->spriteShape.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
-	this->spriteShape.setTexture(&this->spriteTexture);
-
 
 
 	/// 
@@ -110,6 +101,7 @@ void CharacterSelectState::initGui()
 		&this->font, "Start!", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
 }
 
 
@@ -151,7 +143,7 @@ void CharacterSelectState::updateGui(const float& dt)
 		this->endState();
 	
 	// Start Game
-	if (this->buttons["START"]->isPressed())
+	if (this->buttons["START"]->isPressed() || this->buttons["ROGUE"]->isPressed())
 	{
 		this->states->pop();
 		this->states->push(new GameState(this->stateData));
@@ -165,6 +157,7 @@ void CharacterSelectState::update(const float& dt)
 	this->updateMousePositions();
 	this->updateInput(dt);
 	this->updateGui(dt);
+
 }
 
 void CharacterSelectState::renderGui(sf::RenderTarget& target)

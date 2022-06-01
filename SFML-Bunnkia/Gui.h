@@ -1,6 +1,12 @@
 #ifndef GUI_H
 #define GUI_H
 
+#include "AnimationComponent.h"
+#include "Entity.h"
+
+
+class Animation;
+
 enum button_states { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 
 namespace gui
@@ -12,6 +18,12 @@ namespace gui
 	class Button
 	{
 	private:
+
+		AnimationComponent* animationComponent;
+		std::map<std::string, Animation*> animations;
+		Animation* lastAnimation;
+		Animation* priorityAnimation;
+
 		short unsigned buttonState;
 		short unsigned id;
 
@@ -31,8 +43,8 @@ namespace gui
 		sf::Color outlineHoverColor;
 		sf::Color outlineActiveColor;
 
-		sf::RectangleShape spriteShape;
 		sf::Texture spriteTexture;
+		sf::Sprite sprite;
 
 	public:
 		Button(float x, float y, float width, float height,
@@ -43,10 +55,8 @@ namespace gui
 			short unsigned id = 0);
 
 		Button(float x, float y, float width, float height,
-			sf::Font* font, std::string text, unsigned character_size,
-			sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
+			std::string texture_file,
 			sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
-			sf::Texture spriteTexture,
 			sf::Color outline_idle_color = sf::Color::Transparent, sf::Color outline_hover_color = sf::Color::Transparent, sf::Color outline_active_color = sf::Color::Transparent,
 			short unsigned id = 0);
 
@@ -58,6 +68,8 @@ namespace gui
 		const bool isPressed() const;
 		const std::string getText() const;
 		const short unsigned& getId() const;
+		virtual AnimationComponent* getAnimationComponent();
+
 
 		//===========//
 		// Modifiers //
@@ -68,6 +80,13 @@ namespace gui
 		//===========//
 		// Functions //
 		//===========//
+		void initAnimations();
+		
+
+		void createAnimationComponent(sf::Texture& texture_file);
+
+
+		void updateAnimation(const float& dt);
 		void update(const sf::Vector2i& mousePosWindow);
 		void render(sf::RenderTarget& target);
 	};
