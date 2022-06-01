@@ -3,17 +3,22 @@
 
 #include "GameState.h"
 #include "Gui.h"
+#include "AnimationComponent.h"
 
 class CharacterSelectState :
     public State
 {
 private:
+
 	//===========//
 	// Variables //
 	//===========//
 
-	sf::Texture backgroundTexture;
+
+
+
 	sf::RectangleShape background;
+	sf::Texture backgroundTexture;
 	sf::Font font;
 
 	sf::RectangleShape btnBackground;
@@ -21,7 +26,7 @@ private:
 
 	sf::Text titletext;
 	sf::Text charactertext;
-	
+
 
 	//===========//
 	// Functions //

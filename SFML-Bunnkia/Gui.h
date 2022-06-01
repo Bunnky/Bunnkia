@@ -31,11 +31,22 @@ namespace gui
 		sf::Color outlineHoverColor;
 		sf::Color outlineActiveColor;
 
+		sf::RectangleShape spriteShape;
+		sf::Texture spriteTexture;
+
 	public:
 		Button(float x, float y, float width, float height,
 			sf::Font* font, std::string text, unsigned character_size,
 			sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
 			sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
+			sf::Color outline_idle_color = sf::Color::Transparent, sf::Color outline_hover_color = sf::Color::Transparent, sf::Color outline_active_color = sf::Color::Transparent,
+			short unsigned id = 0);
+
+		Button(float x, float y, float width, float height,
+			sf::Font* font, std::string text, unsigned character_size,
+			sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
+			sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
+			sf::Texture spriteTexture,
 			sf::Color outline_idle_color = sf::Color::Transparent, sf::Color outline_hover_color = sf::Color::Transparent, sf::Color outline_active_color = sf::Color::Transparent,
 			short unsigned id = 0);
 

@@ -7,6 +7,7 @@
 //========================================================
 void CharacterSelectState::initVariables()
 {
+
 }
 
 void CharacterSelectState::initFonts()
@@ -35,36 +36,66 @@ void CharacterSelectState::initKeybinds()
 
 void CharacterSelectState::initGui()
 {
+	/// 
+	/// Title text
+	/// 
+	this->titletext.setFont(this->font);
+	this->titletext.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(4.f, vm)));
+	this->titletext.setCharacterSize(gui::calcCharSize(vm, 60));
+	this->titletext.setFillColor(sf::Color(255, 255, 255, 250));
+	this->titletext.setOutlineColor(sf::Color(0, 0, 0, 250));
+	this->titletext.setOutlineThickness(1);
+	this->titletext.setString("Choose a character ");
+
+
+	///
+	/// Background
+	///
 	const sf::VideoMode& vm = this->stateData->gfxSettings->resolution;
 	this->background.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
 	if (!this->backgroundTexture.loadFromFile("gamedata/Resources/Images/Backgrounds/bg1.bmp"))	
 		throw"ERROR::CHARACTER_SELECT_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
 	this->background.setTexture(&this->backgroundTexture);
-
-	//Character Background
 	this->btnBackground.setSize(
 		sf::Vector2f(
 			static_cast<float>(vm.width - gui::p2pX(20.f, vm)),
 			static_cast<float>(vm.height - gui::p2pY(35.f, vm))
 		)
 	);
-
 	this->btnBackground.setPosition(gui::p2pX(10.f, vm), gui::p2pY(12.f, vm));
 	this->btnBackground.setFillColor(sf::Color(10, 10, 10, 200));
 	this->btnBackground.setOutlineColor(sf::Color(255, 255, 255, 150));
 	this->btnBackground.setOutlineThickness(2);
 
-	//Characters
+	////Characters
+	//this->buttons["WIZARD"] = new gui::Button(
+	//	gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
+	//	gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+	//	&this->font, "", 8,
+	//	sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+	//	sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0),
+	//	sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	/// 
+	/// Character Buttons
+	/// 
 	this->buttons["WIZARD"] = new gui::Button(
 		gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
 		&this->font, "", 8,
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0),
+		this->spriteTexture,
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
 
+	this->spriteShape.setSize(sf::Vector2f(static_cast<float>(vm.width), static_cast<float>(vm.height)));
+	this->spriteShape.setTexture(&this->spriteTexture);
 
-	//Basic Buttons
+
+
+	/// 
+	/// Basic Buttons
+	/// 
 	this->buttons["BACK"] = new gui::Button(
 		gui::p2pX(34.3f, vm), gui::p2pY(82.5f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(6.6f, vm),
@@ -79,17 +110,6 @@ void CharacterSelectState::initGui()
 		&this->font, "Start!", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
-
-
-	//Text init
-	this->titletext.setFont(this->font);
-	this->titletext.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(4.f, vm)));
-	this->titletext.setCharacterSize(gui::calcCharSize(vm, 60));
-	this->titletext.setFillColor(sf::Color(255, 255, 255, 250));
-	this->titletext.setOutlineColor(sf::Color(0, 0, 0, 250));
-	this->titletext.setOutlineThickness(1);
-	this->titletext.setString("Choose a character ");
-
 }
 
 
@@ -137,6 +157,7 @@ void CharacterSelectState::updateGui(const float& dt)
 		this->states->push(new GameState(this->stateData));
 		Sleep(50);
 	}
+
 }
 
 void CharacterSelectState::update(const float& dt)
