@@ -23,7 +23,7 @@ private:
 		TextTag(sf::Font& font, std::string text,
 			float pos_x, float pos_y,
 			float dir_x, float dir_y,
-			sf::Color color,
+			sf::Color color, float scale, sf::Color outline, int outline_thickness,
 			unsigned char_size,
 			float lifetime, bool reverse, float speed,
 			float acceleration, int fade_value)
@@ -33,6 +33,10 @@ private:
 			this->text.setFillColor(color);
 			this->text.setCharacterSize(char_size);
 			this->text.setString(text);
+			this->text.setScale(scale, scale);
+			this->text.setOutlineThickness(outline_thickness);
+			this->text.setOutlineColor(outline);
+			this->text.setStyle(sf::Text::Bold);
 
 			this->dirX = dir_x;
 			this->dirY = dir_y;
@@ -124,6 +128,15 @@ private:
 							this->text.getFillColor().g,
 							this->text.getFillColor().b,
 							this->text.getFillColor().a - this->fadeValue
+						)
+					);
+					this->text.setOutlineColor
+					(
+						sf::Color(
+							this->text.getOutlineColor().r,
+							this->text.getOutlineColor().g,
+							this->text.getOutlineColor().b,
+							this->text.getOutlineColor().a - this->fadeValue
 						)
 					);
 				}

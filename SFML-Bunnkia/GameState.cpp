@@ -116,10 +116,9 @@ void GameState::initPauseMenu()
 //----------------------
 void GameState::initShaders()
 {
-	if (!this->core_shader.loadFromFile("gamedata/vertex_shader.vert", "gamedata/fragment_shader.frag"))
-	{
+	if (!this->core_shader.loadFromFile("gamedata/vertex_shader.vert", "gamedata/fragment_shader.frag"))	
 		std::cout << "ERROR::GAMESTATE::COULD NOT LOAD SHADER." << "\n";
-	}
+	
 }
 
 //----------------------
@@ -148,7 +147,7 @@ void GameState::initDebugText()
 void GameState::initPlayers()
 {
 	//Player Start Position
-	this->player = new Player(132, 161, this->textures["PLAYER_SHEET"]);
+	this->player = new Player(150, 200, this->textures["PLAYER_SHEET"]);
 }
 
 //----------------------
@@ -172,8 +171,6 @@ void GameState::initEnemySystem()
 //----------------------
 void GameState::initTileMap()
 {
-	//this->tileMap = new TileMap(this->stateData->gridSize, 100, 100, "gamedata/Resources/Images/Tiles/tileSheet.png");
-	//this->tileMap->loadFromFile("gamedata/level.slmp");
 	this->tileMap = new TileMap("gamedata/level.slmp");
 }
 
@@ -182,8 +179,7 @@ void GameState::initTileMap()
 //----------------------
 void GameState::initSystems()
 {
-	//Damage numbers Font
-	this->tts = new TextTagSystem("gamedata/Fonts/lucon.ttf");
+	this->tts = new TextTagSystem("gamedata/Fonts/Dosis.ttf");
 }
 
 //========================================================
@@ -323,16 +319,28 @@ void GameState::updatePlayerInput(const float& dt)
 		this->player->move(-1.f, 0.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
 		this->player->move(1.f, 0.f, dt);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
-	{
-		this->player->move(0.f, -1.f, dt);
-		//if (this->getKeytime())
-		//	this->player->gainEXP(10);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-	{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))	
+		this->player->move(0.f, -1.f, dt);	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))	
 		this->player->move(0.f, 1.f, dt);
+
+	///
+	/// Dev Controls
+	/// 
+	
+	// Gain XP
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && this->getKeytime())	
+			this->player->getAttributeComponent()->gainExp(20);
+
+	// Hard Reset Game
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && this->getKeytime())
+	{
+		this->states->pop();
+		this->states->push(new GameState(this->stateData));
 	}
+	
+		
+	
 }
 
 void GameState::updatePlayerGUI(const float& dt)
@@ -360,6 +368,7 @@ void GameState::updateTileMap(const float& dt)
 
 void GameState::updatePlayer(const float& dt)
 {
+	//Look here for weird char positioning bug
 	this->player->update(dt, this->mousePosView, this->view);
 }
 
@@ -382,7 +391,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
 		if (enemy->isDead())
 		{
 			this->player->gainEXP(enemy->getGainExp());
-			this->tts->addTextTag(EXPERIENCE_TAG, this->player->getPosition().x - 40.f, this->player->getPosition().y - 30.f, static_cast<int>(enemy->getGainExp()), "+", "xp");
+			this->tts->addTextTag(EXPERIENCE_TAG, this->player->getCenter().x - 8, this->player->getCenter().y - 30.f, static_cast<int>(enemy->getGainExp()), "+", "EXP");
 
 			this->enemySystem->removeEnemy(index);
 			continue;
