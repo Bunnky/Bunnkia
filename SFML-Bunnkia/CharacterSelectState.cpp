@@ -147,7 +147,6 @@ void CharacterSelectState::updateGui(const float& dt)
 	{
 		this->states->pop();
 		this->states->push(new GameState(this->stateData));
-		Sleep(50);
 	}
 
 }
