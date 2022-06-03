@@ -9,7 +9,7 @@ void Player::initVariables()
 	this->initAttack = false;
 	this->attacking = false;
 	this->weapon = new Sword(1, 2, 5, 60, 20, "gamedata/Resources/Images/Sprites/Player/sword4.png");
-	this->weapon->generate(1, 3);
+	this->weapon->generate(1, 6001);
 
 	this->damageTimerMax = 500;
 }
@@ -57,7 +57,6 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 
 	this->setPosition(x, y);
 	this->initAnimations();
-
 	this->initInventory();
 }
 
@@ -181,8 +180,8 @@ void Player::updateAnimation(const float& dt)
 
 void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		this->attributeComponent->gainExp(20);
+	/*if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		this->attributeComponent->gainExp(20);*/
 
 	this->movementComponent->update(dt);
 
