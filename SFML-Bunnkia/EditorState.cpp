@@ -48,10 +48,8 @@ void EditorState::initView()
 //----------------------
 void EditorState::initFonts()
 {
-	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))
-	{
-		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
-	}
+	if (!this->font.loadFromFile("gamedata/Fonts/The Impostor.ttf"))	
+		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");	
 }
 
 //----------------------
@@ -88,7 +86,6 @@ void EditorState::initPauseMenu()
 	this->pmenu->addButton("LOAD", gui::p2pY(66.7f, vm), gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm), gui::calcCharSize(vm), "Load");
 	this->pmenu->addButton("QUIT", gui::p2pY(83.3f, vm), gui::p2pX(18.7f, vm), gui::p2pY(6.6f, vm), gui::calcCharSize(vm), "Quit");
 }
-
 //----------------------
 //Initialize Buttons
 //----------------------
@@ -171,6 +168,7 @@ EditorState::~EditorState()
 	}
 
 	delete this->pmenu;
+	delete this->loadscreen;
 	delete this->tileMap;
 
 	for (size_t i = 0; i < this->modes.size(); i++)
@@ -196,51 +194,35 @@ void EditorState::updateInput(const float& dt)
 void EditorState::updateEditorInput(const float& dt)
 {
 	//Move view
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_UP"))))
-	{
-		this->view.move(0.f, -this->cameraSpeed * dt);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_DOWN"))))
-	{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_UP"))))	
+		this->view.move(0.f, -this->cameraSpeed * dt);	
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_DOWN"))))	
 		this->view.move(0.f, this->cameraSpeed * dt);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_LEFT"))))
-	{
-		this->view.move(-this->cameraSpeed * dt, 0.f);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_RIGHT"))))
-	{
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_LEFT"))))	
+		this->view.move(-this->cameraSpeed * dt, 0.f);	
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_RIGHT"))))	
 		this->view.move(this->cameraSpeed * dt, 0.f);
-	}
 
+	//Set tile placing mode
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_UP"))) && this->getKeytime())
 	{
-		if (this->activeMode < this->modes.size() - 1)
-		{
-			this->activeMode++;
-		}
-		else
-		{
-			std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE UP!" << "\n";
-		}
+		if (this->activeMode < this->modes.size() - 1)		
+			this->activeMode++;		
+		else		
+			std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE UP!" << "\n";		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE_DOWN"))) && this->getKeytime())
 	{
-		if (this->activeMode > 0)
-		{
-			this->activeMode--;
-		}
-		else
-		{
-			std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE DOWN!" << "\n";
-		}
+		if (this->activeMode > 0)		
+			this->activeMode--;		
+		else		
+			std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE DOWN!" << "\n";		
 	}
 }
 
 void EditorState::updateButtons()
 {
-	/*Updates all the buttons the the state and handles their functionality*/
-
 	for (auto& it : this->buttons)
 	{
 		it.second->update(this->mousePosWindow);
@@ -292,8 +274,8 @@ void EditorState::update(const float& dt)
 	this->updateMousePositions(&this->view);
 	this->updateKeytime(dt);
 	this->updateInput(dt);
-
 	this->updateHelpText(dt);
+	
 
 	if (!this->paused) //Unpaused
 	{

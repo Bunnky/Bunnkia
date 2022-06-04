@@ -4,6 +4,7 @@
 #include"State.h"
 #include"Gui.h"
 #include "PauseMenu.h"
+#include "LoadingScreen.h"
 #include "TileMap.h"
 #include "EditorModes.h"
 
@@ -28,21 +29,19 @@ private:
 	// Variables //
 	//===========//
 	EditorStateData editorStateData;
+	PauseMenu* pmenu;
+	TileMap* tileMap;
+
+	float cameraSpeed;
+	unsigned activeMode;
 
 	sf::View view;
-	float cameraSpeed;
 	sf::Font font;
-	PauseMenu* pmenu;
-
 	sf::RenderTexture renderTexture;
 	sf::Text helpText;
 
 	std::map<std::string, gui::Button*> buttons;
-
-	TileMap* tileMap;
-
 	std::vector<EditorMode*> modes;
-	unsigned activeMode;
 
 	//===========//
 	// Functions //
@@ -53,6 +52,7 @@ private:
 	void initFonts();
 	void initKeybinds();
 	void initPauseMenu();
+	void initLoadingScreen();
 	void initButtons();
 	void initTileMap();
 	void initGui();

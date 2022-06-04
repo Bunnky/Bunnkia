@@ -338,6 +338,11 @@ void GameState::updatePlayerInput(const float& dt)
 		this->states->pop();
 		this->states->push(new GameState(this->stateData));
 	}
+
+	// Show Loading screen
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && this->getKeytime())
+	{
+	}
 	
 		
 	
