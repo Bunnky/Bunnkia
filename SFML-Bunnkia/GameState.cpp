@@ -73,9 +73,13 @@ void GameState::initFonts()
 //----------------------
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/NEW.png"))	
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";	
+	//Player Textures
 
+	if (!this->textures["ROGUE_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/warriorSheet.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_ROGUE_TEXTURE";	
+	
+
+	// Enemy Textures
 	if (!this->textures["GOBLIN_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/goblin.png"))	
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_GOBLIN_TEXTURE";
 	

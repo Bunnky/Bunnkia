@@ -189,7 +189,7 @@ void gui::Button::setID(const short unsigned id)
 void gui::Button::initAnimations()
 {
 	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
-	std::cout << "Animations Initialized";	
+	std::cout << "Animations Initialized" << "\n";
 }
 
 

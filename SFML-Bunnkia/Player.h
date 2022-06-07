@@ -5,6 +5,9 @@
 #include "Items.h"
 #include "Inventory.h"
 
+
+enum CharacterTypes { ROGUE = 0, WARRIOR, MAGE, RANGER };
+
 class Entity;
 
 class Player :
@@ -15,10 +18,11 @@ private:
 	// Variables //
 	//===========//
 	Inventory* inventory;
+	Weapon* weapon;
 
 	bool initAttack;
 	bool attacking;
-	Weapon* weapon;
+
 
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
@@ -43,9 +47,7 @@ public:
 
 	const std::string toStringCharacterTab() const;
 	const bool& getInitAttack() const;
-
 	const bool getDamageTimer();
-
 	const unsigned getDamage() const;
 
 	//Modifiers

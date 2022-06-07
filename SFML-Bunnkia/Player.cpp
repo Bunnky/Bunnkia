@@ -22,11 +22,10 @@ void Player::initAnimations()
 {
 	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
 	this->animationComponent->addAnimation("WALK_LEFT", 6.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 4, 1, 7, 1, 32, 32);
 	this->animationComponent->addAnimation("WALK_DOWN", 6.f, 0, 1, 3, 1, 32, 32);
+	this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 4, 1, 7, 1, 32, 32);
 	this->animationComponent->addAnimation("WALK_UP", 6.f, 4, 1, 7, 1, 32, 32);
 	this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 4, 2, 32 * 2, 32);
-
 	//========================================================
 	//CHANGE THESE IF WE WANT TO DO DIRECTIONAL PLAYER SPRITES
 	//========================================================
@@ -35,6 +34,9 @@ void Player::initAnimations()
 	//this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 0, 1, 3, 1, 32, 32);
 	//this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 1, 3, 1, 32, 32);
 }
+
+
+
 
 void Player::initInventory()
 {
@@ -81,8 +83,7 @@ Weapon* Player::getWeapon() const
 const std::string Player::toStringCharacterTab() const
 {
 	std::stringstream ss;
-	
-	
+
 	const AttributeComponent* ac = this->attributeComponent;
 	const Weapon* w = this->weapon;
 
@@ -164,18 +165,17 @@ void Player::updateAnimation(const float& dt)
 {
 	if (this->attacking)
 	{
-
 	}
-	if (this->movementComponent->getState(IDLE))	
-		this->animationComponent->play("IDLE", dt);	
-	else if (this->movementComponent->getState(MOVING_LEFT))	
-		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());	
-	else if (this->movementComponent->getState(MOVING_RIGHT))	
-		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());	
-	else if (this->movementComponent->getState(MOVING_UP))	
-		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());	
-	else if (this->movementComponent->getState(MOVING_DOWN))	
-		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());	
+	if (this->movementComponent->getState(IDLE))
+		this->animationComponent->play("IDLE", dt);
+	else if (this->movementComponent->getState(MOVING_LEFT))
+		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	else if (this->movementComponent->getState(MOVING_RIGHT))
+		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	else if (this->movementComponent->getState(MOVING_UP))
+		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+	else if (this->movementComponent->getState(MOVING_DOWN))
+		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
 }
 
 void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
