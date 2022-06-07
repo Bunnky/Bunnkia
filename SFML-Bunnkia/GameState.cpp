@@ -75,10 +75,8 @@ void GameState::initTextures()
 {
 	//Player Textures
 
-	if (!this->textures["ROGUE_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/rogueSheet.png"))	
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_ROGUE_TEXTURE";
-	if (!this->textures["WARRIOR_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/warriorSheet.png"))
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_WARRIOR_TEXTURE";
+	if (!this->textures["ROGUE_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/warriorSheet.png"))	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_ROGUE_TEXTURE";	
 	
 
 	// Enemy Textures
@@ -143,7 +141,7 @@ void GameState::initDebugText()
 void GameState::initPlayers()
 {
 	//Player Start Position
-	this->player = new Player(150, 200, this->textures["WARRIOR_SHEET"]);
+	this->player = new Player(150, 200, this->textures["PLAYER_SHEET"]);
 }
 
 //----------------------

@@ -15,9 +15,10 @@ class GameState :
 {
 private:
 
+	Player* player;
+
 	FPS fps;
 	PauseMenu* pmenu;
-	Player* player;
 	PlayerGUI* playerGUI;
 	EnemySystem* enemySystem;
 	TileMap* tileMap;
