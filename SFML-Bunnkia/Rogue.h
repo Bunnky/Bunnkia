@@ -1,13 +1,14 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ROGUE_H
+#define ROGUE_H
 
 #include "Entity.h"
 #include "Items.h"
 #include "Inventory.h"
 
+
 class Entity;
 
-class Player :
+class Rogue :
 	public Entity
 {
 private:
@@ -33,8 +34,8 @@ private:
 	void initInventory();
 
 public:
-	Player(float x, float y, sf::Texture& texture_sheet);
-	virtual ~Player();
+	Rogue(float x, float y, sf::Texture& texture_sheet);
+	virtual ~Rogue();
 
 	//===========//
 	// Accessors //
@@ -64,4 +65,5 @@ public:
 	void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f light_position = sf::Vector2f(), const bool show_hitbox = false);
 };
 
-#endif
+#endif //ROGUE_H
+

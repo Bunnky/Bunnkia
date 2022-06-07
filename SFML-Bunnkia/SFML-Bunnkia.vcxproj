@@ -192,6 +192,7 @@
     <ClCompile Include="PlayerGUITabs.cpp" />
     <ClCompile Include="RangedWeapon.cpp" />
     <ClCompile Include="RegularTile.cpp" />
+    <ClCompile Include="Rogue.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkillComponent.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="RangedWeapon.h" />
     <ClInclude Include="RegularTile.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Rogue.h" />
     <ClInclude Include="SettingsState.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkillComponent.h" />
