@@ -92,6 +92,8 @@ gui::Button::Button(float x, float y, float width, float height,
 //Character Buttons
 gui::Button::Button(float x, float y, float width, float height,
 	std::string texture_file,
+	sf::Font* font, std::string text, unsigned character_size,
+	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
 	sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
 	sf::Color outline_idle_color, sf::Color outline_hover_color, sf::Color outline_active_color,
 	short unsigned id)
@@ -111,6 +113,10 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->shape.setOutlineThickness(1.f);
 	this->shape.setOutlineColor(outline_idle_color);
 
+	this->textIdleColor = text_idle_color;
+	this->textHoverColor = text_hover_color;
+	this->textActiveColor = text_active_color;
+
 	this->idleColor = idle_color;
 	this->hoverColor = hover_color;
 	this->activeColor = active_color;
@@ -119,12 +125,24 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->outlineHoverColor = outline_hover_color;
 	this->outlineActiveColor = outline_active_color;
 
-	this->sprite.setTexture(this->spriteTexture);
-	this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-	this->sprite.setScale(2.f, 2.f);
-	this->sprite.setPosition(
-		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
+	this->font = font;
+	this->text.setFont(*this->font);
+	this->text.setString(text);
+	this->text.setCharacterSize(character_size);
+	this->text.setOutlineColor(sf::Color::Black);
+	this->text.setOutlineThickness(1);
+	this->text.setPosition(
+		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
+		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) + this->text.getGlobalBounds().height + 12
+	);
+
+	//this->sprite.setTexture(this->spriteTexture);
+	//this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+	//this->sprite.setScale(2.f, 2.f);
+	//this->sprite.setPosition(
+	//	this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+	//	this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
+
 
 	this->createAnimationComponent(spriteTexture);
 	this->initAnimations();
@@ -212,7 +230,7 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->sprite.setScale(1.5f, 1.5f);
 		this->sprite.setPosition(
 			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
+			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
 		break;
 
 	case BTN_HOVER:
@@ -222,7 +240,7 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->sprite.setScale(2.f, 2.f);
 		this->sprite.setPosition(
 			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
+			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
 		break;
 
 	case BTN_ACTIVE:

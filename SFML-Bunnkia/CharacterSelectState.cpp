@@ -40,13 +40,13 @@ void CharacterSelectState::initGui()
 	/// 
 	/// Title text
 	/// 
-	this->titletext.setFont(this->font);
-	this->titletext.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(4.f, vm)));
-	this->titletext.setCharacterSize(gui::calcCharSize(vm, 60));
-	this->titletext.setFillColor(sf::Color(255, 255, 255, 250));
-	this->titletext.setOutlineColor(sf::Color(0, 0, 0, 250));
-	this->titletext.setOutlineThickness(1);
-	this->titletext.setString("Choose a character ");
+	this->titleText.setFont(this->font);
+	this->titleText.setPosition(sf::Vector2f(gui::p2pX(30.f, vm), gui::p2pY(4.f, vm)));
+	this->titleText.setCharacterSize(gui::calcCharSize(vm, 60));
+	this->titleText.setFillColor(sf::Color(255, 255, 255, 250));
+	this->titleText.setOutlineColor(sf::Color(0, 0, 0, 250));
+	this->titleText.setOutlineThickness(1);
+	this->titleText.setString("Choose a character ");
 
 
 	///
@@ -76,12 +76,117 @@ void CharacterSelectState::initGui()
 	/// Character Buttons
 	/// 
 
+	// TOP ROW
 	this->buttons["ROGUE"] = new gui::Button(
-		gui::p2pX(15.f, vm), gui::p2pY(15.f, vm),
+		gui::p2pX(15.f, vm), gui::p2pY(19.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
 		"gamedata/Resources/Images/Sprites/Player/rogue.png",
+		&this->font, "Rogue", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
 		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_ONE"] = new gui::Button(
+		gui::p2pX(34.f, vm), gui::p2pY(19.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_TWO"] = new gui::Button(
+		gui::p2pX(53.f, vm), gui::p2pY(19.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_THREE"] = new gui::Button(
+		gui::p2pX(72.f, vm), gui::p2pY(19.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	// MIDDLE ROW
+	this->buttons["PLACEHOLDER_FOUR"] = new gui::Button(
+		gui::p2pX(15.f, vm), gui::p2pY(38.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_FIVE"] = new gui::Button(
+		gui::p2pX(34.f, vm), gui::p2pY(38.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_SIX"] = new gui::Button(
+		gui::p2pX(53.f, vm), gui::p2pY(38.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_SEVEN"] = new gui::Button(
+		gui::p2pX(72.f, vm), gui::p2pY(38.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	// BOTTOM ROW
+	this->buttons["PLACEHOLDER_EIGHT"] = new gui::Button(
+		gui::p2pX(15.f, vm), gui::p2pY(57.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_NINE"] = new gui::Button(
+		gui::p2pX(34.f, vm), gui::p2pY(57.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_TEN"] = new gui::Button(
+		gui::p2pX(53.f, vm), gui::p2pY(57.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
+	this->buttons["PLACEHOLDER_ELEVEN"] = new gui::Button(
+		gui::p2pX(72.f, vm), gui::p2pY(57.f, vm),
+		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
+		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
+		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
+		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
+		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
 
 
 	/// 
@@ -176,7 +281,7 @@ void CharacterSelectState::render(sf::RenderTarget* target)
 	target->draw(this->background);
 	target->draw(this->btnBackground);
 	this->renderGui(*target);
-	target->draw(this->titletext);
+	target->draw(this->titleText);
 
 
 

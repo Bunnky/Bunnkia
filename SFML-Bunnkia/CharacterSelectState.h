@@ -20,8 +20,7 @@ private:
 	sf::RectangleShape btnBackground;
 	std::map<std::string, gui::Button*> buttons;
 
-	sf::Text titletext;
-	sf::Text charactertext;
+	sf::Text titleText;
 
 	sf::Texture spritetexture;
 	sf::Sprite sprite;
@@ -33,7 +32,6 @@ private:
 	void initVariables();
 	void initFonts();
 	void initKeybinds();
-	void initCharacters();
 
 	void initGui();
 
