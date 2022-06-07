@@ -12,27 +12,32 @@ class EnemySpawner;
 class TileMap
 {
 private:
-	void clear();
 
-	float gridSizeF;
-	int gridSizeI;
-	sf::Vector2i maxSizeWorldGrid;
-	sf::Vector2f maxSizeWorldF;
-	int layers;
-	std::vector< std::vector< std::vector< std::vector<Tile*> > > > map;
-	std::stack<Tile*> deferredRenderStack;
-	std::string textureFile;
-	sf::Texture tileSheet;
-	sf::RectangleShape collisionBox;
-
-	//===========//
-	//  Culling  //
-	//===========//
 	int fromX;
 	int toX;
 	int fromY;
 	int toY;
 	int layer;
+	float gridSizeF;
+	int gridSizeI;
+	int layers;
+
+	bool saving;
+	bool loading;
+
+	std::vector< std::vector< std::vector< std::vector<Tile*> > > > map;
+	std::stack<Tile*> deferredRenderStack;
+	std::string textureFile;
+
+	sf::Texture tileSheet;
+	sf::RectangleShape collisionBox;
+	sf::Vector2i maxSizeWorldGrid;
+	sf::Vector2f maxSizeWorldF;
+
+	sf::Text loadingText;
+	sf::Text savingText;
+
+	void clear();
 
 public:
 	TileMap(float gridSize, int width, int height, std::string texture_file);

@@ -15,7 +15,6 @@ State::State(StateData* state_data)
 	this->keytime = 0.f;
 	this->keytimeMax = 10.f;
 	this->gridSize = state_data->gridSize;
-	this->loading = false;
 }
 
 State::~State()
@@ -57,16 +56,6 @@ void State::pausedState()
 void State::unpausedState()
 {
 	this->paused = false;
-}
-
-void State::loadingState()
-{
-	this->loading = true;
-}
-
-void State::doneLoadingState()
-{
-	this->loading = false;
 }
 
 void State::updateMousePositions(sf::View* view)

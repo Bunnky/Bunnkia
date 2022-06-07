@@ -168,7 +168,6 @@ EditorState::~EditorState()
 	}
 
 	delete this->pmenu;
-	delete this->loadscreen;
 	delete this->tileMap;
 
 	for (size_t i = 0; i < this->modes.size(); i++)

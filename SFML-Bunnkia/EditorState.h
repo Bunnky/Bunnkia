@@ -4,7 +4,6 @@
 #include"State.h"
 #include"Gui.h"
 #include "PauseMenu.h"
-#include "LoadingScreen.h"
 #include "TileMap.h"
 #include "EditorModes.h"
 
@@ -52,7 +51,6 @@ private:
 	void initFonts();
 	void initKeybinds();
 	void initPauseMenu();
-	void initLoadingScreen();
 	void initButtons();
 	void initTileMap();
 	void initGui();

@@ -13,20 +13,10 @@
 //----------------------
 void GameState::initDeferredRender()
 {
-	this->renderTexture.create(
-		this->stateData->gfxSettings->resolution.width,
-		this->stateData->gfxSettings->resolution.height
-	);
+	this->renderTexture.create(this->stateData->gfxSettings->resolution.width, this->stateData->gfxSettings->resolution.height);
 
 	this->renderSprite.setTexture(this->renderTexture.getTexture());
-	this->renderSprite.setTextureRect(
-		sf::IntRect(
-			0,
-			0,
-			this->stateData->gfxSettings->resolution.width,
-			this->stateData->gfxSettings->resolution.height
-		)
-	);
+	this->renderSprite.setTextureRect(sf::IntRect(0, 0,	this->stateData->gfxSettings->resolution.width,	this->stateData->gfxSettings->resolution.height));
 }
 
 //----------------------
@@ -338,14 +328,6 @@ void GameState::updatePlayerInput(const float& dt)
 		this->states->pop();
 		this->states->push(new GameState(this->stateData));
 	}
-
-	// Show Loading screen
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && this->getKeytime())
-	{
-	}
-	
-		
-	
 }
 
 void GameState::updatePlayerGUI(const float& dt)
@@ -486,22 +468,13 @@ void GameState::render(sf::RenderTarget* target)
 		target = this->window;
 
 	this->renderTexture.clear();
-
 	this->renderTexture.setView(this->view);
 
-	this->tileMap->render
-	(
-		this->renderTexture,
-		this->viewGridPosition,
-		&this->core_shader,
-		this->player->getCenter(),
-		false
-	);
+	this->tileMap->render( this->renderTexture,	this->viewGridPosition,	&this->core_shader,	this->player->getCenter(), false);
 
 	//Render Enemies
 	for (auto* enemy : this->activeEnemies)	
-		enemy->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
-	
+		enemy->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);	
 
 	this->player->render(this->renderTexture, &this->core_shader, this->player->getCenter(), false);
 

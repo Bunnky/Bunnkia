@@ -3,7 +3,6 @@
 
 #include"State.h"
 #include"PauseMenu.h"
-#include"LoadingScreen.h"
 #include"TileMap.h"
 #include"PlayerGUI.h"
 #include"Sword.h"

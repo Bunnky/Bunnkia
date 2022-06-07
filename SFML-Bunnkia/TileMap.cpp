@@ -104,9 +104,6 @@ TileMap::~TileMap()
 //Accessors
 //
 //========================================================
-//----------------------
-//tileEmpty
-//----------------------
 const bool TileMap::tileEmpty(const int x, const int y, const int z) const
 {
 	if (x >= 0 && x < this->maxSizeWorldGrid.x &&
@@ -119,17 +116,11 @@ const bool TileMap::tileEmpty(const int x, const int y, const int z) const
 	return false;
 }
 
-//----------------------
-//getTileSheet
-//----------------------
 const sf::Texture* TileMap::getTileSheet() const
 {
 	return &this->tileSheet;
 }
 
-//----------------------
-//getLayerSize
-//----------------------
 const int TileMap::getLayerSize(const int x, const int y, const int layer) const
 {
 	if (x >= 0 && x < static_cast<int>(this->map.size()))
@@ -146,17 +137,11 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
 	return -1;
 }
 
-//----------------------
-//getMaxSizeGrid
-//----------------------
 const sf::Vector2i& TileMap::getMaxSizeGrid() const
 {
 	return this->maxSizeWorldGrid;
 }
 
-//----------------------
-//getMaxSizeF
-//----------------------
 const sf::Vector2f& TileMap::getMaxSizeF() const
 {
 	return this->maxSizeWorldF;
@@ -264,6 +249,16 @@ void TileMap::saveToFile(const std::string file_name)
 			<< this->layers << "\n"
 			<< this->textureFile << "\n";
 
+
+
+
+		std::cout << yellow << "Saving..." << "\n";
+
+
+
+
+
+
 		for (int x = 0; x < this->maxSizeWorldGrid.x; x++)
 		{
 			for (int y = 0; y < this->maxSizeWorldGrid.y; y++)
@@ -328,8 +323,10 @@ void TileMap::loadFromFile(const std::string file_name)
 		this->layers = layers;
 		this->textureFile = texture_file;
 
-		//FUCKED
+
 		this->clear();
+
+		std::cout << blue << "Loading layers..." << "\n";
 
 		this->map.resize(this->maxSizeWorldGrid.x, std::vector< std::vector<std::vector<Tile*> > >());
 		for (int x = 0; x < this->maxSizeWorldGrid.x; x++)
@@ -398,9 +395,7 @@ void TileMap::loadFromFile(const std::string file_name)
 	in_file.close();
 }
 
-//----------------------
-//checkType
-//----------------------
+
 const bool TileMap::checkType(const int x, const int y, const int z, const int type) const
 {
 	return this->map[x][y][this->layer].back()->getType() == type;
@@ -596,9 +591,7 @@ void TileMap::updateTiles(Entity* entity, const float& dt, EnemySystem& enemySys
 	}
 }
 
-//----------------------
-//update
-//----------------------
+
 void TileMap::update(Entity* entity, const float& dt)
 {
 }
@@ -607,14 +600,7 @@ void TileMap::update(Entity* entity, const float& dt)
 //render
 //----------------------
 //FOG OF WAR
-void TileMap::render
-(
-	sf::RenderTarget& target,
-	const sf::Vector2i& gridPosition,
-	sf::Shader* shader,
-	const sf::Vector2f playerPosition,
-	const bool show_collision
-)
+void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition, sf::Shader* shader, const sf::Vector2f playerPosition,	const bool show_collision)
 {
 	this->layer = 0;
 
@@ -693,3 +679,5 @@ void TileMap::renderDeferred(sf::RenderTarget& target, sf::Shader* shader, const
 		deferredRenderStack.pop();
 	}
 }
+
+
