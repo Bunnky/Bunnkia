@@ -8,7 +8,7 @@ void Player::initVariables()
 {
 	this->initAttack = false;
 	this->attacking = false;
-	this->weapon = new Sword(1, 2, 5, 60, 20, "gamedata/Resources/Images/Sprites/Player/sword4.png");
+	this->weapon = new Sword(1, 2, 5, 60, 20, "gamedata/Resources/Images/Sprites/Items/sword4.png");
 	this->weapon->generate(1, 6001);
 
 	this->damageTimerMax = 500;
@@ -34,8 +34,6 @@ void Player::initAnimations()
 	//this->animationComponent->addAnimation("WALK_RIGHT", 6.f, 0, 1, 3, 1, 32, 32);
 	//this->animationComponent->addAnimation("WALK_UP", 6.f, 0, 1, 3, 1, 32, 32);
 }
-
-
 
 
 void Player::initInventory()
