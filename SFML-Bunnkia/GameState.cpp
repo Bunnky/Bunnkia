@@ -83,14 +83,11 @@ void GameState::initTextures()
 
 	// Enemy Textures
 	if (!this->textures["GOBLIN_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/goblin.png"))	
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_GOBLIN_TEXTURE";
-	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_GOBLIN_TEXTURE";	
 	if (!this->textures["SKELETON_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/skeleton.png"))	
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SKELETON_TEXTURE";
-	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SKELETON_TEXTURE";	
 	if (!this->textures["SLIME_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/slime.png"))	
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SLIME_TEXTURE";
-	
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SLIME_TEXTURE";	
 	if (!this->textures["SPIDER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Enemy/spider.png"))	
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_SPIDER_TEXTURE";
 	
@@ -142,7 +139,6 @@ void GameState::initDebugText()
 //----------------------
 void GameState::initPlayers()
 {
-	//Player Start Position
 	this->player = new Player(150, 200, this->textures["ROGUE_SHEET"]);
 }
 

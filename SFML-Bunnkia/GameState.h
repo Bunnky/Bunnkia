@@ -8,7 +8,7 @@
 #include"Sword.h"
 #include"Bow.h"
 #include"TextTagSystem.h"
-#include "FPS.h"
+#include"FPS.h"
 
 class GameState :
 	public State
@@ -16,7 +16,6 @@ class GameState :
 private:
 
 	Player* player;
-
 	FPS fps;
 	PauseMenu* pmenu;
 	PlayerGUI* playerGUI;
