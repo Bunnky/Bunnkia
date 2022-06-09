@@ -46,7 +46,7 @@ void CharacterSelectState::initGui()
 	this->titleText.setFillColor(sf::Color(255, 255, 255, 250));
 	this->titleText.setOutlineColor(sf::Color(0, 0, 0, 250));
 	this->titleText.setOutlineThickness(1);
-	this->titleText.setString("Choose a character ");
+	this->titleText.setString("Choose a character");
 
 
 	///
@@ -208,6 +208,7 @@ void CharacterSelectState::initGui()
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
+
 }
 
 
@@ -220,6 +221,7 @@ CharacterSelectState::CharacterSelectState(StateData* state_data)
 	this->initFonts();
 	this->initKeybinds();
 	this->initGui();
+
 }
 
 CharacterSelectState::~CharacterSelectState()
@@ -243,6 +245,7 @@ void CharacterSelectState::updateGui(const float& dt)
 	{
 		it.second->update(this->mousePosWindow);
 	}
+
 
 	//Back to menu
 	if (this->buttons["BACK"]->isPressed())	
@@ -295,8 +298,8 @@ void CharacterSelectState::render(sf::RenderTarget* target)
 
 	target->draw(this->background);
 	target->draw(this->btnBackground);
-	this->renderGui(*target);
 	target->draw(this->titleText);
+	this->renderGui(*target);
 
 
 

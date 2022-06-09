@@ -16,6 +16,8 @@ private:
 	//===========//
 	// Variables //
 	//===========//
+	CharacterTypes character;
+
 	sf::RectangleShape background;
 	sf::Texture backgroundTexture;
 	sf::Font font;
@@ -27,8 +29,6 @@ private:
 
 	sf::Texture spritetexture;
 	sf::Sprite sprite;
-
-	CharacterTypes character;
 
 
 	//===========//

@@ -45,6 +45,8 @@ namespace gui
 
 		sf::Texture spriteTexture;
 		sf::Sprite sprite;
+		sf::Clock clock;
+
 
 	public:
 		Button(float x, float y, float width, float height,
@@ -70,7 +72,6 @@ namespace gui
 		const bool isPressed() const;
 		const std::string getText() const;
 		const short unsigned& getId() const;
-		virtual AnimationComponent* getAnimationComponent();
 
 
 		//===========//
@@ -82,13 +83,6 @@ namespace gui
 		//===========//
 		// Functions //
 		//===========//
-		void initAnimations();
-		
-
-		void createAnimationComponent(sf::Texture& texture_file);
-
-
-		void updateAnimation(const float& dt);
 		void update(const sf::Vector2i& mousePosWindow);
 		void render(sf::RenderTarget& target);
 	};

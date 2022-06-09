@@ -99,10 +99,9 @@ gui::Button::Button(float x, float y, float width, float height,
 	short unsigned id)
 {
 
-	this->animationComponent = NULL;
 
 	if (!this->spriteTexture.loadFromFile(texture_file))
-		std::cout << "ERROR::PLAYER::COULD NOT LOAD WEAPON TEXTURE:: " << texture_file << "\n";
+		std::cout << "GUI::COULD NOT LOAD SPRITE TEXTURE:: " << texture_file << "\n";
 
 	this->buttonState = BTN_IDLE;
 	this->id = id;
@@ -136,17 +135,11 @@ gui::Button::Button(float x, float y, float width, float height,
 		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) + this->text.getGlobalBounds().height + 12
 	);
 
-	//this->sprite.setTexture(this->spriteTexture);
-	//this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-	//this->sprite.setScale(2.f, 2.f);
-	//this->sprite.setPosition(
-	//	this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-	//	this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
-
-
-	this->createAnimationComponent(spriteTexture);
-	this->initAnimations();
-
+	this->sprite.setTexture(this->spriteTexture);
+	this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+	this->sprite.setPosition(
+		this->shape.getPosition().x + floor(this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+		this->shape.getPosition().y + floor(this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f + 2);
 }
 
 gui::Button::~Button()
@@ -186,25 +179,12 @@ void gui::Button::setID(const short unsigned id)
 	this->id = id;
 }
 
-void gui::Button::initAnimations()
-{
-	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 32, 32);
-	std::cout << "Animations Initialized" << "\n";
-}
-
-
-void gui::Button::updateAnimation(const float& dt)
-{
-	this->animationComponent->play("IDLE", dt);
-}
-
 
 //========================================================
 //Functions
 //========================================================
 void gui::Button::update(const sf::Vector2i& mousePosWindow)
 {
-	/*Update the booleans for hover and pressed*/
 
 	//Idle
 	this->buttonState = BTN_IDLE;
@@ -229,8 +209,8 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->shape.setOutlineColor(this->outlineIdleColor);
 		this->sprite.setScale(1.5f, 1.5f);
 		this->sprite.setPosition(
-			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
+			this->shape.getPosition().x + floor(this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+			this->shape.getPosition().y + floor(this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
 		break;
 
 	case BTN_HOVER:
@@ -239,8 +219,26 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 		this->shape.setOutlineColor(this->outlineHoverColor);
 		this->sprite.setScale(2.f, 2.f);
 		this->sprite.setPosition(
-			this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
-			this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
+			this->shape.getPosition().x + floor(this->shape.getGlobalBounds().width / 2.f) - this->sprite.getGlobalBounds().width / 2.f,
+			this->shape.getPosition().y + floor(this->shape.getGlobalBounds().height / 2.f) - this->sprite.getGlobalBounds().height / 2.f - 8);
+
+		if (clock.getElapsedTime().asSeconds() > 0.2f)
+		{
+			this->sprite.setTextureRect(sf::IntRect(32, 0, 32, 32));
+			if (clock.getElapsedTime().asSeconds() > 0.4f)
+			{
+				this->sprite.setTextureRect(sf::IntRect(64, 0, 32, 32));
+				if (clock.getElapsedTime().asSeconds() > 0.6f)
+				{
+					this->sprite.setTextureRect(sf::IntRect(96, 0, 32, 32));
+					if (clock.getElapsedTime().asSeconds() > 0.8f)
+					{
+						this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+						clock.restart();
+					}
+				}
+			}
+		}
 		break;
 
 	case BTN_ACTIVE:
@@ -265,16 +263,6 @@ void gui::Button::render(sf::RenderTarget& target)
 	target.draw(this->sprite);
 }
 
-
-void gui::Button::createAnimationComponent(sf::Texture& texture_file)
-{
-	this->animationComponent = new AnimationComponent(this->sprite, texture_file);
-}
-
-AnimationComponent* gui::Button::getAnimationComponent()
-{
-	return this->animationComponent;
-}
 //========================================================
 //
 //Drop down list
