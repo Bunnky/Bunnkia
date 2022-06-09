@@ -79,6 +79,8 @@ void GameState::initTextures()
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_ROGUE_TEXTURE";
 	if (!this->textures["WARRIOR_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/warriorSheet.png"))
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_WARRIOR_TEXTURE";
+	if (!this->textures["RANGER_SHEET"].loadFromFile("gamedata/Resources/Images/Sprites/Player/rangerSheet.png"))
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_RANGER_TEXTURE";
 	
 
 	// Enemy Textures
@@ -139,7 +141,7 @@ void GameState::initDebugText()
 //----------------------
 void GameState::initPlayers()
 {
-	this->player = new Player(150, 200, this->textures["ROGUE_SHEET"]);
+	this->player = new Player(150, 200, this->textures["WARRIOR_SHEET"]);
 }
 
 //----------------------

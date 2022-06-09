@@ -16,6 +16,7 @@ class GameState :
 private:
 
 	Player* player;
+
 	FPS fps;
 	PauseMenu* pmenu;
 	PlayerGUI* playerGUI;

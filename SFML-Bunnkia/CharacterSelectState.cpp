@@ -80,26 +80,26 @@ void CharacterSelectState::initGui()
 	this->buttons["ROGUE"] = new gui::Button(
 		gui::p2pX(15.f, vm), gui::p2pY(19.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
-		"gamedata/Resources/Images/Sprites/Player/rogue.png",
+		"gamedata/Resources/Images/Sprites/Player/rogueSheet.png",
 		&this->font, "Rogue", gui::calcCharSize(vm, 126),
 		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
 		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
 
-	this->buttons["PLACEHOLDER_ONE"] = new gui::Button(
+	this->buttons["WARRIOR"] = new gui::Button(
 		gui::p2pX(34.f, vm), gui::p2pY(19.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
-		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
-		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		"gamedata/Resources/Images/Sprites/Player/warriorSheet.png",
+		&this->font, "Warrior", gui::calcCharSize(vm, 126),
 		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
 		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
 
-	this->buttons["PLACEHOLDER_TWO"] = new gui::Button(
+	this->buttons["RANGER"] = new gui::Button(
 		gui::p2pX(53.f, vm), gui::p2pY(19.f, vm),
 		gui::p2pX(12.f, vm), gui::p2pY(12.f, vm),
-		"gamedata/Resources/Images/Sprites/Player/player_temp.png",
-		&this->font, "PLACEHOLDER", gui::calcCharSize(vm, 126),
+		"gamedata/Resources/Images/Sprites/Player/rangerSheet.png",
+		&this->font, "Ranger", gui::calcCharSize(vm, 126),
 		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
 		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
@@ -248,7 +248,13 @@ void CharacterSelectState::updateGui(const float& dt)
 		this->endState();
 	
 	// Start Game
-	if (this->buttons["START"]->isPressed() || this->buttons["ROGUE"]->isPressed())
+	if (this->buttons["START"]->isPressed())
+	{
+		this->states->pop();
+		this->states->push(new GameState(this->stateData));
+	}
+
+	if (this->buttons["ROGUE"]->isPressed())
 	{
 		this->states->pop();
 		this->states->push(new GameState(this->stateData));

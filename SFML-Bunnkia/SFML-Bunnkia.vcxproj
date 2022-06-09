@@ -163,7 +163,6 @@
     <ClCompile Include="AttributeComponent.cpp" />
     <ClCompile Include="Bow.cpp" />
     <ClCompile Include="CharacterSelectState.cpp" />
-    <ClCompile Include="CharacterSystem.cpp" />
     <ClCompile Include="CharacterTab.cpp" />
     <ClCompile Include="DefaultEditorMode.cpp" />
     <ClCompile Include="EditorMode.cpp" />
@@ -219,7 +218,6 @@
     <ClInclude Include="AttributeComponent.h" />
     <ClInclude Include="Bow.h" />
     <ClInclude Include="CharacterSelectState.h" />
-    <ClInclude Include="CharacterSystem.h" />
     <ClInclude Include="CharacterTab.h" />
     <ClInclude Include="ConsoleColor.h" />
     <ClInclude Include="DefaultEditorMode.h" />
