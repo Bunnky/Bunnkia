@@ -260,6 +260,8 @@ const bool GameState::getKeytime()
 	return false;
 }
 
+
+
 void GameState::updateView(const float& dt)
 {
 	this->view.setCenter(
@@ -443,6 +445,7 @@ void GameState::update(const float& dt)
 
 	if (!this->paused) //Unpaused update
 	{
+		
 		this->updateView(dt);
 
 		this->updatePlayerInput(dt);

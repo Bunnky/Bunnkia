@@ -5,6 +5,9 @@
 #include "Gui.h"
 #include "AnimationComponent.h"
 
+
+enum CharacterTypes { ROGUE = 0, WARRIOR, RANGER, MAGE };
+
 class CharacterSelectState :
     public State
 {
@@ -25,6 +28,8 @@ private:
 	sf::Texture spritetexture;
 	sf::Sprite sprite;
 
+	CharacterTypes character;
+
 
 	//===========//
 	// Functions //
@@ -40,6 +45,11 @@ public:
 	virtual ~CharacterSelectState();
 
 
+
+	//===========//
+	// Accessors //
+	//===========//
+	const short unsigned& getCharacter() const { return this->character; }
 
 	//===========//
 	// Functions //

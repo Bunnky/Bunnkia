@@ -7,7 +7,7 @@
 //========================================================
 void CharacterSelectState::initVariables()
 {
-
+	this->character = ROGUE;
 }
 
 void CharacterSelectState::initFonts()
@@ -85,6 +85,7 @@ void CharacterSelectState::initGui()
 		sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 150),
 		sf::Color(0, 0, 255, 20), sf::Color(0, 0, 255, 100), sf::Color(0, 0, 255, 200),
 		sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50));
+
 
 	this->buttons["WARRIOR"] = new gui::Button(
 		gui::p2pX(34.f, vm), gui::p2pY(19.f, vm),
@@ -256,8 +257,14 @@ void CharacterSelectState::updateGui(const float& dt)
 
 	if (this->buttons["ROGUE"]->isPressed())
 	{
-		this->states->pop();
-		this->states->push(new GameState(this->stateData));
+			this->character = ROGUE;
+			std::cout << getCharacter() << "\n";
+	}
+
+	if (this->buttons["WARRIOR"]->isPressed())
+	{
+			this->character = WARRIOR;
+			std::cout << getCharacter() << "\n";
 	}
 
 }
@@ -267,6 +274,8 @@ void CharacterSelectState::update(const float& dt)
 	this->updateMousePositions();
 	this->updateInput(dt);
 	this->updateGui(dt);
+	this->getCharacter();
+
 
 }
 

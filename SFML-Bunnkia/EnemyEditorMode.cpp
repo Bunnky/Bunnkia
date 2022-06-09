@@ -61,8 +61,7 @@ EnemyEditorMode::~EnemyEditorMode()
 void EnemyEditorMode::updateInput(const float& dt)
 {
 	//Add a tile to the tilemap
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime()
-		)
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime())
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 		{
@@ -73,8 +72,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 	}
 
 	//Remove a tile from the tilemap
-	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime()
-		)
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime())
 	{
 		if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePosWindow)))
 		{
