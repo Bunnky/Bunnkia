@@ -16,3 +16,5 @@
 *.vcxproj.user
 *.dll
 *.aps
+/Server/Debug
+/Server/SFML

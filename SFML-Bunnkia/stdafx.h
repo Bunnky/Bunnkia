@@ -28,6 +28,8 @@
 #include <fstream>
 #include <cmath>
 #include <cstdlib>
+#include <iomanip>
+#include <iostream>
 
 //Custom
 #include "ConsoleColor.h"

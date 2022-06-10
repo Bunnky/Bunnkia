@@ -3,9 +3,11 @@
 
 #include"MainMenuState.h"
 
+
 class Game
 {
 private:
+
 	//===========//
 	// Variables //
 	//===========//
@@ -22,6 +24,10 @@ private:
 	std::map<std::string, int> supportedKeys;
 
 	float gridSize;
+
+
+	sf::TcpSocket socket;
+	sf::Socket::Status status;
 
 	//===========//
 	// Initialize//
