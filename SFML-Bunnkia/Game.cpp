@@ -15,7 +15,6 @@ void Game::initVariables()
 	//GRIDSIZE HERE
 	this->gridSize = 32.f;
 
-	this->status = socket.connect("10.0.0.59", 50001, sf::milliseconds(5000));
 }
 
 void Game::initGraphicsSettings()
@@ -176,31 +175,6 @@ void Game::render()
 
 void Game::run()
 {
-	if (this->status != sf::Socket::Done)
-		std::cout << "Server Connection: " << red << "Timeout";
-	else
-	{
-		std::cout << "Server Connection: " << green << "Connected!" << white << "\n"
-			<< "Address: " << this->socket.getRemoteAddress() << "\n"
-		<< "Port: " << this->socket.getRemotePort() << "\n";
-		
-		char in[128];
-		std::size_t received;
-
-		// Receive a message from the server
-		if (this->socket.receive(in, sizeof(in), received) != sf::Socket::Done)
-			return;
-			std::cout << "Message received from the server: \"" << in << "\"" << std::endl;
-
-		// Send an answer to the server
-		const char out[] = "Hi, I'm a client";
-		if (this->socket.send(out, sizeof(out)) != sf::Socket::Done)
-			return;
-			std::cout << "Message sent to the server: \"" << out << "\"" << std::endl;
-	}
-	
-
-
 	while (this->window->isOpen())
 	{
 		// game loop stuff;

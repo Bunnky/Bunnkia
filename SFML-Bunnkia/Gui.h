@@ -5,8 +5,6 @@
 #include "Entity.h"
 
 
-class Animation;
-
 enum button_states { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 
 namespace gui
@@ -18,11 +16,6 @@ namespace gui
 	class Button
 	{
 	private:
-
-		AnimationComponent* animationComponent;
-		std::map<std::string, Animation*> animations;
-		Animation* lastAnimation;
-		Animation* priorityAnimation;
 
 		short unsigned buttonState;
 		short unsigned id;

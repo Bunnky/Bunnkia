@@ -26,8 +26,6 @@ private:
 	float gridSize;
 
 
-	sf::TcpSocket socket;
-	sf::Socket::Status status;
 
 	//===========//
 	// Initialize//

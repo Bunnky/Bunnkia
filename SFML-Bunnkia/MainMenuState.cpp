@@ -89,6 +89,13 @@ void MainMenuState::initGui()
 		&this->font, "Quit", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
+	this->buttons["SERVER_CONNECT"] = new gui::Button(
+		gui::p2pX(37.7f, vm), gui::p2pY(92.f, vm),
+		gui::p2pX(25.7f, vm), gui::p2pY(4.6f, vm),
+		&this->font, "Connect to server", 24,
+		sf::Color(0, 200, 0, 200), sf::Color(0, 250, 0, 250), sf::Color(0, 200, 0, 100),
+		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 }
 
 void MainMenuState::resetGui()
@@ -174,14 +181,41 @@ void MainMenuState::updateButtons()
 	{
 		this->endState();
 	}
+
+	if (this->buttons["SERVER_CONNECT"]->isPressed())
+	{
+		this->status = socket.connect("10.0.0.59", 50001);
+
+		if (this->status != sf::Socket::Done)
+			std::cout << "Server Connection: " << red << "Timeout" << white << "\n";
+		else
+		{
+			std::cout << "Server Connection: " << green << "Connected!" << white << "\n"
+				<< "Address: " << green << this->socket.getRemoteAddress() << white << "\n"
+			<< "Port: " << green << this->socket.getRemotePort() << white << "\n";
+			
+			char in[128];
+			std::size_t received;
+		
+			// Receive a message from the server
+			if (this->socket.receive(in, sizeof(in), received) != sf::Socket::Done)
+				return;
+				std::cout << "Message received from the server: \"" << in << "\"" << std::endl;
+		
+			// Send an answer to the server
+			const char out[] = "Hi, I'm a client";
+			if (this->socket.send(out, sizeof(out)) != sf::Socket::Done)
+				return;
+				std::cout << "Message sent to the server: \"" << out << "\"" << std::endl;
+		}
+	}
 }
 
 void MainMenuState::update(const float& dt)
 {
 	this->updateMousePositions();
-	this->updateInput(dt);
-
 	this->updateButtons();
+	this->updateInput(dt);
 }
 
 void MainMenuState::renderButtons(sf::RenderTarget& target)
