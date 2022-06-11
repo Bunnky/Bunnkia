@@ -279,7 +279,6 @@ void CharacterSelectState::update(const float& dt)
 	this->updateGui(dt);
 	this->getCharacter();
 
-
 }
 
 void CharacterSelectState::renderGui(sf::RenderTarget& target)

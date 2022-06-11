@@ -16,7 +16,6 @@ class GameState :
 private:
 
 	Player* player;
-
 	FPS fps;
 	PauseMenu* pmenu;
 	PlayerGUI* playerGUI;
@@ -60,6 +59,7 @@ private:
 public:
 	GameState(StateData* state_data);
 	virtual ~GameState();
+
 
 	//Accessors
 	const bool getKeytime();
